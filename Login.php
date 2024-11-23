@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="styleLogin.css">
+    <link rel="stylesheet" href="tampilan/styleLogin.css">
 </head>
 
 <body>
     <div class="avatar">
-        <img src="img/akun.png" alt="User Icon" class="user-icon">
+        <img src="img/akun.png" alt="User Icon" class="user-icon" position="center">
     </div>
     <div class="container">
         <form action="" method="post" class="login-form">

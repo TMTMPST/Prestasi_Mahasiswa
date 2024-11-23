@@ -1,0 +1,111 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #337ab7;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2C4EA3;
+    padding: 20px;
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    background-color: #769DFF;
+    border-radius: 5px;
+}
+
+.user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.user-id {
+    font-size: 12px;
+    color: white;
+}
+
+.nav {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-item {
+    margin-bottom: 10px;
+}
+
+.nav-link {
+    display: block;
+    padding: 10px;
+    border-radius: 5px; 
+    text-decoration: none;
+    color: #fff;
+    /* background-color: rgb(0, 0, 0 /0.5) ; */
+    background-color: #769DFF;
+    /* opacity: 0.5; */
+}
+
+
+.nav-link:hover {
+    background-color: #FEC113;
+    color: #333;
+    font-weight: bold;
+}
+
+.copyright {  
+    text-align: left;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.kotak-copyright{
+    background-color: #769DFF;
+    position: fixed;
+    bottom: 0;
+    border-radius: 5px;
+    display: block;
+}
+.kotak-copyright.img {
+    margin-top: 0;
+    display: flex;
+}
