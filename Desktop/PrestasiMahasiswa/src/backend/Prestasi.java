@@ -6,7 +6,6 @@ package backend;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import prestasimahasiswa.PrestasiMahasiswa;
 
 /**
  *
