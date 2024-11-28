@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author TNCP
  */
 public class Prestasi {
+
     private int ID_PRESTASI;
     private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, PENYELENGGARA, BUKTI_PRESTASI, STATUS;
 
@@ -98,14 +99,14 @@ public class Prestasi {
     public void setSTATUS(String STATUS) {
         this.STATUS = STATUS;
     }
-    
+
     public Prestasi getById(int id) {
         Prestasi prs = new Prestasi();
-        ResultSet rs = DBHelper.selectQuery("SELECT * FROM PRESTASI " + 
-                                            "WHERE ID_PRESTASI = '" + id + "'");
-        
+        ResultSet rs = DBHelper.selectQuery("SELECT * FROM PRESTASI "
+                + "WHERE ID_PRESTASI = '" + id + "'");
+
         try {
-            while (rs.next()) {                
+            while (rs.next()) {
                 prs = new Prestasi();
                 prs.setID_PRESTASI(rs.getInt("ID_PRESTASI"));
                 prs.setNIM(rs.getString("NIM"));
@@ -116,7 +117,7 @@ public class Prestasi {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return prs;
     }
 
@@ -142,9 +143,36 @@ public class Prestasi {
 
         return ListPrestasi;
     }
-    
+
+    public ArrayList<Prestasi> search(String keyword) {
+        ArrayList<Prestasi> ListKategori = new ArrayList();
+
+        ResultSet rs = DBHelper.selectQuery("SELECT * FROM PRESTASI WHERE"
+                + " NIM LIKE '%" + keyword + "%'"
+                + " OR PERINGKAT LIKE '%" + keyword + "%'"
+                + " OR NAMA_LOMBA LIKE '%" + keyword + "%'"
+                + " OR JENIS_PRESTASI LIKE '%" + keyword + "%'");
+
+        try {
+            while (rs.next()) {
+                Prestasi prs = new Prestasi();
+                prs.setID_PRESTASI(rs.getInt("ID_PRESTASI"));
+                prs.setNIM(rs.getString("NIM"));
+                prs.setPERINGKAT(rs.getString("PERINGKAT"));
+                prs.setNAMA_LOMBA(rs.getString("NAMA_LOMBA"));
+                prs.setJENIS_PRESTASI(rs.getString("JENIS_PRESTASI"));
+
+                ListKategori.add(prs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ListKategori;
+    }
+
     public void save() {
-        if (getById(ID_PRESTASI).getID_PRESTASI()== 0) {
+        if (getById(ID_PRESTASI).getID_PRESTASI() == 0) {
             String SQL = "INSERT INTO PRESTASI (NIM, PERINGKAT, NAMA_LOMBA, JENIS_PRESTASI) VALUES("
                     + "'" + this.NIM + "', "
                     + "'" + this.PERINGKAT + "', "
