@@ -5,6 +5,8 @@
 package frontend;
 
 import backend.*;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -362,17 +364,21 @@ public class Input extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        if (txtNIM.getText().equals("") || txtJuara.getText().equals("") || txtLomba.getText().equals("")) {
-        } else {
-            Prestasi prs = new Prestasi();
-            prs.setNIM(txtNIM.getText());
-            prs.setPERINGKAT(txtJuara.getText());
-            prs.setNAMA_LOMBA(txtLomba.getText());
-            prs.setJENIS_PRESTASI(comboBoxTingkatan.getSelectedItem().toString());
-            prs.save();
-            Dashboard d = new Dashboard();
-            d.show();
-            dispose();
+        if (txtNIM.getText().equals("") || txtJuara.getText().equals("") || txtLomba.getText().equals("") || !nimCheck(txtNIM.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "NIM tidak sesuai/tidak ada!");
+            txtNIM.requestFocus();
+        } else if (nimCheck(txtNIM.getText())) {
+            if (JOptionPane.showConfirmDialog(rootPane, "Anda Yakin Ingin menyimpan?") == 0) {
+                Prestasi prs = new Prestasi();
+                prs.setNIM(txtNIM.getText());
+                prs.setPERINGKAT(txtJuara.getText());
+                prs.setNAMA_LOMBA(txtLomba.getText());
+                prs.setJENIS_PRESTASI(comboBoxTingkatan.getSelectedItem().toString());
+                prs.save();
+                Dashboard d = new Dashboard();
+                d.show();
+                dispose();
+            }
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
@@ -397,6 +403,17 @@ public class Input extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
+
+    private boolean nimCheck(String nim) {
+        try {
+            ResultSet rs = DBHelper.selectQuery("SELECT * FROM MAHASISWA "
+                    + "WHERE NIM = '" + nim + "';");
+
+            return rs.next();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     /**
      * @param args the command line arguments
