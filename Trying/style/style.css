@@ -270,7 +270,8 @@ body {
 }
 
 .main-content {
-    margin-left: 16rem;
+    margin-left: 24rem;
+    margin-right: 1rem;
     padding: 1rem;
     margin-top: 3.5rem;
 }
