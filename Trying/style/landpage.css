@@ -1,0 +1,314 @@
+body {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    margin-left: 45px;
+    margin-right: auto;
+}
+
+.navbar {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 45px;
+}
+.navbar.dark {
+    background-color: #111827;
+    border-color: #1f2937;
+}
+.navbar a {
+    text-decoration: none;
+    color: #000000;
+}
+.navbar a.dark {
+    color: #fff;
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+.navbar .logo img {
+    height: 2rem;
+    margin-right: 0.5rem;
+}
+.navbar .menu {
+    display: none;
+}
+.navbar .menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #f9fafb;
+    border-top: 1px solid #d1d5db;
+}
+.navbar .menu a {
+    padding: 0.5rem 1rem;
+    color: #000000;
+    border-bottom: 1px solid #d1d5db;
+}
+.navbar .menu a:hover {
+    background-color: #f3f4f6;
+}
+.navbar .menu a.dark {
+    color: #fff;
+}
+.navbar .menu a:hover.dark {
+    background-color: #374151;
+}
+.navbar .toggle {
+    display: block;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.navbar .button {
+    padding: 0.5rem 2rem;
+    background-color: #FEC113;
+    color: #000000;
+    border: none;
+    border-radius: 200px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+.navbar .button:hover {
+    background-color: #2563eb;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .navbar {
+        flex-wrap: nowrap;
+    }
+    .navbar .menu {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        background: none;
+        border: none;
+        width: auto;
+    }
+    .navbar .menu a {
+        border: none;
+        margin: 0 0.5rem;
+    }
+    .navbar .toggle {
+        display: none;
+    }
+}
+
+/* Main Content */
+.frame {
+    display: flex;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+    padding: 92px 20px;
+    position: relative;
+    background-color: #0b1b43;
+    border-radius: 98px;
+    max-width: fit-content;
+    margin-inline: auto;
+    margin-bottom: 50px;
+}
+
+.frame .UNLEASH-YOUR-FULL {
+    position: relative;
+    width: 885px;
+    font-family: "Poppins-Black", Helvetica;
+    font-weight: 900;
+    color: transparent;
+    font-size: 80px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.frame .text-wrapper {
+    color: #f99e16;
+}
+
+.frame .span {
+    color: #ffffff;
+}
+
+.frame .group {
+    position: relative;
+    width: 683.38px;
+    height: 430px;
+    margin-left: -111px;
+}
+
+
+.frame-2 {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 69px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.frame-2 .download {
+    position: relative;
+    width: 701px;
+    height: 429px;
+    object-fit: cover;
+    border-radius: 45px;
+    -webkit-border-radius: 45px;
+    -moz-border-radius: 45px;
+    -ms-border-radius: 45px;
+    -o-border-radius: 45px;
+}
+
+.frame-2 .div {
+    flex-direction: column;
+    width: 891.59px;
+    align-items: flex-start;
+    gap: 33px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.frame-2 .text-wrapper {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 64px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.frame-2 .p {
+    position: relative;
+    align-self: stretch;
+    transform: rotate(-0.16deg);
+    font-family: "Roboto-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 36px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.frame-2 .div-2 {
+    width: 341px;
+    height: 72px;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0px;
+    background-color: #fec113;
+    border-radius: 98px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.frame-2 .text-wrapper-2 {
+    position: relative;
+    width: 305px;
+    margin-top: -1.00px;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.frame-2 .arrow {
+    position: absolute;
+    width: 40px;
+    height: 29px;
+    top: 21px;
+    left: 274px;
+}
+
+.frame-3 {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    align-items: center;
+    gap: 24px;
+    padding: 100px 366px;
+    position: relative;
+    background-color: #0b1b43;
+    border-radius: 50px;
+    margin-inline: auto;
+    margin-bottom: 50px;
+}
+
+.frame-3 .text-wrapper {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #fec113;
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.frame-3 .become-a-next {
+    position: relative;
+    width: 885px;
+    margin-left: -88.50px;
+    margin-right: -88.50px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: transparent;
+    font-size: 96px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.frame-3 .span {
+    color: #ffffff;
+}
+
+.frame-3 .text-wrapper-2 {
+    color: #f99e16;
+}
+
+.frame-3 .group {
+    position: absolute;
+    width: 463px;
+    height: 105px;
+    top: 404px;
+    left: 490px;
+}
+
+.frame-3 .overlap-group {
+    position: relative;
+    width: 461px;
+    height: 105px;
+    background-color: #fec113;
+    border-radius: 100px;
+}
+
+.frame-3 .div {
+    position: absolute;
+    top: 19px;
+    left: 80px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 55px;
+    letter-spacing: 0;
+    line-height: normal;
+    
+}
