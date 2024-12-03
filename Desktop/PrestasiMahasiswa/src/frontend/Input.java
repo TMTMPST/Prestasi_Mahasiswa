@@ -6,7 +6,9 @@ package frontend;
 
 import backend.*;
 import java.sql.ResultSet;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -63,7 +65,7 @@ public class Input extends javax.swing.JFrame {
         comboBoxTingkatan = new javax.swing.JComboBox<>();
         btnContinue = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
@@ -437,7 +439,7 @@ public class Input extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNama, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtNIM)
                             .addComponent(txtJuara)
                             .addComponent(txtLomba)
@@ -474,10 +476,10 @@ public class Input extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -502,7 +504,7 @@ public class Input extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(btnContinue)
                 .addGap(15, 15, 15))
         );
@@ -518,7 +520,7 @@ public class Input extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -535,34 +537,19 @@ public class Input extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNIMActionPerformed
 
-    private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        InputFile file = new InputFile();
-        file.show();
         if (txtNIM.getText().equals("") || txtJuara.getText().equals("") || txtLomba.getText().equals("") || !nimCheck(txtNIM.getText())) {
             JOptionPane.showMessageDialog(rootPane, "NIM tidak sesuai/tidak ada!");
             txtNIM.requestFocus();
         } else if (nimCheck(txtNIM.getText())) {
-            if (JOptionPane.showConfirmDialog(rootPane, "Anda Yakin Ingin menyimpan?") == 0) {
-                Prestasi prs = new Prestasi();
-                prs.setNIM(txtNIM.getText());
-                prs.setPERINGKAT(txtJuara.getText());
-                prs.setNAMA_LOMBA(txtLomba.getText());
-                prs.setJENIS_PRESTASI(comboBoxTingkatan.getSelectedItem().toString());
-                prs.save();
-                Dashboard d = new Dashboard();
-                d.show();
-                dispose();
-            }
+            InputFile file = new InputFile(
+                    txtNIM.getText(), txtJuara.getText(), txtLomba.getText(), comboBoxTingkatan.getSelectedItem().toString()
+            );
+            file.show();
+        } else {
         }
-    }                                         
-
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-        Dashboard d = new Dashboard();
-        d.show();
-        dispose();
-    }                                           
+    }
 
     private void PanelDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDashboardMouseClicked
         // TODO add your handling code here:
@@ -603,7 +590,6 @@ public class Input extends javax.swing.JFrame {
             return false;
         }
     }
-
 
     /**
      * @param args the command line arguments
@@ -674,10 +660,10 @@ public class Input extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanelMahasiswa;
     private javax.swing.JPanel jPanelReview;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField txtJuara;
     private javax.swing.JTextField txtLomba;
     private javax.swing.JTextField txtNIM;
+    private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 }
