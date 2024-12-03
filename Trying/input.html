@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="styleDashboard.css"> -->
+    <link rel="stylesheet" href="style/styleInput.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <title>Dashboard</title>
+
+</head>
+
+<body class="inter">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">
+                <img src="img/placeholder.png" alt="ACHIVEHUB LOGO">
+                <span class="navbar-logo-text">ACHIVEHUB</span>
+            </div>
+            <div class="steps">
+                <div class="active">
+                    <i class="fas fa-edit">
+                        <img src="img/Group 78.png" alt="">
+                    </i>
+                    <p> Input Data Prestasi</p>
+                </div>
+                <div>
+                    <i class="fas fa-upload">
+                    </i>
+                    <p>
+                        Upload File
+                    </p>
+                </div>
+                <div>
+                    <i class="fas fa-submit">
+                    </i>
+                    <p>
+                        Submit
+                    </p>
+                </div>
+            </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <div class="navbar-logo">
+                <img src="img/placeholder.png" alt="ACHIVEHUB LOGO">
+                <span class="navbar-logo-text">ACHIVEHUB</span>
+            </div>
+            <li class="sidebar-item sidebar-title inter-bold">
+                <span>Your Account</span>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-profile">
+                    <div class="profile-card">
+                        <div class="profile-picture">
+                            <img src="img/test/leo.jpeg" alt="Profile Picture">
+                        </div>
+                        <div class="profile-info">
+                            <h3 class="name inter-bold">Leonardo Davinci</h3>
+                            <p class="id">2341720175</p>
+                        </div>
+                    </div>
+            </li>
+            <li class="sidebar-item sidebar-title">
+                <span>Fitur</span>
+            </li>
+            <li class="sidebar-item">
+                <div class="sidebar-main ">
+                    <div class="sidebar-icon">
+                        <a href="#" class="sidebar-chosen">
+                            <img src="img/icon/Dashboard.png" alt="Dashboard" class="sidebar-icon">
+                            <span class="inter-bold">Dashboard</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li>
+
+            </li>
+            <li class="sidebar-item">
+                <div class="sidebar-secondary ">
+                    <a href="#" class="sidebar-link">
+                        <div class="sidebar-icon">
+                            <img src="img/icon/Input.png" alt="Input" class="sidebar-icon">
+                        </div>
+                        <span class="inter-bold">Input</span>
+                    </a>
+                </div>
+            </li>
+            <li class="sidebar-item">
+                <div class="sidebar-secondary">
+                    <a href="#" class="sidebar-link">
+                        <div class="sidebar-icon">
+                            <img src="img/icon/Review.png" alt="View" class="icon">
+                        </div>
+                        <span class="inter-bold">Review</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="input-prestasi">
+            <h2> Input Prestasi Kalian </h2>
+            <form>
+                <label for="nama-lomba">
+                    Nama Lomba
+                </label>
+                <input id="nama-lomba" name="nama-lomba" type="text" />
+                <label for="kategori-juara">
+                    Kategori Juara
+                </label>
+                <input id="kategori-juara" name="kategori-juara" type="text" />
+                <label for="date">
+                    Date
+                </label>
+                <input id="date" name="date" type="date" />
+                <label for="tipe-prestasi">
+                    Tipe Prestasi
+                </label>
+                <select id="tipe-prestasi" name="tipe-prestasi">
+                    <option> Pilih Tipe Prestasi </option>
+                    <option> Akademik </option>
+                    <option> Non Akademik </option>
+                </select>
+                <label for="tingkat-prestasi">
+                    Tingkat Prestasi
+                </label>
+                <select id="tingkat-prestasi" name="tingkat-prestasi">
+                    <option> Pilih Tingkat Prestasi </option>
+                    <option > Provinsi </option>
+                    <option > Nasioanal </option>
+                    <option > Internasional </option>
+                </select>
+                <button type="submit">
+                    Continue
+                </button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
