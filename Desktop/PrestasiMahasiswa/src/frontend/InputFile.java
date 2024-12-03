@@ -4,6 +4,7 @@
  */
 package frontend;
 
+import backend.Prestasi;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,12 +12,25 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class InputFile extends javax.swing.JFrame {
+    private String NIM, peringkat, namaLomba, jenisPrestasi;
 
-    /**
-     * Creates new form InputFile
-     */
     public InputFile() {
         initComponents();
+    }
+    
+    /**
+     * Creates new form InputFile
+     * @param NIM
+     * @param peringkat
+     * @param namaLomba
+     * @param jenisPrestasi
+     */
+    public InputFile(String NIM, String peringkat, String namaLomba, String jenisPrestasi) {
+        initComponents();
+        this.NIM = NIM;
+        this.peringkat = peringkat;
+        this.namaLomba = namaLomba;
+        this.jenisPrestasi = jenisPrestasi;
     }
 
     /**
@@ -51,7 +65,7 @@ public class InputFile extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(100, 100, 100))
         );
         jPanel2Layout.setVerticalGroup(
@@ -142,10 +156,10 @@ public class InputFile extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(103, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -184,7 +198,18 @@ public class InputFile extends javax.swing.JFrame {
 
     private void ButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSimpanActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "Data Prestasi Berhasil disimpan");
+        if (JOptionPane.showConfirmDialog(rootPane, "Anda Yakin Ingin menyimpan?") == 0) {
+            Prestasi prs = new Prestasi();
+            prs.setNIM(NIM);
+            prs.setPERINGKAT(peringkat);
+            prs.setNAMA_LOMBA(namaLomba);
+            prs.setJENIS_PRESTASI(jenisPrestasi);
+            prs.save();
+            Dashboard d = new Dashboard();
+            d.show();
+            dispose();
+            JOptionPane.showMessageDialog(rootPane, "Data Prestasi Berhasil disimpan");
+        }
     }//GEN-LAST:event_ButtonSimpanActionPerformed
 
     /**
