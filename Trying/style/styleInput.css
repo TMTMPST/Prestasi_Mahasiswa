@@ -7,6 +7,7 @@
 
 body {
     line-height: 1.6;
+    padding-top: calc(5rem + 1vh);
 }
 
 
@@ -24,6 +25,16 @@ body {
     align-items: center; /* Tambahkan ini */
     text-align: center;
     min-width: 300px;
+    position: relative; /* Add this for the line to appear below */
+}
+.navbar-content .steps div:not(.active)::before {
+    content: ''; /* Create the border */
+    position: absolute;
+    top: 35%; /* Position the line vertically centered */
+    left: -100px; /* Adjust this to move the line to the left side */
+    height: 2px; /* Thickness of the line */
+    width: 198px; /* Length of the line */
+    background-color: black; /* Line color */
 }
 .navbar-content .steps div i {
     font-size: 20px;
@@ -50,6 +61,7 @@ body {
     border-bottom: 1px solid #e5e7eb;
     z-index: 50;
     padding: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
 }
 
 .navbar-content {
@@ -77,6 +89,10 @@ body {
     white-space: nowrap;
 }
 
+.navbar-img {
+    width: 3.5rem;
+    height: auto;
+}
 
 /* Sidebar Styles */
 .sidebar {
@@ -187,8 +203,6 @@ body {
 /* Main Content Styles */
 .main-content {
     flex-grow: 1;
-    padding: 20px;
-    
 }
 
 .main-content h2 {
@@ -311,41 +325,4 @@ body {
     margin-right: 1rem;
     padding: 1rem;
     margin-top: 3.5rem;
-}
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.dashboard-grid-item,
-.dashboard-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f9fafb;
-    border-radius: 0.5rem;
-    height: 6rem;
-}
-
-.dashboard-placeholder {
-    color: #000000;
-    font-size: 64px;
-}
-
-.dashboard-tall {
-    height: 12rem;
-}
-
-.dashboard-grid-2col {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-/* Color */
-.yellow {
-    color: #FEC113;
 }
