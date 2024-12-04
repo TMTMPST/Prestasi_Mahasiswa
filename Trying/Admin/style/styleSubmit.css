@@ -1,4 +1,19 @@
-.main{
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin-left: 386px;
+    margin-top: 128px;
+}
+
+/* Main container styles */
+.Main {
     width: auto;
     height: auto;
     position: relative;
@@ -8,54 +23,6 @@
     padding: 20px;
 }
 
-
-
-.main-content  .continue-button {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.main-content  .continue-button button {
-    background-color: #2C4EA3;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.main-content  .continue-button button:hover {
-    background-color: #34495E;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    line-height: 1.6;
-    padding-top: calc(5rem + 1vh);
-}
-
-/* Back Button Styles */
-.ButtonBack {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 16px;
-    color: black;
-    margin-top: 20px;
-}
-
-.ButtonBack::before {
-    content: '←';
-    font-size: 20px;
-    margin-right: 10px;
-}
-
-
 /* navigator */
 .navbar-content .steps {
     display: flex;
@@ -64,34 +31,40 @@ body {
     /* position: fixed; */
     /* z-index: 50; */
 }
+
 .navbar-content .steps div {
-    display: flex; /* Tambahkan ini */
-    flex-direction: column; /* Tambahkan ini */
-    align-items: center; /* Tambahkan ini */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     min-width: 300px;
-    position: relative; /* Add this for the line to appear below */
+    position: relative;
 }
+
 .navbar-content .steps .line::before {
-    content: ''; /* Create the border */
+    content: '';
     position: absolute;
-    top: 35%; /* Position the line vertically centered */
-    left: -100px; /* Adjust this to move the line to the left side */
-    height: 2px; /* Thickness of the line */
-    width: 198px; /* Length of the line */
-    background-color: black; /* Line color */
+    top: 35%;
+    left: -100px;
+    height: 2px;
+    width: 198px;
+    background-color: black;
 }
+
 .navbar-content .steps div i {
     font-size: 20px;
     display: flex;
     margin-bottom: 5px;
 }
+
 .navbar-content .steps div.active i {
     color: #2C3E50;
 }
+
 .navbar-content .steps div.active p {
     font-weight: bold;
 }
+
 .navbar-content.active {
     display: table-column;
 }
@@ -106,7 +79,7 @@ body {
     border-bottom: 1px solid #e5e7eb;
     z-index: 50;
     padding: 0.75rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-content {
@@ -256,7 +229,153 @@ body {
     font-size: 20px;
     margin-left: 0.5rem; /* Add some spacing between the icon and the text */
 }
+/* Header styles */
+.Header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 20px;
+}
 
+.Table {
+    margin-bottom: 40px;
+    border: 1px solid #2C4EA3;
+    height: auto;
+}
+
+.SectionHeader {
+    background-color: #2C4EA3;
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 15px;
+    padding-left: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.FileItem,
+.DataItem {
+    background-color: white;
+    padding: 10px;
+    padding-left: 2.4rem;
+    font-size: 16px;
+    color: black;
+}
+
+/* Label styles */
+.Label {
+    float: left;
+    width: 180px;
+    /* Tentukan lebar untuk label */
+}
+
+/* Colon (:) styles */
+.Colon {
+    padding: 0 10px;
+    font-weight: 600;
+    color: black;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+}
+
+/* Details styles */
+.Details {
+    float: right;
+    font-weight: 500;
+    color: #555;
+    width: calc(100% - 210px);
+    /* Menyesuaikan dengan Label + Colon */
+    text-align: left;
+    /* Agar text di Details tidak rata kanan */
+}
+
+.FileItem div {
+    display: inline;
+    color: black;
+    padding: 6px 18px;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 11px;
+    margin-top: 20px;
+    width: auto;
+}
+
+.ViewImage {
+    background-color: #BCBCBC;
+}
+
+.ViewImage:hover {
+    background-color: #968585;
+    cursor: pointer;
+}
+
+.UploadSuccess {
+    background-color: #1EFF09;
+}
+
+.ButtonSubmit button {
+    background-color: #2C4EA3;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 8px;
+    border-radius: 24px;
+    width: 124px;
+    padding: 10px 16px;
+    border: none;
+}
+
+.ButtonSubmit button:hover {
+    background-color: #34495E;
+    cursor: pointer;
+}
+
+.ButtonBack {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    margin-top: 4px;
+}
+
+.ButtonBack::before {
+    content: '←';
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Icons */
+.icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.icon-container {
+    background-color: #b3c6ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.icons {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* profile card */
 .profile-card {
     display: flex;
     align-items: center;
@@ -287,13 +406,13 @@ body {
     object-fit: cover;
 }
 
-.profile-info .name{
+.profile-info .name {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 0.5px;
 }
 
-.profile-info .id{
+.profile-info .id {
     font-size: 14px;
     opacity: 0.8;
 }
@@ -312,59 +431,3 @@ body {
     font-weight: 200;
     font-style: normal;
 }
-
-.main-content {
-    margin-left: 24rem;
-    margin-right: 1rem;
-    padding: 1rem;
-    margin-top: 3.5rem;
-}
-
-.file-input {
-    display: block;
-    width: 100%;
-}
-
-.file-input::file-selector-button {
-    margin-right: 1rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 9999px;
-    background-color: #FBBF24;
-    color: #000000;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.file-input::file-selector-button:hover {
-    background-color: #ede9fe;
-}
-
-.main-content  .file-upload {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #F3F4F6;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.main-content  .file-upload span {
-    font-weight: 500;
-}
-
-.main-content  .file-upload button {
-    background-color: #FBBF24;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.main-content  .file-upload button:hover {
-    background-color: #F59E0B;
-}
-
