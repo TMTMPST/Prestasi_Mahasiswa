@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/Table.css">
     <title>Dashboard</title>
 
 </head>
@@ -47,8 +48,8 @@
                             <img src="../img/test/leo.jpeg" alt="Profile Picture">
                         </div>
                         <div class="profile-info">
-                            <h3 class="name inter-bold">Leonardo Davinci</h3>
-                            <p class="id">2341720175</p>
+                            <h3 class="name inter-bold">Ini Admin</h3>
+                            <p class="id">19581238123</p>
                         </div>
                     </div>
             </li>
@@ -110,26 +111,86 @@
             </div>
             <div class="dashboard-grid-item-2">
                 <p class="dashboard-placeholder">
-                    <h1>Leonardo Davinci</h1>
-                    <h2>Teknik Informatika</h2>
-                    <h3>2341720175</h3>
+                    <h1>Ini Admin</h1>
+                    <h2>Admin JTI</h2>
+                    <h3>19581238123</h3>
                 </p>
-                <h3 class="edit">Edit Profile</h1>
             </div>
         </div>
-
-        <div class="dashboard-grid-2col" style=" gap: 1px; background-color: #FEC113; margin-top: 5rem; border-radius: 50px; justify-content: center;">
-            <div class="dashboard-grid-item-1">
-                <img src="../img/icon/poin.png" alt="" style="width: 9rem;">
-            </div>
-            <div class="dashboard-grid-item-2" style="justify-items: center;">
-                <h2>Your Point Prestations</h2>
-                <div style="background-color: white; width: 8rem; height: 7rem; text-align: center; color: transparent; align-items: center;">0
-                    <h1 style="color: black;">
-                        0
-                    </h1>
-                </div>
-            </div>
+        <div class="table-container">
+            <table class="product-table">
+                <thead class="table-header">
+                    <tr>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Juara</th>
+                        <th scope="col">Lomba</th>
+                        <th scope="col">Tingkatan</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">2312331122</td>
+                        <td>Dong Zhuo</td>
+                        <td>Harapan 1</td>
+                        <td>Regional</td>
+                        <td class="completed">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"
+                            style="width: 15px; height:auto;">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg> 
+                            <span>Completed</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">2312351231</td>
+                        <td>Cao Cao</td>
+                        <td>Harapan 1</td>
+                        <td>Regional</td>
+                        <td class="unreview">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"
+                            style="width: 15px; height:auto;">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                              </svg>
+                              
+                            <span>Unreview</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">2312351231</td>
+                        <td>Uwiii</td>
+                        <td>Harapan 1</td>
+                        <td>Nasional</td>
+                        <td class="failed"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"
+                            style="width: 15px; height:auto;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                          </svg>
+                          <span>Failed</span></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">2312351231</td>
+                        <td>Uwiii</td>
+                        <td>Harapan 1</td>
+                        <td>Nasional</td>
+                        <td class="completed">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"
+                            style="width: 15px; height:auto;">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg> <span>Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">2312351231</td>
+                        <td>Uwiii</td>
+                        <td>Harapan 1</td>
+                        <td>Internasional</td>
+                        <td class="completed">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"
+                            style="width: 15px; height:auto;">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg> <span>Completed</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </main>
 </body>

@@ -1,0 +1,451 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin-left: 386px;
+    margin-top: 128px;
+}
+
+/* Main container styles */
+.Main {
+    width: auto;
+    height: auto;
+    position: relative;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* navigator */
+.navbar-content .steps {
+    display: flex;
+    justify-content: space-around;
+    /* margin-bottom: 20px; */
+    /* position: fixed; */
+    /* z-index: 50; */
+}
+
+.navbar-content .steps div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 300px;
+    position: relative;
+}
+
+.navbar-content .steps .line::before {
+    content: '';
+    position: absolute;
+    top: 35%;
+    left: -100px;
+    height: 2px;
+    width: 198px;
+    background-color: black;
+}
+
+.navbar-content .steps div i {
+    font-size: 20px;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.navbar-content .steps div.active i {
+    color: #2C3E50;
+}
+
+.navbar-content .steps div.active p {
+    font-weight: bold;
+}
+
+.navbar-content.active {
+    display: table-column;
+}
+
+/* Dashboard */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 50;
+    padding: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    background-color: #2C4EA3;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.navbar-logo img {
+    height: 2rem;
+    margin-right: 0.75rem;
+}
+
+.navbar-logo-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.navbar-img {
+    width: 3.5rem;
+    height: auto;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 368px;
+    height: 100%;
+    padding:20px;
+    background-color: #2C4EA3;
+    border-right: 1px solid #e5e7eb;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-item {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-title {
+    color: #ffffff;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.sidebar-link:hover {
+    background-color: #f3f4f6;
+}
+
+.sidebar-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.75rem;
+    /* background-color: #ffffff; */
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.sidebar-icon img {
+    width: 75%;
+    height: 75%;
+    object-fit: cover;
+}
+
+.sidebar-chosen {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar-nchosen {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: white;
+}
+
+
+.sidebar-main {
+    background-color: #FEC113;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    height: 4rem;
+}
+
+.sidebar-secondary {
+    background-color: #769DFF;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    height: 4rem;
+}
+
+.sidebar-icon-svg{
+    background: white;
+    padding: 8px;
+    border-radius: 100%;
+}
+
+
+.sidebar-chosen span {
+    font-size: 20px;
+    margin-left: 0.5rem; /* Add some spacing between the icon and the text */
+}
+
+.sidebar-nchosen span {
+    font-size: 20px;
+    margin-left: 0.5rem; /* Add some spacing between the icon and the text */
+}
+/* Header styles */
+.Header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.Table {
+    margin-bottom: 40px;
+    border: 1px solid #2C4EA3;
+    height: auto;
+}
+
+.SectionHeader {
+    background-color: #2C4EA3;
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 15px;
+    padding-left: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.FileItem,
+.DataItem {
+    background-color: white;
+    padding: 10px;
+    padding-left: 2.4rem;
+    font-size: 16px;
+    color: black;
+}
+
+/* Label styles */
+.Label {
+    float: left;
+    width: 180px;
+    /* Tentukan lebar untuk label */
+}
+
+/* Colon (:) styles */
+.Colon {
+    padding: 0 10px;
+    font-weight: 600;
+    color: black;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+}
+
+/* Details styles */
+.Details {
+    float: right;
+    font-weight: 500;
+    color: #555;
+    width: calc(100% - 210px);
+    /* Menyesuaikan dengan Label + Colon */
+    text-align: left;
+    /* Agar text di Details tidak rata kanan */
+}
+
+.FileItem div {
+    display: inline;
+    color: black;
+    padding: 6px 18px;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 11px;
+    margin-top: 20px;
+    width: auto;
+}
+
+.ViewImage {
+    background-color: #BCBCBC;
+}
+
+.ViewImage:hover {
+    background-color: #968585;
+    cursor: pointer;
+}
+
+.UploadSuccess {
+    background-color: #1EFF09;
+}
+
+.ButtonReject button {
+    background-color: #FA0000;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 8px;
+    border-radius: 24px;
+    width: 124px;
+    padding: 10px 16px;
+    border: none;
+}
+
+.ButtonAccept button {
+    background-color: #1EFF09;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 8px;
+    border-radius: 24px;
+    width: 124px;
+    padding: 10px 16px;
+    border: none;
+}
+
+.ButtonAccept button:hover {
+    background-color: #34495E;
+    cursor: pointer;
+}
+
+.ButtonReject button:hover {
+    background-color: #34495E;
+    cursor: pointer;
+}
+
+.ButtonBack {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    margin-top: 4px;
+}
+
+.ButtonBack::before {
+    content: '←';
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Icons */
+.icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.icon-container {
+    background-color: #b3c6ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.icons {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* profile card */
+.profile-card {
+    display: flex;
+    align-items: center;
+    background-color: #4285F4;
+    color: white;
+    padding: 16px;
+    border-radius: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 4rem;
+}
+
+.profile-picture {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 16px;
+    background-color: #d6d6d6;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info .name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 0.5px;
+}
+
+.profile-info .id {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* font*/
+.inter-bold {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.inter {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
