@@ -1,4 +1,4 @@
-
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,10 +6,21 @@
 }
 
 body {
-    line-height: 1.6;
-    padding-top: calc(5rem + 1vh);
+    font-family: 'Inter', sans-serif;
+    margin-left: 386px;
+    margin-top: 128px;
 }
 
+/* Main container styles */
+.Main {
+    width: auto;
+    height: auto;
+    position: relative;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+}
 
 /* navigator */
 .navbar-content .steps {
@@ -19,34 +30,40 @@ body {
     /* position: fixed; */
     /* z-index: 50; */
 }
+
 .navbar-content .steps div {
-    display: flex; /* Tambahkan ini */
-    flex-direction: column; /* Tambahkan ini */
-    align-items: center; /* Tambahkan ini */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     min-width: 300px;
-    position: relative; /* Add this for the line to appear below */
+    position: relative;
 }
-.navbar-content .steps div:not(.active)::before {
-    content: ''; /* Create the border */
+
+.navbar-content .steps .line::before {
+    content: '';
     position: absolute;
-    top: 35%; /* Position the line vertically centered */
-    left: -100px; /* Adjust this to move the line to the left side */
-    height: 2px; /* Thickness of the line */
-    width: 198px; /* Length of the line */
-    background-color: black; /* Line color */
+    top: 35%;
+    left: -100px;
+    height: 2px;
+    width: 198px;
+    background-color: black;
 }
+
 .navbar-content .steps div i {
     font-size: 20px;
     display: flex;
     margin-bottom: 5px;
 }
+
 .navbar-content .steps div.active i {
     color: #2C3E50;
 }
+
 .navbar-content .steps div.active p {
     font-weight: bold;
 }
+
 .navbar-content.active {
     display: table-column;
 }
@@ -61,7 +78,7 @@ body {
     border-bottom: 1px solid #e5e7eb;
     z-index: 50;
     padding: 0.75rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-content {
@@ -101,7 +118,7 @@ body {
     left: 0;
     width: 368px;
     height: 100%;
-    padding:20px;
+    padding: 20px;
     background-color: #2C4EA3;
     border-right: 1px solid #e5e7eb;
     overflow-y: auto;
@@ -186,7 +203,6 @@ body {
     height: 4rem;
 }
 
-
 .sidebar-nchosen {
     display: flex;
     align-items: center;
@@ -197,47 +213,102 @@ body {
 
 .sidebar-chosen span {
     font-size: 20px;
-    margin-left: 0.5rem; /* Add some spacing between the icon and the text */
+    margin-left: 0.5rem;
+    /* Add some spacing between the icon and the text */
 }
 
-/* Main Content Styles */
-.main-content {
-    flex-grow: 1;
+/* Header styles */
+.Header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 40px;
 }
 
-.main-content h2 {
-    margin-bottom: 20px;
+/* Section Styles for Table (File and Data Prestasi) */
+.Table {
+    margin-bottom: 40px;
+    border: 1px solid #2C4EA3;
 }
-.main-content form {
-    display: flex;
-    flex-direction: column;
-}
-.main-content form label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-.main-content form input, .main-content form select {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.main-content form button{
-    align-self: flex-end;
-    padding: 10px 20px;
-    background-color: #2C3E50;
+
+.SectionHeader {
+    background-color: #2C4EA3;
     color: white;
-    border: none;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 15px;
+    padding-left: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.FileItem,
+.DataItem {
+    background-color: white;
+    padding: 10px;
+    padding-left: 2.4rem;
+    font-size: 16px;
+    color: black;
+}
+
+/* Label styles */
+.Label {
+    float: left;
+    width: 180px;
+    /* Tentukan lebar untuk label */
+}
+
+/* Colon (:) styles */
+.Colon {
+    padding: 0 10px;
+    font-weight: 600;
+    color: black;
+    display: inline-block;
+    width: 20px;
+    /* Menjaga lebar tetap konsisten */
+    text-align: center;
+}
+
+/* Details styles */
+.Details {
+    float: right;
+    font-weight: 500;
+    color: #555;
+    width: calc(100% - 210px);
+    /* Menyesuaikan dengan Label + Colon */
+    text-align: left;
+    /* Agar text di Details tidak rata kanan */
+}
+
+
+
+.UploadSuccess {
+    background-color: #1EFF09;
+    display: inline;
+    color: black;
+    padding: 10px;
+    text-align: center;
     border-radius: 5px;
+    font-weight: 600;
+    font-size: 11px;
+    margin-top: 20px;
+    width: auto;
+}
+
+/* Back Button Styles */
+.ButtonBack {
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    font-size: 16px;
+    color: black;
+    margin-top: 20px;
 }
 
-
-
-.main-content form button:hover {
-    background-color: #34495E;
+.ButtonBack::before {
+    content: '←';
+    font-size: 20px;
+    margin-right: 10px;
 }
-
 
 /* Icons */
 .icon {
@@ -321,11 +392,4 @@ body {
     font-optical-sizing: auto;
     font-weight: 200;
     font-style: normal;
-}
-
-.main-content {
-    margin-left: 24rem;
-    margin-right: 1rem;
-    padding: 1rem;
-    margin-top: 3.5rem;
 }
