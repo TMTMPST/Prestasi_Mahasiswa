@@ -79,7 +79,7 @@ body {
     left: 0;
     width: 368px;
     height: 100%;
-    padding:20px;
+    padding: 20px;
     background-color: #2C4EA3;
     border-right: 1px solid #e5e7eb;
     overflow-y: auto;
@@ -124,7 +124,7 @@ body {
     align-items: center;
 }
 
-.sidebar-icon-svg{
+.sidebar-icon-svg {
     background: white;
     padding: 8px;
     border-radius: 100%;
@@ -181,12 +181,14 @@ body {
 
 .sidebar-chosen span {
     font-size: 20px;
-    margin-left: 0.5rem; /* Add some spacing between the icon and the text */
+    margin-left: 0.5rem;
+    /* Add some spacing between the icon and the text */
 }
 
 .sidebar-nchosen span {
     font-size: 20px;
-    margin-left: 0.5rem; /* Add some spacing between the icon and the text */
+    margin-left: 0.5rem;
+    /* Add some spacing between the icon and the text */
 }
 
 /* Main Content Styles */
@@ -213,7 +215,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px; 
+    width: 40px;
     height: 40px;
     margin-right: 10px;
 }
@@ -255,13 +257,13 @@ body {
     object-fit: cover;
 }
 
-.profile-info .name{
+.profile-info .name {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 0.5px;
 }
 
-.profile-info .id{
+.profile-info .id {
     font-size: 14px;
     opacity: 0.8;
 }
@@ -295,12 +297,12 @@ body {
     margin-bottom: 1rem;
 }
 
-.dashboard-grid-item-1{
+.dashboard-grid-item-1 {
     border-radius: 0.5rem;
     padding: 2rem;
 }
 
-.dashboard-grid-item-2{
+.dashboard-grid-item-2 {
     border-radius: 0.5rem;
     padding-top: 2rem;
     width: 100%;
@@ -321,15 +323,24 @@ body {
     gap: 30px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .edit {
-    background-color: #FEC113; 
-    text-align: center; 
+    background-color: #FEC113;
+    color: #000000;
+    text-align: center;
     border-radius: 100px;
     width: 10rem;
     margin-top: 7rem;
     align-items: center;
 }
 
+.edit:hover {
+    background-color: #cfb670;
+    cursor: pointer;
+}
 
 /* Color */
 .yellow {
