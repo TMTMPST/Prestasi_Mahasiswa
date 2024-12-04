@@ -207,7 +207,7 @@ body {
     width: 3rem;
     height: 3rem;
     margin-right: 0.75rem;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
@@ -216,6 +216,7 @@ body {
     display: flex;
     align-items: center;
 }
+
 
 
 .sidebar-icon img {
@@ -230,6 +231,14 @@ body {
     padding: 0.5rem;
     text-decoration: none;
     color: black;
+}
+
+.sidebar-nchosen {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: white;
 }
 
 
@@ -257,16 +266,19 @@ body {
     height: 4rem;
 }
 
-
-.sidebar-nchosen {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
-    text-decoration: none;
-    color: white;
+.sidebar-icon-svg{
+    background: white;
+    padding: 8px;
+    border-radius: 100%;
 }
 
+
 .sidebar-chosen span {
+    font-size: 20px;
+    margin-left: 0.5rem; /* Add some spacing between the icon and the text */
+}
+
+.sidebar-nchosen span {
     font-size: 20px;
     margin-left: 0.5rem; /* Add some spacing between the icon and the text */
 }
