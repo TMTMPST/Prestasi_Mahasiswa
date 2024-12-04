@@ -405,3 +405,85 @@ body {
     width: 100%;
     margin-left: 0%;
 }
+
+@media (min-width: 768px) {
+    .hero {
+        padding: 4rem;
+        border-radius: 50px;
+    }
+
+    .hero-title {
+        font-size: 60px;
+    }
+
+    .department {
+        flex-direction: row;
+        gap: 4rem;
+    }
+
+    .department .text-wrapper {
+        font-size: 48px;
+        text-align: left;
+    }
+
+    .department .p {
+        font-size: 24px;
+        text-align: left;
+    }
+
+    .carousel-slide {
+        flex: 0 0 calc(50% - 15px);
+    }
+
+    .cta-section {
+        padding: 4rem;
+        border-radius: 30px;
+    }
+
+    .cta-main-title {
+        font-size: 72px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        flex-direction: row;
+        padding: 6rem;
+    }
+
+    .hero-title {
+        font-size: 80px;
+        text-align: left;
+    }
+
+    .department img {
+        max-width: 50%;
+    }
+
+    .carousel-slide {
+        flex: 0 0 calc(33.33% - 20px);
+    }
+
+    .cta-section {
+        padding: 6rem;
+    }
+
+    .cta-main-title {
+        font-size: 96px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .hero {
+        gap: 6rem;
+        padding: 8rem;
+    }
+
+    .carousel-slide {
+        flex: 0 0 calc(25% - 22.5px);
+    }
+
+    .cta-section {
+        padding: 8rem;
+    }
+}
