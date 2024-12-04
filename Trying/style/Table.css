@@ -73,3 +73,54 @@ th{
     width: 5rem;
     height: 1px;
 }
+
+.unmanage-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.unmanage-btn:hover {
+    background-color: transparent;
+}
+
+.completed {
+    border-radius: 50px;
+    background-color: #02FF74;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    text-align: center;
+    width: 10rem;
+}
+
+.unreview {
+    border-radius: 50px;
+    background-color: #0014F1;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    text-align: center;
+    width: 10rem;
+    color: white;
+}
+
+.failed {
+    border-radius: 50px;
+    background-color: #C70000;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    text-align: center;
+    width: 10rem;
+    color: white;
+}
