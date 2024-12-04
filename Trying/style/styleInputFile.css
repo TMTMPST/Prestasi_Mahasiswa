@@ -1,4 +1,62 @@
 
+.main{
+    flex-grow: 1;
+    background-color: #F3F4F6;
+    padding: 20px;
+    width: 200;
+    height: auto;
+}
+
+.main a{
+    text-decoration: none;
+  color: black;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.main h2 {
+    margin-top: 0;
+    /* margin-bottom: 20px; */
+}
+.main .file-upload {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    /* border: 1px solid #E5E7EB; */
+    border-radius: 10px;
+    background-color: #F9FAFB;
+}
+.main .file-upload span {
+    font-size: 500;
+}
+.main .file-upload button {
+    background-color: #F59E0B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.main .file-upload button:hover {
+    background-color: #D97706;
+}
+.main .continue-button {
+    display: flex;
+    justify-content: flex-end;
+}
+.continue-button button {
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.continue-button button:hover {
+    background-color: #1E40AF;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -27,7 +85,7 @@ body {
     min-width: 300px;
     position: relative; /* Add this for the line to appear below */
 }
-.navbar-content .steps div:not(.active)::before {
+.navbar-content .steps .line::before {
     content: ''; /* Create the border */
     position: absolute;
     top: 35%; /* Position the line vertically centered */
@@ -200,73 +258,6 @@ body {
     margin-left: 0.5rem; /* Add some spacing between the icon and the text */
 }
 
-/* Main Content Styles */
-.main-content {
-    flex-grow: 1;
-}
-
-.main-content h2 {
-    margin-bottom: 20px;
-}
-.main-content form {
-    display: flex;
-    flex-direction: column;
-}
-.main-content form label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-.main-content form input, .main-content form select {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.main-content form button{
-    align-self: flex-end;
-    padding: 10px 20px;
-    background-color: #2C3E50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
-
-.main-content form button:hover {
-    background-color: #34495E;
-}
-
-
-/* Icons */
-.icon {
-    width: 0.875rem;
-    height: 0.875rem;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.icon-container {
-    background-color: #b3c6ff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px; 
-    height: 40px;
-    margin-right: 10px;
-}
-
-.icons {
-    width: 20px;
-    height: 20px;
-}
-
-
-/* profile card */
 .profile-card {
     display: flex;
     align-items: center;
