@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/styleInputFile.css">
-    <title>Input File</title>
+    <link rel="stylesheet" href="../style/styleSubmit.css">
+    <title>Submit</title>
 </head>
 
 <body class="inter">
@@ -23,7 +23,7 @@
                     </i>
                     <p> Input Data Prestasi</p>
                 </div>
-                <div class="active line">
+                <div class="line">
                     <div>
                         <i class="fas fa-upload">
                             <img src="../img/upload-active.png" alt="Upload Status" class="navbar-img">
@@ -31,13 +31,14 @@
                         <p>Upload File</p>
                     </div>
                 </div>
-                <div class="line">
+                <div class="active line">
                     <i class="fas fa-submit">
-                        <img src="../img/submit.png" alt="Submit Status" class="navbar-img">
+                        <img src="../img/submit-active.png" alt="Submit Status" class="navbar-img">
                     </i>
                     <p>Submit</p>
                 </div>
             </div>
+        </div>
     </nav>
 
     <!-- Sidebar -->
@@ -104,11 +105,10 @@
         </ul>
     </aside>
 
-    <!-- Main Content -->
-
-    <div class="main-content">
+    <!-- Main -->
+    <div class="Main">
         <!-- Back Button -->
-        <a href="input.html" style="text-decoration: none;">
+        <a href="inputFile.html" style="text-decoration: none;">
             <div class="ButtonBack">
                 <span class="BackText">Back</span>
             </div><br>
@@ -116,49 +116,90 @@
 
         <!-- Header -->
         <div class="Header">
-            <h1>Upload File</h1>
+            <h1>Cekk</h1>
         </div>
 
-
-        <!-- File Upload Section -->
-        <form action="POST">
-            <div class="file-upload">
-                <span>Sertif</span>
-                <label>
-                    <input type="file" class="file-input" />
-                </label>
+        <!-- Data Prestasi Section -->
+        <div class="Table DataMahasiswa">
+            <div class="SectionHeader">Data Mahasiswa</div>
+            <div class="DataItem">
+                <span class="Label">Nama</span>
+                <span class="Colon">:</span>
+                <span class="Details">Lee Dong min</span>
             </div>
-
-            <div class="file-upload">
-                <span class="sr-only">Proposal</span>
-                <label>
-                    <input type="file" class="file-input" />
-                </label>
+            <div class="DataItem">
+                <span class="Label">NIM</span>
+                <span class="Colon">:</span>
+                <span class="Details">2341720175</span>
             </div>
-
-            <div class="file-upload">
-                <span class="sr-only">Surat Tugas</span>
-                <label>
-                    <input type="file" class="file-input" />
-                </label>
+            <div class="DataItem">
+                <span class="Label">Prodi</span>
+                <span class="Colon">:</span>
+                <span class="Details">Teknik Informatika</span>
             </div>
-
-            <div class="file-upload">
-                <span>Karya (bila ada)</span>
-                <label>
-                    <input type="file" class="file-input" />
-                </label>
+            <div class="DataItem">
+                <span class="Label">Angkatan</span>
+                <span class="Colon">:</span>
+                <span class="Details">2024</span>
             </div>
+        </div>
 
-            <div class="continue-button">
-                <a href="inputSubmit.html">
-                    <button>
-                        Continue
-                    </button>
-                </a>
+        <!-- Data Prestasi Section -->
+        <div class="Table DataPrestasi">
+            <div class="SectionHeader">Data Prestasi</div>
+            <div class="DataItem">
+                <span class="Label">Nama Lomba</span>
+                <span class="Colon">:</span>
+                <span class="Details">GEMASTIK</span>
             </div>
-        </form>
-    </div>
+            <div class="DataItem">
+                <span class="Label">Kategori Juara</span>
+                <span class="Colon">:</span>
+                <span class="Details">Juara 2</span>
+            </div>
+            <div class="DataItem">
+                <span class="Label">Date</span>
+                <span class="Colon">:</span>
+                <span class="Details">Januari 2023</span>
+            </div>
+            <div class="DataItem">
+                <span class="Label">Tingkat Prestasi</span>
+                <span class="Colon">:</span>
+                <span class="Details">Akademik - Nasional</span>
+            </div>
+        </div>
+
+        <!-- File Prestasi Section -->
+        <div class="Table FilePrestasi">
+            <div class="SectionHeader">File Prestasi</div>
+            <div class="FileItem">
+                <span class="Label">Sertifikat</span>
+                <div class="ViewImage">View Image</div>
+                <div class="UploadSuccess">Upload Success</div>
+            </div>
+            <div class="FileItem">
+                <span class="Label">Proposal</span>
+                <div class="ViewImage">View Image</div>
+                <div class="UploadSuccess">Upload Success</div>
+            </div>
+            <div class="FileItem">
+                <span class="Label">Surat Tugas</span>
+                <div class="ViewImage">View Image</div>
+                <div class="UploadSuccess">Upload Success</div>
+            </div>
+            <div class="FileItem">
+                <span class="Label">Karya</span>
+                <div class="ViewImage">View Image</div>
+                <div class="UploadSuccess">Upload Success</div>
+            </div>
+        </div>
+
+        <div class="ButtonSubmit">
+            <a href="Dashboard.html">
+                <button>Submit</button>
+            </a>
+        </div>
+
 </body>
 
 </html>
