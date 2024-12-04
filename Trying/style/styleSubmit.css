@@ -298,16 +298,22 @@ body {
     background-color: #1EFF09;
 }
 
-.ButtonSubmit {
+.ButtonSubmit button {
     background-color: #2C4EA3;
     color: #ffffff;
     font-size: 16px;
     font-weight: 400;
     text-align: center;
-    margin-top: 62px;
+    margin-top: 8px;
     border-radius: 24px;
     width: 124px;
     padding: 10px 16px;
+    border: none;
+}
+
+.ButtonSubmit button:hover {
+    background-color: #34495E;
+    cursor: pointer;
 }
 
 .ButtonBack {
