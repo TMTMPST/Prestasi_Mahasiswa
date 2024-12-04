@@ -8,7 +8,9 @@
     padding: 20px;
 }
 
-
+a {
+    text-decoration: none;
+}
 
 .main-content  .continue-button {
     display: flex;

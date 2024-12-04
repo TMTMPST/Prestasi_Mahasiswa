@@ -1,0 +1,94 @@
+body {
+    background: rgb(16,29,61);
+    background: radial-gradient(circle, rgba(16,29,61,1) 0%, rgba(44,78,163,1) 100%);
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ButtonBack {
+    position: absolute;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    top: 20px;
+    left: 20px;
+}
+
+.ButtonBack::before {
+    content: '←';
+    font-size: 18px;
+    margin-left: 14px;
+    margin-right: 4px;
+}
+
+.main-layout {
+    background-color: rgba(118, 157, 255, 0.5);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    height: 464px;
+    border-radius: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    margin-bottom: 24px;
+}
+
+img {
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+}
+
+.form-div {
+    display: flex;
+    width: 480px;
+    height: auto;
+}
+
+input {
+    width: 455px;
+    padding: 6px 12px;
+    margin-bottom: 16px;
+    border-radius: 2px;
+    border: none;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-left: 44%;
+}
+
+button {
+    border: none;
+    border-radius: 24px;
+    font-weight: 600;
+    width: 100px;
+    padding: 8px;
+    margin: 6px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #bebbbb;
+}
