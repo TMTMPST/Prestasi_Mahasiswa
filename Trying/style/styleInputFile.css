@@ -1,51 +1,46 @@
 
 .main{
-    flex-grow: 1;
-    background-color: #F3F4F6;
-    padding: 20px;
-    width: 200;
+    width: auto;
     height: auto;
+    position: relative;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
 }
 
-.main a{
-    text-decoration: none;
-  color: black;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-.main h2 {
-    margin-top: 0;
-    /* margin-bottom: 20px; */
-}
-.main .file-upload {
-    margin-bottom: 20px;
+.main-content  .file-upload {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    /* border: 1px solid #E5E7EB; */
+    background-color: #F3F4F6;
     border-radius: 10px;
-    background-color: #F9FAFB;
+    margin-bottom: 20px;
 }
-.main .file-upload span {
-    font-size: 500;
+
+.main-content  .file-upload span {
+    font-weight: 500;
 }
-.main .file-upload button {
-    background-color: #F59E0B;
-    color: white;
+
+.main-content  .file-upload button {
+    background-color: #FBBF24;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
-.main .file-upload button:hover {
-    background-color: #D97706;
+
+.main-content  .file-upload button:hover {
+    background-color: #F59E0B;
 }
-.main .continue-button {
+
+.main-content  .continue-button {
     display: flex;
     justify-content: flex-end;
 }
-.continue-button button {
+
+.main-content  .continue-button button {
     background-color: #1E3A8A;
     color: white;
     border: none;
@@ -53,7 +48,8 @@
     border-radius: 5px;
     cursor: pointer;
 }
-.continue-button button:hover {
+
+.main-content  .continue-button button:hover {
     background-color: #1E40AF;
 }
 
@@ -66,6 +62,22 @@
 body {
     line-height: 1.6;
     padding-top: calc(5rem + 1vh);
+}
+
+/* Back Button Styles */
+.ButtonBack {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    margin-top: 20px;
+}
+
+.ButtonBack::before {
+    content: '←';
+    font-size: 20px;
+    margin-right: 10px;
 }
 
 
