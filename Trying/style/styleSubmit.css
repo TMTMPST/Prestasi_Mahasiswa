@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    line-height: 1.6;
 }
 
 body {
@@ -236,10 +237,10 @@ body {
     margin-bottom: 20px;
 }
 
-/* Section Styles for Table (File and Data Prestasi) */
 .Table {
     margin-bottom: 40px;
     border: 1px solid #2C4EA3;
+    height: auto;
 }
 
 .SectionHeader {
@@ -303,6 +304,11 @@ body {
 
 .ViewImage {
     background-color: #BCBCBC;
+}
+
+.ViewImage:hover {
+    background-color: #968585;
+    cursor: pointer;
 }
 
 .UploadSuccess {
