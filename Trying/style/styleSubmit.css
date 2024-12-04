@@ -222,7 +222,7 @@ body {
     font-size: 36px;
     font-weight: 700;
     color: black;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 /* Section Styles for Table (File and Data Prestasi) */
@@ -264,7 +264,6 @@ body {
     color: black;
     display: inline-block;
     width: 20px;
-    /* Menjaga lebar tetap konsisten */
     text-align: center;
 }
 
@@ -279,29 +278,45 @@ body {
     /* Agar text di Details tidak rata kanan */
 }
 
-
-
-.UploadSuccess {
-    background-color: #1EFF09;
+.FileItem div {
     display: inline;
     color: black;
-    padding: 10px;
+    padding: 6px 18px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 20px;
     font-weight: 600;
     font-size: 11px;
     margin-top: 20px;
     width: auto;
 }
 
-/* Back Button Styles */
+.ViewImage {
+    background-color: #BCBCBC;
+}
+
+.UploadSuccess {
+    background-color: #1EFF09;
+}
+
+.ButtonSubmit {
+    background-color: #2C4EA3;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 62px;
+    border-radius: 24px;
+    width: 124px;
+    padding: 10px 16px;
+}
+
 .ButtonBack {
     display: flex;
     align-items: center;
     cursor: pointer;
     font-size: 16px;
     color: black;
-    margin-top: 20px;
+    margin-top: 4px;
 }
 
 .ButtonBack::before {
@@ -326,7 +341,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px; 
+    width: 40px;
     height: 40px;
     margin-right: 10px;
 }
@@ -368,13 +383,13 @@ body {
     object-fit: cover;
 }
 
-.profile-info .name{
+.profile-info .name {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 0.5px;
 }
 
-.profile-info .id{
+.profile-info .id {
     font-size: 14px;
     opacity: 0.8;
 }
