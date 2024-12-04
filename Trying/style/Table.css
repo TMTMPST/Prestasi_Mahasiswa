@@ -1,0 +1,75 @@
+.table-container {
+    position: relative;
+    overflow-x: auto;
+}
+
+/* Table styles */
+.product-table {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+    color: #000000;
+    border-collapse: separate; /* Change to separate to allow spacing */
+    border-spacing: 0 0.5rem; /* Add vertical spacing between rows */
+}
+
+th{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+
+/* Table header */
+.product-table thead {
+    font-size: 1rem;
+    font-weight: 900; 
+    text-transform: uppercase;
+}
+
+/* Table header cells */
+.product-table th {
+    padding: 1rem;
+}
+
+/* Table body rows */
+.product-table tbody tr {
+    background-color: #ffffff;
+    margin-bottom: 0.5rem; /* Add margin between rows */
+}
+
+/* Product name cell */
+.product-table th[scope="row"] {
+    padding: 1rem;
+    font-weight: 500;
+    color: #000000;
+    white-space: nowrap;
+}
+
+/* Regular table cells */
+.product-table td {
+    padding: 1rem;
+}
+
+.unmanage {
+    border-radius: 25px;
+    background-color: #86A8FF;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    text-align: center;
+    width: 5rem;
+    height: 1px;
+}
+
+.manage {
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    background-color: #02FF74;
+    text-align: center;
+    width: 5rem;
+    height: 1px;
+}
