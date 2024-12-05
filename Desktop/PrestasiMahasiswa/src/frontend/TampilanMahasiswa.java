@@ -55,10 +55,10 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblMenu = new javax.swing.JTable();
+        tblModel = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
         btnInsert = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -374,18 +374,15 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblMenu.setModel(new javax.swing.table.DefaultTableModel(
+        tblModel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nama", "NIM", "Email", "Tanggal Lahir", "Kelamin", "Program Studi"
             }
         ));
-        jScrollPane1.setViewportView(tblMenu);
+        jScrollPane1.setViewportView(tblModel);
 
         jLabel1.setText("Mahasiswa ");
 
@@ -395,7 +392,12 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Edit");
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnInsert.setText("Insert");
         btnInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -439,7 +441,7 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnDelete)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -461,7 +463,7 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnEdit)
                     .addComponent(btnInsert)
                     .addComponent(btnDelete))
                 .addContainerGap(46, Short.MAX_VALUE))
@@ -532,14 +534,29 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Anda Yakin Ingin menghapus?") == 0) {
-            DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
-            int row = tblMenu.getSelectedRow();
+            DefaultTableModel model = (DefaultTableModel) tblModel.getModel();
+            int row = tblModel.getSelectedRow();
 
             Mahasiswa mhs = new Mahasiswa().getById(model.getValueAt(row, 1).toString());
             mhs.delete();
             tampilkanData();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        if (tblModel.getSelectedRow() != -1) {
+            int row = tblModel.getSelectedRow();
+
+            Mahasiswa mhs = new Mahasiswa();
+            mhs = mhs.getById(tblModel.getValueAt(row, 1).toString());
+
+            InputMahasiswa input = new InputMahasiswa(
+                    mhs.getNAMA(), mhs.getNIM(), mhs.getEMAIL(), mhs.getTGL_LAHIR(), mhs.getKELAMIN(), mhs.getPASSWORD()
+            );
+            input.show();
+            dispose();
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
 
     private void tampilkanData() {
         ArrayList<Mahasiswa> list = new Mahasiswa().getAll();
@@ -555,7 +572,7 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
         String[] kolom = {"NAMA", "NIM", "EMAIL", "TGL_LAHIR", "KELAMIN", "PRODI"};
         Object rowData[] = new Object[6];
 
-        tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
+        tblModel.setModel(new DefaultTableModel(new Object[][]{}, kolom));
 
         for (Mahasiswa mhs : list) {
             rowData[0] = mhs.getNAMA();
@@ -565,7 +582,7 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
             rowData[4] = mhs.getKELAMIN();
             rowData[5] = mhs.getPRODI();
 
-            ((DefaultTableModel) tblMenu.getModel()).addRow(rowData);
+            ((DefaultTableModel) tblModel.getModel()).addRow(rowData);
         }
     }
 
@@ -610,9 +627,9 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
     private javax.swing.JPanel PanelInput;
     private javax.swing.JPanel PanelReview;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -634,7 +651,7 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanelMahasiswa;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblMenu;
+    private javax.swing.JTable tblModel;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

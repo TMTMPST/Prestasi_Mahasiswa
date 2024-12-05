@@ -20,6 +20,18 @@ public class InputMahasiswa extends javax.swing.JFrame {
         initComponents();
     }
 
+//    "NAMA", "NIM", "EMAIL", "TGL_LAHIR", "KELAMIN", "PRODI"
+    public InputMahasiswa(String nama, String nim, String email, String tgl_lahir, String kelamin, String password) {
+        initComponents();
+        txtNama.setText(nama);
+        txtNIM.setText(nim);
+        txtEmail.setText(email);
+        txtTglLahir.setText(tgl_lahir);
+        comboBoxKelamin.setSelectedItem(kelamin);
+        txtPassword.setText(password);
+        txtNIM.setEnabled(false);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
