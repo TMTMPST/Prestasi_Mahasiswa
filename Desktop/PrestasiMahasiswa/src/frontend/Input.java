@@ -33,6 +33,7 @@ public class Input extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
+        popupMenu1 = new java.awt.PopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -64,8 +65,6 @@ public class Input extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         comboBoxTingkatan = new javax.swing.JComboBox<>();
         btnContinue = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
-        txtNama = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
@@ -81,6 +80,8 @@ public class Input extends javax.swing.JFrame {
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        popupMenu1.setLabel("popupMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -422,8 +423,6 @@ public class Input extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("Nama Mahasiswa");
-
         jLabel16.setText("Tipe Prestasi");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Akademik", "Non Akademik" }));
@@ -439,7 +438,6 @@ public class Input extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNama, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtNIM)
                             .addComponent(txtJuara)
                             .addComponent(txtLomba)
@@ -447,9 +445,8 @@ public class Input extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel15))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jLabel4))
+                                .addGap(0, 357, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -476,11 +473,7 @@ public class Input extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(80, 80, 80)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -639,7 +632,6 @@ public class Input extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
@@ -661,9 +653,9 @@ public class Input extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelMahasiswa;
     private javax.swing.JPanel jPanelReview;
     private javax.swing.JTextField jTextField2;
+    private java.awt.PopupMenu popupMenu1;
     private javax.swing.JTextField txtJuara;
     private javax.swing.JTextField txtLomba;
     private javax.swing.JTextField txtNIM;
-    private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 }
