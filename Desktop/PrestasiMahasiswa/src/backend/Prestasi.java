@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class Prestasi {
 
     private int ID_PRESTASI, ID_TINGKAT;
-    private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, 
+    private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS,
             tanggal_lomba, sertifikat, proposal, surat_tugas, karya, DOSEN;
 
     public Prestasi() {
@@ -174,7 +174,7 @@ public class Prestasi {
     public Prestasi getById(int id) {
         Prestasi prs = new Prestasi();
         ResultSet rs = DBHelper.selectQuery("SELECT * FROM PRESTASI "
-                + "WHERE ID_PRESTASI = '" + id + "'");
+                + "WHERE ID_PRESTASI = " + id);
 
         try {
             while (rs.next()) {
