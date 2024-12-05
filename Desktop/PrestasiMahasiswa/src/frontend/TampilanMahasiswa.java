@@ -4,6 +4,11 @@
  */
 package frontend;
 
+import backend.Mahasiswa;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USER
@@ -15,6 +20,7 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
      */
     public TampilanMahasiswa() {
         initComponents();
+        tampilkanData();
     }
 
     /**
@@ -49,12 +55,13 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMenu = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnInsert = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,7 +73,6 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
         jLabel6.setText("Fitur");
 
         PanelDashboard.setBackground(new java.awt.Color(118, 157, 255));
-        PanelDashboard.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PanelDashboard.setToolTipText("");
         PanelDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelDashboard.setPreferredSize(new java.awt.Dimension(127, 52));
@@ -105,12 +111,13 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
         PanelDashboardLayout.setVerticalGroup(
             PanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDashboardLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addGap(15, 15, 15))
             .addGroup(PanelDashboardLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel9.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -201,7 +208,7 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         PanelInputLayout.setVerticalGroup(
             PanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,11 +273,6 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
 
         jPanelMahasiswa.setBackground(new java.awt.Color(254, 193, 19));
         jPanelMahasiswa.setPreferredSize(new java.awt.Dimension(234, 52));
-        jPanelMahasiswa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanelMahasiswaMouseClicked(evt);
-            }
-        });
 
         jPanel12.setPreferredSize(new java.awt.Dimension(41, 40));
 
@@ -372,28 +374,54 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nama", "NIM", "Email", "Tanggal Lahir", "Kelamin", "Program Studi"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblMenu);
 
         jLabel1.setText("Mahasiswa ");
 
-        jTextField1.setText("jTextField1");
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Edit");
 
-        jButton2.setText("Insert");
+        btnInsert.setText("Insert");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Cari");
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        btnSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSearchKeyPressed(evt);
+            }
+        });
+
+        btnDelete.setText("DELETE");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -407,15 +435,17 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
                         .addContainerGap(346, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnDelete)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -425,15 +455,16 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnInsert)
+                    .addComponent(btnDelete))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -468,22 +499,75 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
 
     private void PanelInputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelInputMouseClicked
         // TODO add your handling code here:
-        Input i = new Input();
+        TampilanInputPrestasi i = new TampilanInputPrestasi();
         i.show();
         dispose();
     }//GEN-LAST:event_PanelInputMouseClicked
 
     private void PanelReviewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelReviewMouseClicked
         // TODO add your handling code here:
-        Review r = new Review();
+        TampilanReview r = new TampilanReview();
         r.show();
         dispose();
     }//GEN-LAST:event_PanelReviewMouseClicked
 
-    private void jPanelMahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelMahasiswaMouseClicked
-        // TODO add your handling code here:
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        InputMahasiswa mhs = new InputMahasiswa();
+        mhs.show();
+        dispose();
+    }//GEN-LAST:event_btnInsertActionPerformed
 
-    }//GEN-LAST:event_jPanelMahasiswaMouseClicked
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        btnSearch.requestFocus();
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        cari(txtSearch.getText());
+        txtSearch.requestFocus();
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSearchKeyPressed
+        txtSearch.requestFocus();
+    }//GEN-LAST:event_btnSearchKeyPressed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Anda Yakin Ingin menghapus?") == 0) {
+            DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
+            int row = tblMenu.getSelectedRow();
+
+            Mahasiswa mhs = new Mahasiswa().getById(model.getValueAt(row, 1).toString());
+            mhs.delete();
+            tampilkanData();
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void tampilkanData() {
+        ArrayList<Mahasiswa> list = new Mahasiswa().getAll();
+        tableModel(list);
+    }
+
+    private void cari(String keyword) {
+        ArrayList<Mahasiswa> list = new Mahasiswa().search(keyword);
+        tableModel(list);
+    }
+
+    private void tableModel(ArrayList<Mahasiswa> list) {
+        String[] kolom = {"NAMA", "NIM", "EMAIL", "TGL_LAHIR", "KELAMIN", "PRODI"};
+        Object rowData[] = new Object[6];
+
+        tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
+
+        for (Mahasiswa mhs : list) {
+            rowData[0] = mhs.getNAMA();
+            rowData[1] = mhs.getNIM();
+            rowData[2] = mhs.getEMAIL();
+            rowData[3] = mhs.getTGL_LAHIR();
+            rowData[4] = mhs.getKELAMIN();
+            rowData[5] = mhs.getPRODI();
+
+            ((DefaultTableModel) tblMenu.getModel()).addRow(rowData);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -525,9 +609,10 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
     private javax.swing.JPanel PanelDashboard;
     private javax.swing.JPanel PanelInput;
     private javax.swing.JPanel PanelReview;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnInsert;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -549,7 +634,7 @@ public class TampilanMahasiswa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanelMahasiswa;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblMenu;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
