@@ -524,13 +524,14 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
-        int row = tblMenu.getSelectedRow();
+        if (JOptionPane.showConfirmDialog(rootPane, "Anda Yakin Ingin menghapus?") == 0) {
+            DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
+            int row = tblMenu.getSelectedRow();
 
-        Prestasi prs = new Prestasi().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
-        prs.delete();
-        tampilkanData();
+            Prestasi prs = new Prestasi().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+            prs.delete();
+            tampilkanData();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMenuMouseClicked
