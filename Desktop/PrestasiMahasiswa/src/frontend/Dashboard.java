@@ -525,9 +525,9 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblMenu.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
         int row = tblMenu.getSelectedRow();
-        
+
         Prestasi prs = new Prestasi().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
         prs.delete();
         tampilkanData();
@@ -578,41 +578,32 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel10jPanel2MouseClicked
 
     private void tampilkanData() {
-        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI"};
         ArrayList<Prestasi> list = new Prestasi().getAll();
-        Object rowData[] = new Object[5];
-        
-        tblMenu.setModel(new DefaultTableModel(new Object[][] {}, kolom));
-        
-        for (Prestasi prs : list) {
-            rowData[0] = prs.getID_PRESTASI();
-            rowData[1] = prs.getNIM();
-            rowData[2] = prs.getPERINGKAT();
-            rowData[3] = prs.getNAMA_LOMBA();
-            rowData[4] = prs.getJENIS_PRESTASI();
-            
-            ((DefaultTableModel)tblMenu.getModel()).addRow(rowData);
-        }
+        tableModel(list);
     }
-    
-    public void cari(String keyword) {
-        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI"};
+
+    private void cari(String keyword) {
         ArrayList<Prestasi> list = new Prestasi().search(keyword);
+        tableModel(list);
+    }
+
+    private void tableModel(ArrayList<Prestasi> list) {
+        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI"};
         Object rowData[] = new Object[5];
-        
-        tblMenu.setModel(new DefaultTableModel(new Object[][] {}, kolom));
-        
+
+        tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
+
         for (Prestasi prs : list) {
             rowData[0] = prs.getID_PRESTASI();
             rowData[1] = prs.getNIM();
             rowData[2] = prs.getPERINGKAT();
             rowData[3] = prs.getNAMA_LOMBA();
             rowData[4] = prs.getJENIS_PRESTASI();
-            
-            ((DefaultTableModel)tblMenu.getModel()).addRow(rowData);
+
+            ((DefaultTableModel) tblMenu.getModel()).addRow(rowData);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
