@@ -130,7 +130,6 @@ body {
     border-radius: 100%;
 }
 
-
 .sidebar-icon img {
     width: 75%;
     height: 75%;
@@ -144,7 +143,6 @@ body {
     text-decoration: none;
     color: black;
 }
-
 
 .sidebar-main {
     background-color: #FEC113;
@@ -170,7 +168,6 @@ body {
     height: 4rem;
 }
 
-
 .sidebar-nchosen {
     display: flex;
     align-items: center;
@@ -190,14 +187,6 @@ body {
     margin-left: 0.5rem;
     /* Add some spacing between the icon and the text */
 }
-
-/* Main Content Styles */
-.main-content {
-    margin-left: 16rem;
-    padding: 1rem;
-    margin-top: 3.5rem;
-}
-
 
 /* Icons */
 .icon {
