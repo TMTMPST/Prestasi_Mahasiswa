@@ -483,26 +483,17 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tampilkanData() {
-        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI"};
         ArrayList<Prestasi> list = new Prestasi().getAll();
-        Object rowData[] = new Object[5];
-
-        tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
-
-        for (Prestasi prs : list) {
-            rowData[0] = prs.getID_PRESTASI();
-            rowData[1] = prs.getNIM();
-            rowData[2] = prs.getPERINGKAT();
-            rowData[3] = prs.getNAMA_LOMBA();
-            rowData[4] = prs.getJENIS_PRESTASI();
-
-            ((DefaultTableModel) tblMenu.getModel()).addRow(rowData);
-        }
+        tableModel(list);
     }
 
-    public void cari(String keyword) {
-        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI"};
+    private void cari(String keyword) {
         ArrayList<Prestasi> list = new Prestasi().search(keyword);
+        tableModel(list);
+    }
+
+    private void tableModel(ArrayList<Prestasi> list) {
+        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI"};
         Object rowData[] = new Object[5];
 
         tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
