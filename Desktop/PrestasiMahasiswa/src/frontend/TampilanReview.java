@@ -4,6 +4,10 @@
  */
 package frontend;
 
+import backend.Prestasi;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USER
@@ -15,6 +19,7 @@ public class TampilanReview extends javax.swing.JFrame {
      */
     public TampilanReview() {
         initComponents();
+        tampilkanData();
     }
 
     /**
@@ -48,10 +53,10 @@ public class TampilanReview extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         ButtonReview = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblModel = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,7 +68,6 @@ public class TampilanReview extends javax.swing.JFrame {
         jLabel6.setText("Fitur");
 
         PanelDashboard.setBackground(new java.awt.Color(118, 157, 255));
-        PanelDashboard.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PanelDashboard.setToolTipText("");
         PanelDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelDashboard.setPreferredSize(new java.awt.Dimension(127, 52));
@@ -97,17 +101,18 @@ public class TampilanReview extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         PanelDashboardLayout.setVerticalGroup(
             PanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDashboardLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addGap(15, 15, 15))
             .addGroup(PanelDashboardLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel9.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -166,11 +171,6 @@ public class TampilanReview extends javax.swing.JFrame {
 
         jPanelReview.setBackground(new java.awt.Color(254, 193, 19));
         jPanelReview.setPreferredSize(new java.awt.Dimension(234, 52));
-        jPanelReview.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanelReviewMouseClicked(evt);
-            }
-        });
 
         jPanel10.setPreferredSize(new java.awt.Dimension(41, 40));
 
@@ -325,10 +325,10 @@ public class TampilanReview extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel9)
                         .addComponent(jLabel6)
-                        .addComponent(PanelDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                        .addComponent(jPanelReview, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                        .addComponent(PanelDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                        .addComponent(jPanelReview, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                         .addComponent(PanelInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -345,13 +345,13 @@ public class TampilanReview extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PanelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanelReview, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -369,19 +369,6 @@ public class TampilanReview extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Review Prestasi");
 
@@ -394,26 +381,40 @@ public class TampilanReview extends javax.swing.JFrame {
             }
         });
 
+        tblModel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "NIM", "Juara", "Lomba", "Tingkatan"
+            }
+        ));
+        jScrollPane1.setViewportView(tblModel);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(ButtonReview, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(ButtonReview, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(ButtonReview)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -451,30 +452,64 @@ public class TampilanReview extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_PanelDashboardMouseClicked
 
-    private void jPanelReviewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelReviewMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanelReviewMouseClicked
-
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
         // TODO add your handling code here:
-        InputMahasiswa m = new InputMahasiswa();
+        TampilanMahasiswa m = new TampilanMahasiswa();
         m.show();
         dispose();
     }//GEN-LAST:event_jPanel11MouseClicked
 
     private void PanelInputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelInputMouseClicked
         // TODO add your handling code here:
-        Input i = new Input();
+        TampilanInputPrestasi i = new TampilanInputPrestasi();
         i.show();
         dispose();
     }//GEN-LAST:event_PanelInputMouseClicked
 
     private void ButtonReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonReviewActionPerformed
-        // TODO add your handling code here:
-        Review r = new Review();
-        r.show();
-        dispose();
+        if (tblModel.getSelectedRow() != -1) {
+            int row = tblModel.getSelectedRow();
+            String idValue = tblModel.getValueAt(row, 0).toString();
+
+            Prestasi prs = new Prestasi();
+            prs = prs.getById(Integer.parseInt(idValue));
+
+            Review r = new Review(
+                    prs.getNIM(),
+                    prs.getNAMA_LOMBA(),
+                    prs.getPERINGKAT(),
+                    prs.getTanggal_lomba(),
+                    prs.getDOSEN(),
+                    prs.getID_TINGKAT(),
+                    prs.getJENIS_PRESTASI(),
+                    prs.getID_PRESTASI()
+            );
+            r.show();
+            dispose();
+        }
     }//GEN-LAST:event_ButtonReviewActionPerformed
+
+    private void tampilkanData() {
+        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI", "STATUS"};
+        ArrayList<Prestasi> list = new Prestasi().getAll();
+        Object rowData[] = new Object[6];
+
+        tblModel.setModel(new DefaultTableModel(new Object[][]{}, kolom));
+
+        for (Prestasi prs : list) {
+            if (prs.getSTATUS().equals("Completed") || prs.getSTATUS().equals("Rejected")) {
+                continue;
+            }
+            rowData[0] = prs.getID_PRESTASI();
+            rowData[1] = prs.getNIM();
+            rowData[2] = prs.getPERINGKAT();
+            rowData[3] = prs.getNAMA_LOMBA();
+            rowData[4] = prs.getJENIS_PRESTASI();
+            rowData[5] = prs.getSTATUS();
+
+            ((DefaultTableModel) tblModel.getModel()).addRow(rowData);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -538,6 +573,6 @@ public class TampilanReview extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanelReview;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblModel;
     // End of variables declaration//GEN-END:variables
 }
