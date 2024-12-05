@@ -5,7 +5,10 @@
 package backend;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,8 +16,9 @@ import java.util.ArrayList;
  */
 public class Prestasi {
 
-    private int ID_PRESTASI;
-    private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, PENYELENGGARA, BUKTI_PRESTASI, STATUS;
+    private int ID_PRESTASI, ID_TINGKAT;
+    private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, 
+            tanggal_lomba, sertifikat, proposal, surat_tugas, karya, DOSEN;
 
     public Prestasi() {
     }
@@ -26,14 +30,67 @@ public class Prestasi {
         this.PERINGKAT = PERINGKAT;
     }
 
-    public Prestasi(String NIM, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT, String PENYELENGGARA, String BUKTI_PRESTASI, String STATUS) {
+    public Prestasi(String NIM, int ID_TINGKAT, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT, String STATUS, String tanggal_lomba, String sertifikat, String proposal, String surat_tugas, String karya, String DOSEN) {
         this.NIM = NIM;
+        this.ID_TINGKAT = ID_TINGKAT;
         this.JENIS_PRESTASI = JENIS_PRESTASI;
         this.NAMA_LOMBA = NAMA_LOMBA;
         this.PERINGKAT = PERINGKAT;
-        this.PENYELENGGARA = PENYELENGGARA;
-        this.BUKTI_PRESTASI = BUKTI_PRESTASI;
         this.STATUS = STATUS;
+        this.tanggal_lomba = tanggal_lomba;
+        this.sertifikat = sertifikat;
+        this.proposal = proposal;
+        this.surat_tugas = surat_tugas;
+        this.karya = karya;
+        this.DOSEN = DOSEN;
+    }
+
+    public int getID_TINGKAT() {
+        return ID_TINGKAT;
+    }
+
+    public void setID_TINGKAT(int ID_TINGKAT) {
+        this.ID_TINGKAT = ID_TINGKAT;
+    }
+
+    public String getTanggal_lomba() {
+        return tanggal_lomba;
+    }
+
+    public void setTanggal_lomba(String tanggal_lomba) {
+        this.tanggal_lomba = tanggal_lomba;
+    }
+
+    public String getSertifikat() {
+        return sertifikat;
+    }
+
+    public void setSertifikat(String sertifikat) {
+        this.sertifikat = sertifikat;
+    }
+
+    public String getProposal() {
+        return proposal;
+    }
+
+    public void setProposal(String proposal) {
+        this.proposal = proposal;
+    }
+
+    public String getSurat_tugas() {
+        return surat_tugas;
+    }
+
+    public void setSurat_tugas(String surat_tugas) {
+        this.surat_tugas = surat_tugas;
+    }
+
+    public String getKarya() {
+        return karya;
+    }
+
+    public void setKarya(String karya) {
+        this.karya = karya;
     }
 
     public int getID_PRESTASI() {
@@ -44,20 +101,20 @@ public class Prestasi {
         this.ID_PRESTASI = ID_PRESTASI;
     }
 
-    public String getBUKTI_PRESTASI() {
-        return BUKTI_PRESTASI;
+    public String getSTATUS() {
+        return STATUS;
     }
 
-    public void setBUKTI_PRESTASI(String BUKTI_PRESTASI) {
-        this.BUKTI_PRESTASI = BUKTI_PRESTASI;
+    public void setSTATUS(String STATUS) {
+        this.STATUS = STATUS;
     }
 
-    public String getPENYELENGGARA() {
-        return PENYELENGGARA;
+    public String getDOSEN() {
+        return DOSEN;
     }
 
-    public void setPENYELENGGARA(String PENYELENGGARA) {
-        this.PENYELENGGARA = PENYELENGGARA;
+    public void setDOSEN(String DOSEN) {
+        this.DOSEN = DOSEN;
     }
 
     public String getNIM() {
@@ -92,12 +149,26 @@ public class Prestasi {
         this.PERINGKAT = PERINGKAT;
     }
 
-    public String getSTATUS() {
-        return STATUS;
-    }
-
-    public void setSTATUS(String STATUS) {
-        this.STATUS = STATUS;
+    public Prestasi setPrestasi(ResultSet rs) {
+        Prestasi prs = new Prestasi();
+        try {
+            prs.setID_PRESTASI(rs.getInt("ID_PRESTASI"));
+            prs.setNIM(rs.getString("NIM"));
+            prs.setID_TINGKAT(rs.getInt("ID_TINGKAT"));
+            prs.setJENIS_PRESTASI(rs.getString("JENIS_PRESTASI"));
+            prs.setNAMA_LOMBA(rs.getString("NAMA_LOMBA"));
+            prs.setPERINGKAT(rs.getString("PERINGKAT"));
+            prs.setSTATUS(rs.getString("STATUS"));
+            prs.setTanggal_lomba(rs.getString("tanggal_lomba"));
+            prs.setSertifikat(rs.getString("sertifikat"));
+            prs.setProposal(rs.getString("proposal"));
+            prs.setSurat_tugas(rs.getString("surat_tugas"));
+            prs.setKarya(rs.getString("karya"));
+            prs.setDOSEN(rs.getString("DOSEN"));
+        } catch (SQLException ex) {
+            Logger.getLogger(Prestasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return prs;
     }
 
     public Prestasi getById(int id) {
@@ -107,12 +178,9 @@ public class Prestasi {
 
         try {
             while (rs.next()) {
-                prs = new Prestasi();
-                prs.setID_PRESTASI(rs.getInt("ID_PRESTASI"));
-                prs.setNIM(rs.getString("NIM"));
-                prs.setPERINGKAT(rs.getString("PERINGKAT"));
-                prs.setNAMA_LOMBA(rs.getString("NAMA_LOMBA"));
-                prs.setJENIS_PRESTASI(rs.getString("JENIS_PRESTASI"));
+//              NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT,
+//              STATUS, tanggal_lomba, sertifikat, proposal, surat_tugas, karya, DOSEN;
+                prs = setPrestasi(rs);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,11 +197,7 @@ public class Prestasi {
         try {
             while (rs.next()) {
                 Prestasi prs = new Prestasi();
-                prs.setID_PRESTASI(rs.getInt("ID_PRESTASI"));
-                prs.setNIM(rs.getString("NIM"));
-                prs.setPERINGKAT(rs.getString("PERINGKAT"));
-                prs.setNAMA_LOMBA(rs.getString("NAMA_LOMBA"));
-                prs.setJENIS_PRESTASI(rs.getString("JENIS_PRESTASI"));
+                prs = setPrestasi(rs);
 
                 ListPrestasi.add(prs);
             }
@@ -145,47 +209,52 @@ public class Prestasi {
     }
 
     public ArrayList<Prestasi> search(String keyword) {
-        ArrayList<Prestasi> ListKategori = new ArrayList();
+        ArrayList<Prestasi> ListPrestasi = new ArrayList();
 
         ResultSet rs = DBHelper.selectQuery("SELECT * FROM PRESTASI WHERE"
                 + " NIM LIKE '%" + keyword + "%'"
                 + " OR PERINGKAT LIKE '%" + keyword + "%'"
                 + " OR NAMA_LOMBA LIKE '%" + keyword + "%'"
+                + " OR DOSEN LIKE '%" + keyword + "%'"
                 + " OR JENIS_PRESTASI LIKE '%" + keyword + "%'");
 
         try {
             while (rs.next()) {
                 Prestasi prs = new Prestasi();
-                prs.setID_PRESTASI(rs.getInt("ID_PRESTASI"));
-                prs.setNIM(rs.getString("NIM"));
-                prs.setPERINGKAT(rs.getString("PERINGKAT"));
-                prs.setNAMA_LOMBA(rs.getString("NAMA_LOMBA"));
-                prs.setJENIS_PRESTASI(rs.getString("JENIS_PRESTASI"));
+                prs = setPrestasi(rs);
 
-                ListKategori.add(prs);
+                ListPrestasi.add(prs);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return ListKategori;
+        return ListPrestasi;
     }
 
     public void save() {
         if (getById(ID_PRESTASI).getID_PRESTASI() == 0) {
-            String SQL = "INSERT INTO PRESTASI (NIM, PERINGKAT, NAMA_LOMBA, JENIS_PRESTASI) VALUES("
+            String SQL = "INSERT INTO PRESTASI (NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN) VALUES("
                     + "'" + this.NIM + "', "
-                    + "'" + this.PERINGKAT + "', "
+                    + " " + this.ID_TINGKAT + ", "
+                    + "'" + this.JENIS_PRESTASI + "',"
                     + "'" + this.NAMA_LOMBA + "',"
-                    + "'" + this.JENIS_PRESTASI + "')";
+                    + "'" + this.PERINGKAT + "',"
+                    + "'" + this.STATUS + "',"
+                    + "'" + this.tanggal_lomba + "',"
+                    + "'" + this.DOSEN + "')";
             this.ID_PRESTASI = DBHelper.insertQueryGetId(SQL);
         } else {
             String SQL = "UPDATE PRESTASI SET "
                     + "NIM = '" + this.NIM + "', "
-                    + "PERINGKAT = '" + this.PERINGKAT + "', "
-                    + "NAMA_LOMBA = '" + this.NAMA_LOMBA + "', "
+                    + "ID_TINGKAT = '" + this.ID_TINGKAT + "', "
                     + "JENIS_PRESTASI = '" + this.JENIS_PRESTASI + "' "
-                    + "WHERE idAnggota = '" + this.ID_PRESTASI + "'";
+                    + "NAMA_LOMBA = '" + this.NAMA_LOMBA + "', "
+                    + "PERINGKAT = '" + this.PERINGKAT + "', "
+                    + "STATUS = '" + this.STATUS + "', "
+                    + "tanggal_lomba = '" + this.tanggal_lomba + "', "
+                    + "DOSEN = '" + this.DOSEN + "', "
+                    + "WHERE ID_PRESTASI = '" + this.ID_PRESTASI + "'";
             DBHelper.executeQuery(SQL);
         }
     }

@@ -32,6 +32,8 @@ public class Input extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         jDialog1 = new javax.swing.JDialog();
+        jDatePickerUtil1 = new org.jdatepicker.util.JDatePickerUtil();
+        jDatePickerUtil2 = new org.jdatepicker.util.JDatePickerUtil();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,8 +44,6 @@ public class Input extends javax.swing.JFrame {
         txtLomba = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         comboBoxTingkatan = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
-        txtNama = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         comboBoxTipe = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
@@ -109,8 +109,6 @@ public class Input extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("Nama Mahasiswa");
-
         jLabel16.setText("Tipe Prestasi");
 
         comboBoxTipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Akademik", "Non Akademik" }));
@@ -149,7 +147,6 @@ public class Input extends javax.swing.JFrame {
                     .addComponent(comboBoxTingkatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNama, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtJuara)
                             .addComponent(txtLomba)
                             .addComponent(txtDate)
@@ -163,7 +160,6 @@ public class Input extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel17)
-                                    .addComponent(jLabel15)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel18)
@@ -178,10 +174,6 @@ public class Input extends javax.swing.JFrame {
                 .addComponent(btnBack)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,7 +203,8 @@ public class Input extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxTipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(btnNext))
+                .addComponent(btnNext)
+                .addGap(62, 62, 62))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -253,12 +246,13 @@ public class Input extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "NIM tidak sesuai/tidak ada!");
             txtNIM.requestFocus();
         } else if (nimCheck(txtNIM.getText())) {
-//            nama, NIM, namaLomba, peringkat, tgl_lomba, dosen, tingkatan, jenisPrestasi
+//            NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
             InputFile file = new InputFile(
-                    txtNama.getText(), txtNIM.getText(), txtLomba.getText(), txtJuara.getText(), txtDate.getText(), 
-                    txtDosen.getText(), comboBoxTingkatan.getSelectedItem().toString(), comboBoxTipe.getSelectedItem().toString()
+                    txtNIM.getText(), comboBoxTingkatan.getSelectedIndex()+1, comboBoxTipe.getSelectedItem().toString(), txtLomba.getText(), 
+                    txtJuara.getText(), "Pending", txtDate.getText(), txtDosen.getText()
             );
             file.show();
+            dispose();
         }
     }//GEN-LAST:event_btnNextActionPerformed
 
@@ -314,10 +308,11 @@ public class Input extends javax.swing.JFrame {
     private javax.swing.JButton btnNext;
     private javax.swing.JComboBox<String> comboBoxTingkatan;
     private javax.swing.JComboBox<String> comboBoxTipe;
+    private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil1;
+    private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -331,6 +326,5 @@ public class Input extends javax.swing.JFrame {
     private javax.swing.JTextField txtJuara;
     private javax.swing.JTextField txtLomba;
     private javax.swing.JTextField txtNIM;
-    private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 }
