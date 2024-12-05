@@ -88,13 +88,10 @@ public class Dashboard extends javax.swing.JFrame {
 
         tblMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "NIM", "Juara", "Lomba", "Tingkatan"
+                "ID", "NIM", "Juara", "Lomba", "Tingkatan", "Status"
             }
         ));
         tblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -589,8 +586,8 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     private void tableModel(ArrayList<Prestasi> list) {
-        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI"};
-        Object rowData[] = new Object[5];
+        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI", "STATUS"};
+        Object rowData[] = new Object[6];
 
         tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
 
@@ -600,6 +597,7 @@ public class Dashboard extends javax.swing.JFrame {
             rowData[2] = prs.getPERINGKAT();
             rowData[3] = prs.getNAMA_LOMBA();
             rowData[4] = prs.getJENIS_PRESTASI();
+            rowData[5] = prs.getSTATUS();
 
             ((DefaultTableModel) tblMenu.getModel()).addRow(rowData);
         }
