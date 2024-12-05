@@ -457,7 +457,7 @@ public class TampilanReview extends javax.swing.JFrame {
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
         // TODO add your handling code here:
-        Mahasiswa m = new Mahasiswa();
+        InputMahasiswa m = new InputMahasiswa();
         m.show();
         dispose();
     }//GEN-LAST:event_jPanel11MouseClicked
