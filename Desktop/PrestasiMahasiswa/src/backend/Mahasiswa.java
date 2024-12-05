@@ -180,7 +180,9 @@ public class Mahasiswa {
                     + "NAMA = '" + this.NAMA + "', "
                     + "PRODI = '" + this.PRODI + "', "
                     + "EMAIL = '" + this.EMAIL + "', "
-                    + "PASSWORD = '" + this.PASSWORD + "' "
+                    + "PASSWORD = '" + this.PASSWORD + "', "
+                    + "TGL_LAHIR = '" + this.TGL_LAHIR + "', "
+                    + "KELAMIN = '" + this.KELAMIN + "' "
                     + "WHERE NIM = '" + this.NIM + "';";
             DBHelper.executeQuery(SQL);
         }
