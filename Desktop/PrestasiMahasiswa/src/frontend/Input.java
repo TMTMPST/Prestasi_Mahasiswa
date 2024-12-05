@@ -115,6 +115,8 @@ public class Input extends javax.swing.JFrame {
 
         jLabel17.setText("Tanggal lomba");
 
+        txtDate.setText("2024-12-20");
+
         jLabel18.setText("Dosen Pembimbing");
 
         btnNext.setText("Next");
