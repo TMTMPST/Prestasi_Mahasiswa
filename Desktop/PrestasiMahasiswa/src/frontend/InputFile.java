@@ -12,7 +12,9 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class InputFile extends javax.swing.JFrame {
-    private String nama, NIM, namaLomba, peringkat, tgl_lomba, dosen, tingkatan, jenisPrestasi;
+//    NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
+    private int ID_TINGKAT;
+    private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN;
 
     /**
      * Creates new form InputFile
@@ -21,17 +23,17 @@ public class InputFile extends javax.swing.JFrame {
         initComponents();
     }
 
-    public InputFile(String nama, String NIM, String namaLomba, String peringkat, String tgl_lomba, String dosen, String tingkatan, String jenisPrestasi) {
-        this.nama = nama;
+    public InputFile(String NIM, int ID_TINGKAT, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT, String STATUS, String tanggal_lomba, String DOSEN) {
+        initComponents();
         this.NIM = NIM;
-        this.namaLomba = namaLomba;
-        this.peringkat = peringkat;
-        this.tgl_lomba = tgl_lomba;
-        this.dosen = dosen;
-        this.tingkatan = tingkatan;
-        this.jenisPrestasi = jenisPrestasi;
+        this.ID_TINGKAT = ID_TINGKAT;
+        this.JENIS_PRESTASI = JENIS_PRESTASI;
+        this.NAMA_LOMBA = NAMA_LOMBA;
+        this.PERINGKAT = PERINGKAT;
+        this.STATUS = STATUS;
+        this.tanggal_lomba = tanggal_lomba;
+        this.DOSEN = DOSEN;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +53,7 @@ public class InputFile extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         ButtonSimpan = new javax.swing.JButton();
+        btnKembali = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,6 +151,13 @@ public class InputFile extends javax.swing.JFrame {
             }
         });
 
+        btnKembali.setText("Kembali");
+        btnKembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKembaliActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -155,13 +165,15 @@ public class InputFile extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(103, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnKembali)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -177,8 +189,10 @@ public class InputFile extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(ButtonSimpan)
-                .addGap(32, 32, 32))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonSimpan)
+                    .addComponent(btnKembali))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -198,11 +212,16 @@ public class InputFile extends javax.swing.JFrame {
     private void ButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSimpanActionPerformed
         // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(rootPane, "Anda Yakin Ingin menyimpan?") == 0) {
+      //    NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
             Prestasi prs = new Prestasi();
             prs.setNIM(NIM);
-            prs.setPERINGKAT(peringkat);
-            prs.setNAMA_LOMBA(namaLomba);
-            prs.setJENIS_PRESTASI(jenisPrestasi);
+            prs.setID_TINGKAT(ID_TINGKAT);
+            prs.setJENIS_PRESTASI(JENIS_PRESTASI);
+            prs.setNAMA_LOMBA(NAMA_LOMBA);
+            prs.setPERINGKAT(PERINGKAT);
+            prs.setSTATUS(STATUS);
+            prs.setTanggal_lomba(tanggal_lomba);
+            prs.setDOSEN(DOSEN);
             prs.save();
             Dashboard d = new Dashboard();
             d.show();
@@ -210,6 +229,12 @@ public class InputFile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Data Prestasi Berhasil disimpan");
         }
     }//GEN-LAST:event_ButtonSimpanActionPerformed
+
+    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
+        Input inp = new Input();
+        inp.show();
+        dispose();
+    }//GEN-LAST:event_btnKembaliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,6 +273,7 @@ public class InputFile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonSimpan;
+    private javax.swing.JButton btnKembali;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
