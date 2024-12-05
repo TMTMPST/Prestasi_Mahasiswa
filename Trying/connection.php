@@ -1,6 +1,8 @@
 <?php
 try {
-    $serverName = "LAPTOP-315GD7L8";
+    $serverName = "LAPTOP-A6N5VPUV"; //kamila
+    // $serverName = "LAPTOP-315GD7L8"; //Tionusa
+    // $serverName = "LAPTOP-A6N5VPUV";  // josh
     $database = "presma_web";
     
     // DSN (Data Source Name) untuk koneksi PDO
