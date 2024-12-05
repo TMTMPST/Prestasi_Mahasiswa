@@ -42,6 +42,9 @@ public class InputFile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupMenu1 = new java.awt.PopupMenu();
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jFileChooser2 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -52,6 +55,8 @@ public class InputFile extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         ButtonSimpan = new javax.swing.JButton();
+
+        popupMenu1.setLabel("popupMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -249,6 +254,8 @@ public class InputFile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonSimpan;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -258,5 +265,6 @@ public class InputFile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private java.awt.PopupMenu popupMenu1;
     // End of variables declaration//GEN-END:variables
 }
