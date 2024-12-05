@@ -1,7 +1,6 @@
 <?php
 try {
-    $serverName = "LAPTOP-A6N5VPUV"; 
-    // $serverName=""
+    $serverName = "LAPTOP-315GD7L8";
     $database = "presma_web";
     
     // DSN (Data Source Name) untuk koneksi PDO
@@ -10,10 +9,10 @@ try {
     $conn = new PDO($dsn);
     // PDO agar melempar exception jika terjadi error
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Koneksi Berhasil.<br />";
+    echo "Koneksi Berhasil.";
     
 } catch (PDOException $e) {
-    echo "Koneksi Gagal.<br />";
+    echo "Koneksi Gagal.";
     die("Error: " . $e->getMessage());
 }
 ?>
