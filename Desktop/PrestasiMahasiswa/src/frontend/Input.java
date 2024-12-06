@@ -20,7 +20,20 @@ public class Input extends javax.swing.JFrame {
     public Input() {
         initComponents();
     }
-    
+
+//    NIM , ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, tanggal_lomba, DOSEN
+    public Input(String nim, int tingkat, String jenis, String lomba, String peringkat, String tglLomba, String dosen) {
+        initComponents();
+        txtNIM.setText(nim);
+        comboBoxTingkatan.setSelectedIndex(tingkat-1);
+        comboBoxTipe.setSelectedItem(jenis);
+        txtLomba.setText(lomba);
+        txtJuara.setText(peringkat);
+        txtDate.setText(tglLomba);
+        txtDosen.setText(dosen);
+        txtNIM.setEnabled(false);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -232,7 +245,7 @@ public class Input extends javax.swing.JFrame {
     private void txtNIMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNIMActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNIMActionPerformed
-                 
+
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
@@ -250,7 +263,7 @@ public class Input extends javax.swing.JFrame {
         } else if (nimCheck(txtNIM.getText())) {
 //            NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
             InputFile file = new InputFile(
-                    txtNIM.getText(), comboBoxTingkatan.getSelectedIndex()+1, comboBoxTipe.getSelectedItem().toString(), txtLomba.getText(), 
+                    txtNIM.getText(), comboBoxTingkatan.getSelectedIndex() + 1, comboBoxTipe.getSelectedItem().toString(), txtLomba.getText(),
                     txtJuara.getText(), "Pending", txtDate.getText(), txtDosen.getText()
             );
             file.show();
@@ -268,7 +281,6 @@ public class Input extends javax.swing.JFrame {
             return false;
         }
     }
-
 
     /**
      * @param args the command line arguments

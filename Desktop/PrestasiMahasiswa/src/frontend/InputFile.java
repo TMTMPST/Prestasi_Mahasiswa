@@ -13,8 +13,10 @@ import javax.swing.JOptionPane;
  */
 public class InputFile extends javax.swing.JFrame {
 //    NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
+
     private int ID_TINGKAT;
     private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN;
+    private boolean edit;
 
     /**
      * Creates new form InputFile
@@ -33,7 +35,9 @@ public class InputFile extends javax.swing.JFrame {
         this.STATUS = STATUS;
         this.tanggal_lomba = tanggal_lomba;
         this.DOSEN = DOSEN;
+        edit = true;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -212,7 +216,7 @@ public class InputFile extends javax.swing.JFrame {
     private void ButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSimpanActionPerformed
         // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(rootPane, "Anda Yakin Ingin menyimpan?") == 0) {
-      //    NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
+            //    NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
             Prestasi prs = new Prestasi();
             prs.setNIM(NIM);
             prs.setID_TINGKAT(ID_TINGKAT);
@@ -222,7 +226,11 @@ public class InputFile extends javax.swing.JFrame {
             prs.setSTATUS(STATUS);
             prs.setTanggal_lomba(tanggal_lomba);
             prs.setDOSEN(DOSEN);
-            prs.save();
+            if (edit) {
+                prs.edit();
+            } else {
+                prs.save();
+            }
             Dashboard d = new Dashboard();
             d.show();
             dispose();

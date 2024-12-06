@@ -60,7 +60,7 @@ public class Review extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         comboBoxTipe = new javax.swing.JComboBox<>();
         btnAccept = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDecline = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,12 +115,12 @@ public class Review extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(153, 51, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Decline");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDecline.setBackground(new java.awt.Color(153, 51, 0));
+        btnDecline.setForeground(new java.awt.Color(255, 255, 255));
+        btnDecline.setText("Decline");
+        btnDecline.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDeclineActionPerformed(evt);
             }
         });
 
@@ -152,7 +152,7 @@ public class Review extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnDecline)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAccept)))
                 .addContainerGap())
@@ -194,7 +194,7 @@ public class Review extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnKembali)
                     .addComponent(btnAccept)
-                    .addComponent(jButton2))
+                    .addComponent(btnDecline))
                 .addContainerGap(294, Short.MAX_VALUE))
         );
 
@@ -221,12 +221,18 @@ public class Review extends javax.swing.JFrame {
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         String query = "UPDATE PRESTASI SET STATUS = 'Completed' WHERE ID_PRESTASI = " + id;
         DBHelper.executeQuery(query);
+        TampilanReview tr = new TampilanReview();
+        tr.show();
+        dispose();
     }//GEN-LAST:event_btnAcceptActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String query = "UPDATE PRESTASI SET STATUS = 'Completed' WHERE ID_PRESTASI = " + id;
+    private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
+        String query = "UPDATE PRESTASI SET STATUS = 'Rejected' WHERE ID_PRESTASI = " + id;
         DBHelper.executeQuery(query);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        TampilanReview tr = new TampilanReview();
+        tr.show();
+        dispose();
+    }//GEN-LAST:event_btnDeclineActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,10 +271,10 @@ public class Review extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnDecline;
     private javax.swing.JButton btnKembali;
     private javax.swing.JComboBox<String> comboBoxTingkatan;
     private javax.swing.JComboBox<String> comboBoxTipe;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
