@@ -53,7 +53,7 @@ session_start();
                 <span>Your Account</span>
             </li>
             <li class="sidebar-item">
-                <a href="editProfile.html" class="sidebar-profile">
+                <a href="editProfile.php" class="sidebar-profile">
                     <div class="profile-card">
                         <div class="profile-picture">
                             <img src="../img/test/leo.jpeg" alt="Profile Picture">
@@ -160,7 +160,7 @@ session_start();
                                 echo "<h3>" . htmlspecialchars($mahasiswa['NIM']) . "</h3>";
                                 ?>
                             </p>
-                            <a href="editProfile.html">
+                            <a href="editProfile.php">
                                 <h3 class="edit">Edit Profile</h3>
                             </a>
                         </div>
