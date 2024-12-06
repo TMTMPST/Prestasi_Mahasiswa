@@ -233,30 +233,32 @@ public class Prestasi {
     }
 
     public void save() {
-        if (getById(ID_PRESTASI).getID_PRESTASI() == 0) {
-            String SQL = "INSERT INTO PRESTASI (NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN) VALUES("
-                    + "'" + this.NIM + "', "
-                    + " " + this.ID_TINGKAT + ", "
-                    + "'" + this.JENIS_PRESTASI + "',"
-                    + "'" + this.NAMA_LOMBA + "',"
-                    + "'" + this.PERINGKAT + "',"
-                    + "'" + this.STATUS + "',"
-                    + "'" + this.tanggal_lomba + "',"
-                    + "'" + this.DOSEN + "')";
-            this.ID_PRESTASI = DBHelper.insertQueryGetId(SQL);
-        } else {
-            String SQL = "UPDATE PRESTASI SET "
-                    + "NIM = '" + this.NIM + "', "
-                    + "ID_TINGKAT = '" + this.ID_TINGKAT + "', "
-                    + "JENIS_PRESTASI = '" + this.JENIS_PRESTASI + "' "
-                    + "NAMA_LOMBA = '" + this.NAMA_LOMBA + "', "
-                    + "PERINGKAT = '" + this.PERINGKAT + "', "
-                    + "STATUS = '" + this.STATUS + "', "
-                    + "tanggal_lomba = '" + this.tanggal_lomba + "', "
-                    + "DOSEN = '" + this.DOSEN + "', "
-                    + "WHERE ID_PRESTASI = '" + this.ID_PRESTASI + "'";
-            DBHelper.executeQuery(SQL);
-        }
+        String SQL = "INSERT INTO PRESTASI (NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN) VALUES("
+                + "'" + this.NIM + "', "
+                + " " + this.ID_TINGKAT + ", "
+                + "'" + this.JENIS_PRESTASI + "', "
+                + "'" + this.NAMA_LOMBA + "', "
+                + "'" + this.PERINGKAT + "', "
+                + "'" + this.STATUS + "', "
+                + "'" + this.tanggal_lomba + "', "
+                + "'" + this.DOSEN + "')";
+        this.ID_PRESTASI = DBHelper.insertQueryGetId(SQL);
+        System.out.println("INSERT berhasil");
+    }
+
+    public void edit() {
+        String SQL = "UPDATE PRESTASI SET "
+                + "NIM = '" + this.NIM + "', "
+                + "JENIS_PRESTASI = '" + this.JENIS_PRESTASI + "', "
+                + "NAMA_LOMBA = '" + this.NAMA_LOMBA + "', "
+                + "PERINGKAT = '" + this.PERINGKAT + "', "
+                + "STATUS = '" + this.STATUS + "', "
+                + "tanggal_lomba = '" + this.tanggal_lomba + "', "
+                + "ID_TINGKAT = " + this.ID_TINGKAT + "' "
+                + "WHERE ID_PRESTASI = " + this.ID_PRESTASI + "'";
+        DBHelper.executeQuery(SQL);
+        System.out.println("UPDATE BERHASIL");
+        System.out.println(ID_PRESTASI);
     }
 
     public void delete() {

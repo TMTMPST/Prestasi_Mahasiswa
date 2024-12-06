@@ -127,8 +127,7 @@ public class Mahasiswa {
 
         try {
             while (rs.next()) {
-                Mahasiswa mhs = new Mahasiswa();
-                mhs = setMahasiswa(rs);
+                Mahasiswa mhs = setMahasiswa(rs);
 
                 ListMahasiswa.add(mhs);
             }
@@ -152,8 +151,7 @@ public class Mahasiswa {
 
         try {
             while (rs.next()) {
-                Mahasiswa mhs = new Mahasiswa();
-                mhs = setMahasiswa(rs);
+                Mahasiswa mhs = setMahasiswa(rs);
 
                 ListMahasiswa.add(mhs);
             }

@@ -4,6 +4,7 @@
  */
 package frontend;
 
+import backend.Mahasiswa;
 import backend.Prestasi;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -412,6 +413,11 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
         });
 
         btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnInput.setText("Input");
         btnInput.addActionListener(new java.awt.event.ActionListener() {
@@ -554,6 +560,22 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
         cari(txtSearch.getText());
         txtSearch.requestFocus();
     }//GEN-LAST:event_btnSearchKeyPressed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        if (tblMenu.getSelectedRow() != -1) {
+            int row = tblMenu.getSelectedRow();
+
+            Prestasi prs = new Prestasi();
+            prs = prs.getById(Integer.parseInt(tblMenu.getValueAt(row, 0).toString()));
+
+            Input inp = new Input(
+                    prs.getNIM(), prs.getID_TINGKAT(), prs.getJENIS_PRESTASI(), prs.getNAMA_LOMBA(), 
+                    prs.getPERINGKAT(), prs.getTanggal_lomba(), prs.getDOSEN()
+            );
+            inp.show();
+            dispose();
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments
