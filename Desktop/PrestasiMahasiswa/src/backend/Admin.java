@@ -27,6 +27,13 @@ public class Admin {
         this.NAMA_ADMIN = NAMA_ADMIN;
     }
 
+    public Admin(int ID_ADMIN, String USERNAME, String PASSWORD_ADMIN, String NAMA_ADMIN) {
+        this.ID_ADMIN = ID_ADMIN;
+        this.USERNAME = USERNAME;
+        this.PASSWORD_ADMIN = PASSWORD_ADMIN;
+        this.NAMA_ADMIN = NAMA_ADMIN;
+    }
+
     public int getID_ADMIN() {
         return ID_ADMIN;
     }
