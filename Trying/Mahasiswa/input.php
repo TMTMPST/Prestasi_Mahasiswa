@@ -121,35 +121,39 @@
     <main class="main-content">
         <div class="input-prestasi">
             <h2> Input Prestasi Kalian </h2>
-            <form action="inputFile.html" method="get">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                 <label for="nim">
                     NIM
                 </label>
                 <input id="nim" name="nim" type="text" />
+
                 <label for="nama-lomba">
                     Nama Lomba
                 </label>
                 <input id="nama-lomba" name="nama-lomba" type="text" />
+
                 <label for="kategori-juara">
                     Kategori Juara
                 </label>
                 <input id="kategori-juara" name="kategori-juara" type="text" />
+
+                <label for="dospem">NIP Dosen</label>
+                <input  id="dospem" name="dospem" type="text">
+
                 <label for="date">
                     Date
                 </label>
                 <input id="date" name="date" type="date" />
-                <label for="dospem">NIP Dosen</label>
-                <input  id="dospem" name="dospem" type="text">
-
+               
                 <label for="tipe-prestasi">
                     Tipe Prestasi
                 </label>
-
                 <select id="tipe-prestasi" name="tipe-prestasi">
                     <option> Pilih Tipe Prestasi </option>
                     <option> Akademik </option>
                     <option> Non Akademik </option>
                 </select>
+
                 <label for="tingkat-prestasi">
                     Tingkat Prestasi
                 </label>
@@ -159,6 +163,7 @@
                     <option> Nasioanal </option>
                     <option> Internasional </option>
                 </select>
+
                 <div class="submit">
                     <a href="inputFile.html"></a>
                     <button type="submit">
@@ -170,4 +175,47 @@
     </main>
 </body>
 
+
 </html>
+
+<?php
+// Koneksi ke database
+require_once '../connection.php'; // Ganti dengan file koneksi database Anda
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Ambil data dari form
+    $nim = $_POST['nim'] ?? '';
+    $nama_lomba = $_POST['nama-lomba'] ?? '';
+    $kategori_juara = $_POST['kategori-juara'] ?? '';
+    $dospem = $_POST['dospem'] ?? '';
+    $date = $_POST['date'] ?? '';
+    $tipe_prestasi = $_POST['tipe-prestasi'] ?? '';
+    $tingkat_prestasi = $_POST['tingkat-prestasi'] ?? '';
+
+    // Validasi input
+    if (empty($nim) || empty($nama_lomba) || empty($kategori_juara) || empty($dospem) || empty($date) || empty($tipe_prestasi) || empty($tingkat_prestasi)) {
+        echo "Semua kolom harus diisi.";
+    } else {
+        // Query untuk memasukkan data ke database
+        $sql = "INSERT INTO dbo.PRESTASI (NIM, NAMA_LOMBA, KATEGORI_JUARA, DOSPEM, TANGGAL, TIPE_PRESTASI, TINGKAT_PRESTASI) 
+                VALUES (:nim, :nama_lomba, :kategori_juara, :dospem, :tanggal, :tipe_prestasi, :tingkat_prestasi)";
+        $stmt = $conn->prepare($sql);
+
+        // Bind parameter
+        $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+        $stmt->bindParam(':nama_lomba', $nama_lomba, PDO::PARAM_STR);
+        $stmt->bindParam(':kategori_juara', $kategori_juara, PDO::PARAM_STR);
+        $stmt->bindParam(':dospem', $dospem, PDO::PARAM_STR);
+        $stmt->bindParam(':tanggal', $date, PDO::PARAM_STR);
+        $stmt->bindParam(':tipe_prestasi', $tipe_prestasi, PDO::PARAM_STR);
+        $stmt->bindParam(':tingkat_prestasi', $tingkat_prestasi, PDO::PARAM_STR);
+
+        // Eksekusi query
+        if ($stmt->execute()) {
+            echo "Data prestasi berhasil dimasukkan.";
+        } else {
+            echo "Terjadi kesalahan saat memasukkan data.";
+        }
+    }
+}
+?>

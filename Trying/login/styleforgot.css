@@ -9,12 +9,13 @@ body {
 }
 
 .container {
-    background-color: #ccc;
+    background-color: white;
     border-radius: 15px;
     padding: 60px 20px 40px;
     text-align: center;
     position: relative;
     width: 300px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); 
 }
 
 .container .icon {
