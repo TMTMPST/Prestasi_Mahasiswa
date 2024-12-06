@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
                     // Set session untuk mahasiswa
                     $_SESSION['nim'] = $mahasiswa['NIM'];
-                    $_SESSION['name'] = $mahasiswa['NAME'];
+                    $_SESSION['name'] = $mahasiswa['NAMA'];
                     $_SESSION['role'] = 'mahasiswa';
         
                     // Redirect ke dashboard mahasiswa
