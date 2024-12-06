@@ -73,7 +73,7 @@
             <li class="sidebar-item">
                 <div class="sidebar-secondary ">
                     <div class="sidebar-icon">
-                        <a href="Dashboard.html" class="sidebar-nchosen">
+                        <a href="Dashboard.php" class="sidebar-nchosen">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" style="width: 40px; height:auto; color:black;"
                                 class="sidebar-icon-svg">
