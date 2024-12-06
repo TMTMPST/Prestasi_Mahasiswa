@@ -231,7 +231,7 @@ public class InputFile extends javax.swing.JFrame {
             } else {
                 prs.save();
             }
-            Dashboard d = new Dashboard();
+            TampilanInputPrestasi d = new TampilanInputPrestasi();
             d.show();
             dispose();
             JOptionPane.showMessageDialog(rootPane, "Data Prestasi Berhasil disimpan");

@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_SESSION['role'] = 'mahasiswa';
         
                     // Redirect ke dashboard mahasiswa
-                    header("Location: ../Mahasiswa/dashboard.html");
+                    header("Location: ../Mahasiswa/Dashboard.php");
                     exit();
                 } else {
                     $error_message = "NIM atau Password mahasiswa salah!";
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_SESSION['role'] = 'admin';
         
                     // Redirect ke dashboard admin
-                    header("Location: ../Admin/dashboard.html");
+                    header("Location: ../Admin/Dashboard.php");
                     exit();
                 } else {
                     $error_message = "Username atau Password admin salah!";

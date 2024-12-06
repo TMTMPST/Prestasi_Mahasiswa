@@ -67,7 +67,7 @@
             <li class="sidebar-item">
                 <div class="sidebar-main ">
                     <div class="sidebar-icon">
-                        <a href="Dashboard.html" class="sidebar-chosen">
+                        <a href="Dashboard.php" class="sidebar-chosen">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" style="width: 40px; height:auto;" class="sidebar-icon-svg">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -111,87 +111,90 @@
         </ul>
     </aside>
     <?php
-// Koneksi ke database
-include '../connection.php'; // Ganti dengan file koneksi database Anda
+    // Koneksi ke database
+    include '../connection.php'; // Ganti dengan file koneksi database Anda
+    echo "asda11905279127590275917250912751729507291571092579";
 
-// Koneksi database untuk halaman dashboard
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil NIM dari parameter atau session (sesuaikan kebutuhan Anda)
-    $nim = $_GET['nim'] ?? '';
+    // Koneksi database untuk halaman dashboard
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        // Ambil NIM dari parameter atau session (sesuaikan kebutuhan Anda)
+        $nim = $_GET['nim'] ?? '';
+        echo "asda1";
 
-    if (!empty($nim)) {
-        // Query untuk mendapatkan informasi mahasiswa berdasarkan NIM
-        $sql = "SELECT * FROM dbo.MAHASISWA WHERE NIM = :nim";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+        if (!empty($nim)) {
+            // Query untuk mendapatkan informasi mahasiswa berdasarkan NIM
+            $sql = "SELECT * FROM dbo.MAHASISWA WHERE NIM = :nim";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+            echo "asda";
 
-        if ($stmt->execute()) {
-            $mahasiswa = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($mahasiswa) {
-?>
-                <!-- Main Content -->
-                <main class="main-content">
-                    <div class="dashboard-box dashboard-tall">
-                        <h1 class="dashboard-placeholder inter-bold" style="text-align: center;">
-                            <span class="yellow">WELCOME</span> BACK
-                        </h1>
-                    </div>
-                    
-                    <div class="dashboard-grid-2col " style="border-radius: 50px; border: 10px solid #FEC113;">
-                        <div class="dashboard-grid-item-1">
-                            <p class="dashboard-placeholder">
-                                <img src="../img/test/leo.jpeg" alt="">
-                            </p>
+            if ($stmt->execute()) {
+                $mahasiswa = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($mahasiswa) {
+    ?>
+                    <!-- Main Content -->
+                    <main class="main-content">
+                        <div class="dashboard-box dashboard-tall">
+                            <h1 class="dashboard-placeholder inter-bold" style="text-align: center;">
+                                <span class="yellow">WELCOME</span> BACK
+                            </h1>
                         </div>
-                        <div class="dashboard-grid-item-2">
-                            <p class="dashboard-placeholder">
-                            <?php
-                                echo "<h1>Welcome Back, " . htmlspecialchars($mahasiswa['NAMA']) . "</h1>";
-                                echo "<h2>Program Studi: " . htmlspecialchars($mahasiswa['PROGRAM_STUDI']) . "</h2>";
-                                echo "<h3>NIM: " . htmlspecialchars($mahasiswa['NIM']) . "</h3>";
-                            ?>
-                            </p>
-                            <a href="editProfile.html">
-                                <h3 class="edit">Edit Profile</h3>
-                            </a>
-                        </div>
-                    </div>
-<?php
-                // Query untuk mendapatkan total poin prestasi
-                $sql_poin = "SELECT total_poin FROM dbo.mahasiswa WHERE NIM = :nim";
-                $stmt_poin = $conn->prepare($sql_poin);
-                $stmt_poin->bindParam(':nim', $nim, PDO::PARAM_STR);
-                $stmt_poin->execute();
-                $poin = $stmt_poin->fetch(PDO::FETCH_ASSOC);
-?>
-                    <div class="dashboard-grid-2col"
-                        style="gap: 1px; background-color: #FEC113; margin-top: 5rem; border-radius: 50px; justify-content: center;">
-                        <div class="dashboard-grid-item-1">
-                            <img src="../img/icon/poin.png" alt="" style="width: 9rem;">
-                        </div>
-                        <div class="dashboard-grid-item-2" style="justify-items: center;">
-                            <h2>Your Point Prestations</h2>
-                            <div
-                                style="background-color: white; width: 8rem; height: 7rem; text-align: center; color: transparent; align-items: center;">
-                                <?php
-                                    echo "<h1 style='color: black;'>" . ($poin['total_poin'] ?? 0) . "</h1>";
-                                ?>
+
+                        <div class="dashboard-grid-2col " style="border-radius: 50px; border: 10px solid #FEC113;">
+                            <div class="dashboard-grid-item-1">
+                                <p class="dashboard-placeholder">
+                                    <img src="../img/test/leo.jpeg" alt="">
+                                </p>
+                            </div>
+                            <div class="dashboard-grid-item-2">
+                                <p class="dashboard-placeholder">
+                                    <?php
+                                    echo "<h1>Welcome Back, " . htmlspecialchars($mahasiswa['NAMA']) . "</h1>";
+                                    echo "<h2>Program Studi: " . htmlspecialchars($mahasiswa['PROGRAM_STUDI']) . "</h2>";
+                                    echo "<h3>NIM: " . htmlspecialchars($mahasiswa['NIM']) . "</h3>";
+                                    ?>
+                                </p>
+                                <a href="editProfile.html">
+                                    <h3 class="edit">Edit Profile</h3>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                </main>
-<?php
+                        <?php
+                        // Query untuk mendapatkan total poin prestasi
+                        $sql_poin = "SELECT total_poin FROM dbo.mahasiswa WHERE NIM = :nim";
+                        $stmt_poin = $conn->prepare($sql_poin);
+                        $stmt_poin->bindParam(':nim', $nim, PDO::PARAM_STR);
+                        $stmt_poin->execute();
+                        $poin = $stmt_poin->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <div class="dashboard-grid-2col"
+                            style="gap: 1px; background-color: #FEC113; margin-top: 5rem; border-radius: 50px; justify-content: center;">
+                            <div class="dashboard-grid-item-1">
+                                <img src="../img/icon/poin.png" alt="" style="width: 9rem;">
+                            </div>
+                            <div class="dashboard-grid-item-2" style="justify-items: center;">
+                                <h2>Your Point Prestations</h2>
+                                <div
+                                    style="background-color: white; width: 8rem; height: 7rem; text-align: center; color: transparent; align-items: center;">
+                                    <?php
+                                    echo "<h1 style='color: black;'>" . ($poin['total_poin'] ?? 0) . "</h1>";
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+    <?php
+                } else {
+                    echo "Mahasiswa tidak ditemukan.";
+                }
             } else {
-                echo "Mahasiswa tidak ditemukan.";
+                echo "Terjadi kesalahan saat mengambil data.";
             }
         } else {
-            echo "Terjadi kesalahan saat mengambil data.";
+            echo "NIM tidak diberikan.";
         }
-    } else {
-        echo "NIM tidak diberikan.";
     }
-}
-?>
+    ?>
 
 </body>
 
