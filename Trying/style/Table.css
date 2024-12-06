@@ -51,32 +51,40 @@ th{
 }
 
 .unmanage {
-    border-radius: 25px;
+    border-radius: 100px;
     background-color: #86A8FF;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    -ms-border-radius: 25px;
-    -o-border-radius: 25px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
     text-align: center;
     width: 5rem;
     height: 1px;
+    font-weight: 900;
 }
 
 .manage {
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    -ms-border-radius: 25px;
-    -o-border-radius: 25px;
+    border-radius: 100px;
+    font-size: larger;
     background-color: #02FF74;
-    text-align: center;
-    width: 5rem;
-    height: 1px;
+    width: 100%;
+    padding: 4px;
+    border: none;
+    font-weight: 900;
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
+    width: 9rem;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
 }
 
 .unmanage-btn {
     background-color: transparent;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
@@ -92,35 +100,56 @@ th{
 
 .completed {
     border-radius: 50px;
-    background-color: #02FF74;
+    background-color: #037D32;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
     text-align: center;
-    width: 10rem;
+    color: #02FF74;
 }
 
 .unreview {
     border-radius: 50px;
-    background-color: #0014F1;
+    background-color: rgba(0, 20, 241, .4);
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
     text-align: center;
-    width: 10rem;
-    color: white;
+    color: #0014F1;
 }
 
 .failed {
     border-radius: 50px;
-    background-color: #C70000;
+    background-color:rgba(199, 0, 0, .4);
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
     text-align: center;
-    width: 10rem;
-    color: white;
+    color: #C70000;
+}
+
+.status {
+    width: 100%;
+    border-radius: 6px;
+    padding: 4px;
+    border: none;
+    font-weight: 900;
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
+    width: 9rem;
+    
+}
+
+td img {
+    width: 2rem;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
 }
