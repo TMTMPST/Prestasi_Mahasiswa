@@ -88,7 +88,7 @@
             <li class="sidebar-item">
                 <div class="sidebar-main ">
                     <div class="sidebar-icon">
-                        <a href="input.html" class="sidebar-chosen">
+                        <a href="input.php" class="sidebar-chosen">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" style="width: 40px; height:auto;" class="sidebar-icon-svg">
                                 <path stroke-linecap="round" stroke-linejoin="round"
