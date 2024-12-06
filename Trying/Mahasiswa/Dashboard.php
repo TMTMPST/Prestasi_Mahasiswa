@@ -181,7 +181,7 @@ session_start();
                         <div class="dashboard-grid-item-2" style="justify-items: center;">
                             <h2>Your Point Prestations</h2>
                             <div
-                                style="background-color: white; width: 8rem; height: 7rem; text-align: center; color: transparent; align-items: center;">
+                                style="background-color: white; width: 8rem; height: 7rem; text-align: center; color: transparent; align-items: center; display: flex; justify-content: center;">
                                 <?php
                                 echo "<h1 style='color: black;'>" . ($poin['total_poin'] ?? 0) . "</h1>";
                                 ?>
