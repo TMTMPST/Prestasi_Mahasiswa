@@ -1,3 +1,22 @@
+<?php
+include "../connection.php"; 
+$conn = sqlsrv_connect($serverName, $connectionOptions);
+
+if ($conn === false) {
+    echo "Koneksi Gagal<br>";
+    die(print_r(sqlsrv_errors(), true));
+}
+
+$tsql = "SELECT NIP, NAMA_DOSEN FROM dbo.DOSEN";
+$stmt = sqlsrv_query($conn, $tsql);
+
+if ($stmt === false) {
+    echo "Error in executing query.<br>";
+    die(print_r(sqlsrv_errors(), true));
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,7 +91,7 @@
             <li class="sidebar-item">
                 <div class="sidebar-secondary ">
                     <div class="sidebar-icon">
-                <a href="Dashboard.html" class="sidebar-nchosen">
+                <a href="dashboard.php" class="sidebar-nchosen">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 40px; height:auto; color:black;" class="sidebar-icon-svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
                     </svg>                      
@@ -84,7 +103,7 @@
             <li class="sidebar-item">
                 <div class="sidebar-main ">
                     <div class="sidebar-icon">
-                <a href="input.html" class="sidebar-chosen">
+                <a href="input.php" class="sidebar-chosen">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 40px; height:auto;" class="sidebar-icon-svg" >
                         <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
                     </svg>                      
@@ -112,11 +131,11 @@
     <main class="main-content">
         <div class="input-prestasi">
             <h2> Input Prestasi Kalian </h2>
-            <form action="inputFile.html" method="get">
-                <label for="nama-mahasiswa">
+            <form method="POST" action="proses_tambah.php"  enctype="multipart/form-data">
+                <!-- <label for="nama-mahasiswa">
                     Nama Mahasiswa
                 </label>
-                <input id="nama-mahasiswa" name="nama-mahasiswa" type="text" />
+                <input id="nama-mahasiswa" name="nama-mahasiswa" type="text" /> -->
                 <label for="nim">
                     Nim
                 </label>
@@ -129,6 +148,17 @@
                     Kategori Juara
                 </label>
                 <input id="kategori-juara" name="kategori-juara" type="text" />
+                <label for="dosbing">
+                    Dosen Pembimbing
+                </label>
+                <select id="dosbing" name="dosbing" required>
+                    <option value="">Dosen Pembimbing</option>
+                    <?php
+                    while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+                        echo "<option value='" . $row['NIP'] . "'>" . $row['NIP'] . " - " . $row['NAMA_DOSEN'] . "</option>";
+                    }
+                    ?>
+                </select>
                 <label for="date">
                     Date
                 </label>
@@ -147,7 +177,7 @@
                 <select id="tingkat-prestasi" name="tingkat-prestasi">
                     <option> Pilih Tingkat Prestasi </option>
                     <option > Provinsi </option>
-                    <option > Nasioanal </option>
+                    <option > Nasional </option>
                     <option > Internasional </option>
                 </select>
                 <div class="submit">
