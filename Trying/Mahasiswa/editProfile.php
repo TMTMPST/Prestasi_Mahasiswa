@@ -15,10 +15,6 @@
     include '../connection.php';
 
     // Pastikan session NIM ada
-    if (!isset($_SESSION['nim'])) {
-        header("Location: ../login.php");
-        exit();
-    }
 
     // Ambil NIM dari session
     $nim = $_SESSION['nim'];
@@ -115,3 +111,6 @@
 </body>
 
 </html>
+<?php
+
+?>
