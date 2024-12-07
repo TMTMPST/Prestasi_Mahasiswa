@@ -212,7 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Eksekusi query
         if ($stmt->execute()) {
-            echo "Data prestasi berhasil dimasukkan.";
+            echo "script>alert('Data prestasi berhasil dimasukkan.');';</script>";
         } else {
             echo "Terjadi kesalahan saat memasukkan data.";
         }

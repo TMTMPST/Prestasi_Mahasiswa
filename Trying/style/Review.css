@@ -316,7 +316,7 @@ body {
 }
 
 .ButtonReject button {
-    background-color: #FA0000;
+    background-color: rgba(250, 0, 0, .5);
     color: #ffffff;
     font-size: 16px;
     font-weight: 400;
@@ -329,7 +329,7 @@ body {
 }
 
 .ButtonAccept button {
-    background-color: #1EFF09;
+    background-color: rgba(30, 255, 9, .5);
     color: #ffffff;
     font-size: 16px;
     font-weight: 400;
@@ -342,12 +342,12 @@ body {
 }
 
 .ButtonAccept button:hover {
-    background-color: #34495E;
+    background-color: rgba(30, 255, 91, 1);
     cursor: pointer;
 }
 
 .ButtonReject button:hover {
-    background-color: #34495E;
+    background-color: rgba(250, 0, 0, 1);
     cursor: pointer;
 }
 
@@ -448,4 +448,14 @@ body {
     font-optical-sizing: auto;
     font-weight: 200;
     font-style: normal;
+}
+
+.align-to-right {
+    float: right;
+    padding: 10px;
+}
+
+.ButtonAccept,
+.ButtonReject {
+    display: inline-block;
 }
