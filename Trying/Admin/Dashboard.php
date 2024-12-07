@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +66,7 @@
             <li class="sidebar-item">
                 <div class="sidebar-main ">
                     <div class="sidebar-icon">
-                        <a href="Dashboard.html" class="sidebar-chosen">
+                        <a href="dashboard.php" class="sidebar-chosen">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" style="width: 40px; height:auto;" class="sidebar-icon-svg">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -79,7 +80,7 @@
             <li class="sidebar-item">
                 <div class="sidebar-secondary ">
                     <div class="sidebar-icon">
-                        <a href="input.html" class="sidebar-nchosen">
+                        <a href="input.php" class="sidebar-nchosen">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" style="width: 40px; height:auto; color:black"
                                 class="sidebar-icon-svg">
@@ -144,14 +145,50 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <?php
+                        include "../connection.php";
+                        $conn = sqlsrv_connect($serverName, $connectionOptions);
+                        $tsql = "SELECT 
+                                    P.ID_PRESTASI, 
+                                    P.NIM, 
+                                    M.NAMA AS NAMA_MHS, 
+                                    P.PERINGKAT, 
+                                    P.JENIS_PRESTASI, 
+                                    P.STATUS 
+                                FROM dbo.PRESTASI P
+                                JOIN dbo.MAHASISWA M ON P.NIM = M.NIM"; // Join tabel PRESTASI dengan MAHASISWA berdasarkan NIM
+                        $stmt = sqlsrv_query($conn, $tsql); //menjalankan query di variabel $tsql
+                        do {
+                        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+                        ?>
+                        <tr>
+                        <td><?= $row['ID_PRESTASI']; ?></td>
+                        <td><?= $row['NAMA_MHS']; ?></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="status completed">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-6"
+                                    style="width: 15px; height:auto;">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg> 
+                                <span>COMPLETED</span>
+                            </button>
+                        </td>
+                        
+                        </tr>
+
+                        <tr>
                         <td scope="row"><img src="../img/dummy/Group8.png"></td>
                         <td scope="row">
-                            <h3>Dong Zhuo</h3>
-                            <p>2312351231</p>
+                            <h3><?= $row['NAMA_MHS']; ?></h3>
+                            <p><?= $row['NIM']; ?></p>
                         </td>
-                        <td scope="row">Harapan 1</td>
-                        <td scope="row">GEMASTIK</td>
+                        <td scope="row"><?= $row['PERINGKAT']; ?></td>
+                        <td scope="row"><?= $row['JENIS_PRESTASI']; ?></td>
                         <td scope="row">Regional</td>
                         <td scope="row">
                             <button class="status completed">
@@ -164,27 +201,12 @@
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td scope="row"><img src="../img/dummy/Group8.png"></td>
-                        <td scope="row">
-                            <h3>Cao Cao</h3>
-                            <p>2312351231</p>
-                        </td>
-                        <td scope="row">Harapan 1</td>
-                        <td scope="row">Hackathon</td>
-                        <td scope="row">Regional</td>
-                        <td>
-                            <button class="status unreview">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-6"
-                                    style="width: 15px; height:auto;">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                <span>UNREVIEW</span>
-                            </button>
-                        </td>
-                    </tr>
+                        <?php
+                        }
+                        } while (sqlsrv_next_result($stmt));
+                    ?>
+                    
+
                     <tr>
                         <td scope="row"><img src="../img/dummy/Group8.png"></td>
                         <td scope="row">
@@ -194,6 +216,7 @@
                         <td scope="row">Harapan 1</td>
                         <td scope="row">GEMASTIK</td>
                         <td scope="row">Nasional</td>
+                        
                         <td>
                             <button class="status failed">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -203,48 +226,6 @@
                                         d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
                                 <span>Failed</span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row"><img src="../img/dummy/Group8.png"></td>
-                        <td scope="row">
-                            <h3>Uwiii</h3>
-                            <p>2312351231</p>
-                        </td>
-                        <td scope="row">Harapan 1</td>
-                        <td scope="row">Hackathon</td>
-                        <td scope="row">Nasional</td>
-                        <td>
-                            <button class="status completed">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-6"
-                                    style="width: 15px; height:auto;">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg> 
-                                <span>COMPLETED</span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row"><img src="../img/dummy/Group8.png"></td>
-                        <td scope="row">
-                            <h3>Uwiii</h3>
-                            <p>2312351231</p>
-                        </td>
-                        <td scope="row">Harapan 1</td>
-                        <td scope="row">Hackathon</td>
-                        <td scope="row">Internasional</td>
-                        <td scope="row">
-                            <button class="status completed">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-6"
-                                    style="width: 15px; height:auto;">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg> 
-                                <span>COMPLETED</span>
                             </button>
                         </td>
                     </tr>
