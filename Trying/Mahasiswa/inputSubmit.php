@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "../connection.php";
-include "../Admin/proses_tambah.php";
+include "proses_tambah.php";
 
 echo '<pre>';
 print_r($_SESSION);
@@ -11,6 +11,10 @@ echo '</pre>';
 //     header('Location: input.php');
 //     exit();
 // }
+
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -221,7 +225,7 @@ echo '</pre>';
         </div>
 
         <div class="ButtonSubmit">
-            <form id="myForm" method="POST">
+            <form id="" action="proses_tambah.php" method="POST">
                 <button type="submit">Submit</button>
             </form>
         </div>

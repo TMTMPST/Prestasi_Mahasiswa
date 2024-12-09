@@ -26,6 +26,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     header('Location: inputSubmit.php');
     exit();
+}$nim = $_SESSION['nim'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Ambil data dari database
+    try {
+        $sql = "SELECT * FROM dbo.MAHASISWA WHERE NIM = :nim";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+        $stmt->execute();
+        $mahasiswa = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$mahasiswa) {
+            echo "<script>alert('Mahasiswa tidak ditemukan.');</script>";
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -85,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span>Your Account</span>
             </li>
             <li class="sidebar-item">
-                <a href="editProfile.html" class="sidebar-profile">
+                <a href="editProfile.php" class="sidebar-profile">
                     <div class="profile-card">
                         <div class="profile-picture">
                             <img src="../img/test/leo.jpeg" alt="Profile Picture">
@@ -155,9 +173,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="nim">
                     NIM
                 </label>
-                <input id="nim" name="nim" type="text" />
+                <input id="nim" name="nim" type="text" value="<?php echo htmlspecialchars($mahasiswa['NIM']);?>" readonly/>
 
-                <label for="nama-lomba">
+                <label for="nama-lomba"> 
                     Nama Lomba
                 </label>
                 <input id="nama-lomba" name="nama-lomba" type="text" />
@@ -182,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php
                     if (!empty($dosenList)) {
                         foreach ($dosenList as $row) {
-                            echo '<option value="dosbing">'
+                            echo '<option value="'. htmlspecialchars($row['NIP']) .'">'
                                 . htmlspecialchars($row['NIP']) . ' - ' .  htmlspecialchars($row['NAMA_DOSEN'])
                                 . '</option>';
                         }
