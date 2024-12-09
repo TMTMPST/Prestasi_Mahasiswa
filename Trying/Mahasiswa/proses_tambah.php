@@ -52,9 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header('location:inputSubmit.php?submit=success');
         exit();
     } else {
-        if ($stmt === false) {
-            echo "Error in executing query.</br>";
-            die(print_r(sqlsrv_errors(), true));
-        }
+        // if ($stmt === false) {
+        //     echo "Error in executing query.</br>";
+        //     die(print_r(sqlsrv_errors(), true));
+        // }
     }
 }
