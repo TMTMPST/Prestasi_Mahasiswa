@@ -16,7 +16,7 @@
 <?php
 session_start();
     include '../connection.php'; 
-    require_once '../component/sidebar.php'; // Pastikan file fungsi disertakan
+    require_once '../component/sidebar.php'; 
     echo renderSidebar();
 ?>
 
@@ -27,8 +27,6 @@ session_start();
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         // Ambil NIM dari parameter atau session (sesuaikan kebutuhan Anda)
         // $nim =  $_GET['NIM'];
-
-        echo "asda1";
 
         // Ambil NIM dari session
         $nim = $_SESSION['nim'];
