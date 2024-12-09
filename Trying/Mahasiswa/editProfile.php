@@ -93,7 +93,7 @@
             </form> -->
             <form action="" method="post">
                 <label for="nama">Your Name</label><br>
-                <input type="text" name="nama" id="nama" value="<?php echo htmlspecialchars($mahasiswa['NAMA']); ?>"><br>
+                <input type="text" name="nama" id="nama" value="<?php echo htmlspecialchars($mahasiswa['NAMA']); ?>" readonly><br>
                 <label for="password">Password</label><br>
                 <input type="password" name="password" id="password" value="<?php echo htmlspecialchars($mahasiswa['PASSWORD']); ?>"><br>
                 <label for="email">Email Address</label><br>

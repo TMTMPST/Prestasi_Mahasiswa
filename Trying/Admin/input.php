@@ -136,10 +136,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     Nim
                 </label>
                 <input id="nim" name="nim" type="text" />
-                <label for="nama_lomba">
+                <label for="nama-lomba">
                     Nama Lomba
                 </label>
-                <input id="nama_lomba" name="nama_lomba" type="text" />
+                <input id="nama-lomba" name="nama_lomba" type="text" />
                 <label for="kategori_juara">
                     Kategori Juara
                 </label>
