@@ -84,7 +84,7 @@
                                 $_SESSION['role'] = 'admin';
 
                                 // Redirect ke dashboard admin
-                                header("Location: ../Admin/Dashboard.html");
+                                header("Location: ../Admin/Dashboard.php");
                                 exit();
                             } else {
                                 $error_message = "Username atau Password admin salah!";
