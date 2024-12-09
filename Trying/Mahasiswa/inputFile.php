@@ -46,23 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
         }
     }
 
-    $sql = "INSERT INTO DOKUMEN (SERTIFIKAT, PROPOSAL, SURAT_TUGAS, KARYA) 
-            VALUES (:sertifikat, :proposal, :surat_tugas, :karya);";
+    $_SESSION['sertifikat'] = $filePaths['sertifikat'];
+    $_SESSION['proposal'] = $filePaths['proposal'];
+    $_SESSION['surat_tugas'] = $filePaths['surat_tugas'];
+    $_SESSION['karya'] = $filePaths['karya'];
 
-    $stmt = $conn->prepare($sql);
-
-    // Bind parameter
-    $stmt->bindParam(':sertifikat', $filePaths['sertifikat']);
-    $stmt->bindParam(':proposal', $filePaths['proposal']);
-    $stmt->bindParam(':surat_tugas', $filePaths['surat_tugas']);
-    $stmt->bindParam(':karya', $filePaths['karya']);
-
-    if ($stmt->execute()) {
-        echo "Informasi file berhasil di simpan di database.<br>";
-    } else {
-        echo "Gagal menyimpan informasi file di database.<br>";
-    }
-    
+    header("Location: inputSubmit.php");
+    exit();
 }
 ?>
 
@@ -198,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
 
 
         <!-- File Upload Section -->
-        <form action="inputFile.php" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="file-upload">
                 <span>Sertif</span>
                 <label>

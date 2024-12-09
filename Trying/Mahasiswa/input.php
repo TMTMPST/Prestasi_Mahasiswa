@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['tipe_prestasi'] = $_POST['tipe-prestasi'] ?? '';
     $_SESSION['tingkat_prestasi'] = $_POST['tingkat-prestasi'] ?? '';
 
-    header('Location: inputSubmit.php');
+    header('Location: inputFile.php');
     exit();
 }$nim = $_SESSION['nim'];
 
