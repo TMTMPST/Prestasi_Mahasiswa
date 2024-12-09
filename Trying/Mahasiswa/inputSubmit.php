@@ -1,3 +1,18 @@
+<?php
+session_start();
+include "../connection.php";
+include "../Admin/proses_tambah.php";
+
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+
+// if (!isset($_SESSION['nim'])) {
+//     header('Location: input.php');
+//     exit();
+// }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,7 +134,7 @@
     <!-- Main -->
     <div class="Main">
         <!-- Back Button -->
-        <a href="inputFile.html" style="text-decoration: none;">
+        <a href="inputFile.php" style="text-decoration: none;">
             <div class="ButtonBack">
                 <span class="BackText">Back</span>
             </div><br>
@@ -136,12 +151,12 @@
             <div class="DataItem">
                 <span class="Label">Nama</span>
                 <span class="Colon">:</span>
-                <span class="Details">Lee Dong min</span>
+                <span class="Details"><?php echo $_SESSION['name']; ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">NIM</span>
                 <span class="Colon">:</span>
-                <span class="Details">2341720175</span>
+                <span class="Details"><?php echo $_SESSION['nim']; ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Prodi</span>
@@ -161,22 +176,22 @@
             <div class="DataItem">
                 <span class="Label">Nama Lomba</span>
                 <span class="Colon">:</span>
-                <span class="Details">GEMASTIK</span>
+                <span class="Details"><?php echo $_SESSION['nama-lomba']; ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Kategori Juara</span>
                 <span class="Colon">:</span>
-                <span class="Details">Juara 2</span>
+                <span class="Details"><?php echo $_SESSION['kategori-juara']; ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Date</span>
                 <span class="Colon">:</span>
-                <span class="Details">Januari 2023</span>
+                <span class="Details"><?php echo $_SESSION['date']; ?></span>
             </div>
             <div class="DataItem">
-                <span class="Label">Tingkat Prestasi</span>
+                <span class="Label">Tipe Prestasi</span>
                 <span class="Colon">:</span>
-                <span class="Details">Akademik - Nasional</span>
+                <span class="Details"><?php echo $_SESSION['tipe_prestasi']; ?></span>
             </div>
         </div>
 
@@ -206,10 +221,10 @@
         </div>
 
         <div class="ButtonSubmit">
-                <form id="myForm">
+            <form id="myForm" method="POST">
                 <button type="submit">Submit</button>
             </form>
-            </div>
+        </div>
 
         <div class="popup-overlay" id="popup">
             <div class="popup">

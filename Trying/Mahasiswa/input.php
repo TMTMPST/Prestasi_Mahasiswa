@@ -1,3 +1,33 @@
+<?php
+session_start();
+include "../connection.php";
+include "../proses/function.php";
+
+if ($conn === false) {
+    echo "Koneksi Gagal<br>";
+    die(print_r(sqlsrv_errors(), true));
+}
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $dosenList = getDosenList($conn);
+    $tingkatList = getTingkat($conn);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Ambil data dari form
+    $_SESSION['nim'] = $_POST['nim'] ?? '';
+    $_SESSION['nama-lomba'] = $_POST['nama-lomba'] ?? '';
+    $_SESSION['kategori-juara'] = $_POST['kategori-juara'] ?? '';
+    $_SESSION['penyelenggara'] = $_POST['penyelenggara'] ?? '';
+    $_SESSION['lokasi'] = $_POST['lokasi'] ?? '';
+    $_SESSION['dosbing'] = $_POST['dosbing'] ?? '';
+    $_SESSION['date'] = $_POST['date'] ?? '';
+    $_SESSION['tipe_prestasi'] = $_POST['tipe-prestasi'] ?? '';
+    $_SESSION['tingkat_prestasi'] = $_POST['tingkat-prestasi'] ?? '';
+
+    header('Location: inputSubmit.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -137,14 +167,36 @@
                 </label>
                 <input id="kategori-juara" name="kategori-juara" type="text" />
 
-                <label for="dospem">NIP Dosen</label>
-                <input  id="dospem" name="dospem" type="text">
+                <label for="penyelenggara">
+                    Penyelenggara
+                </label>
+                <input id="penyelenggara" name="penyelenggara" type="text">
+                <label for="lokasi">
+                    Lokasi
+                </label>
+                <input id="lokasi" name="lokasi" type="text">
 
+                <label for="dosbing">NIP Dosen</label>
+                <select id="dosbing" name="dosbing" required>
+                    <option value="">Dosen Pembimbing</option>
+                    <?php
+                    if (!empty($dosenList)) {
+                        foreach ($dosenList as $row) {
+                            echo '<option value="dosbing">'
+                                . htmlspecialchars($row['NIP']) . ' - ' .  htmlspecialchars($row['NAMA_DOSEN'])
+                                . '</option>';
+                        }
+                    } else {
+                        echo '<option value="">Tidak ada data dosen</option>';
+                    }
+                    ?>
+
+                </select>
                 <label for="date">
                     Date
                 </label>
                 <input id="date" name="date" type="date" />
-               
+
                 <label for="tipe-prestasi">
                     Tipe Prestasi
                 </label>
@@ -157,15 +209,21 @@
                 <label for="tingkat-prestasi">
                     Tingkat Prestasi
                 </label>
-                <select id="tingkat-prestasi" name="tingkat-prestasi">
+                <select id="tingkat_prestasi" name="tingkat-prestasi">
                     <option> Pilih Tingkat Prestasi </option>
-                    <option> Provinsi </option>
-                    <option> Nasioanal </option>
-                    <option> Internasional </option>
+                    <?php
+                    if (!empty($tingkatList)) {
+                        foreach ($tingkatList as $row) {
+                            echo '<option value="'. htmlspecialchars($row['ID_TINGKAT']).'">'
+                                .htmlspecialchars($row['TINGKATAN'])
+                                . '</option>';
+                        }
+                    } else {
+                        echo '<option value="">Tidak ada data dosen</option>';
+                    }
+                    ?>
                 </select>
-
                 <div class="submit">
-                    <a href="inputFile.html"></a>
                     <button type="submit">
                         Continue
                     </button>
@@ -180,42 +238,45 @@
 
 <?php
 // Koneksi ke database
-require_once '../connection.php'; // Ganti dengan file koneksi database Anda
+// require_once '../connection.php'; // Ganti dengan file koneksi database Anda
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil data dari form
-    $nim = $_POST['nim'] ?? '';
-    $nama_lomba = $_POST['nama-lomba'] ?? '';
-    $kategori_juara = $_POST['kategori-juara'] ?? '';
-    $dospem = $_POST['dospem'] ?? '';
-    $date = $_POST['date'] ?? '';
-    $tipe_prestasi = $_POST['tipe-prestasi'] ?? '';
-    $tingkat_prestasi = $_POST['tingkat-prestasi'] ?? '';
 
-    // Validasi input
-    if (empty($nim) || empty($nama_lomba) || empty($kategori_juara) || empty($dospem) || empty($date) || empty($tipe_prestasi) || empty($tingkat_prestasi)) {
-        echo "Semua kolom harus diisi.";
-    } else {
-        // Query untuk memasukkan data ke database
-        $sql = "INSERT INTO dbo.PRESTASI (NIM, NAMA_LOMBA, KATEGORI_JUARA, DOSPEM, TANGGAL, TIPE_PRESTASI, TINGKAT_PRESTASI) 
-                VALUES (:nim, :nama_lomba, :kategori_juara, :dospem, :tanggal, :tipe_prestasi, :tingkat_prestasi)";
-        $stmt = $conn->prepare($sql);
+// $nim = $_POST['nim'] ?? '';
+// $nama_lomba = $_POST['nama-lomba'] ?? '';
+// $kategori_juara = $_POST['kategori-juara'] ?? '';
+// $penyelenggara = $_POST['penyelenggara' ?? ''];
+// $lokasi = $_POST['lokasi' ?? ''];
+// $dosbing = $_POST['dosbing'] ?? '';
+// $date = $_POST['date'] ?? '';
+// $tipe_prestasi = $_POST['tipe-prestasi'] ?? '';
+// $tingkat_prestasi = $_POST['tingkat-prestasi'] ?? '';
 
-        // Bind parameter
-        $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
-        $stmt->bindParam(':nama_lomba', $nama_lomba, PDO::PARAM_STR);
-        $stmt->bindParam(':kategori_juara', $kategori_juara, PDO::PARAM_STR);
-        $stmt->bindParam(':dospem', $dospem, PDO::PARAM_STR);
-        $stmt->bindParam(':tanggal', $date, PDO::PARAM_STR);
-        $stmt->bindParam(':tipe_prestasi', $tipe_prestasi, PDO::PARAM_STR);
-        $stmt->bindParam(':tingkat_prestasi', $tingkat_prestasi, PDO::PARAM_STR);
+// Validasi input
+// if (empty($nim) || empty($nama_lomba) || empty($kategori_juara) || empty($dosbing) || empty($date) || empty($tipe_prestasi) || empty($tingkat_prestasi)) {
+//     echo "Semua kolom harus diisi.";
+// } else {
+//     // Query untuk memasukkan data ke database
+//     // Insert ke detail lalu ambil nilai pk nya dan insert ke prestasi
+//     // INSERT INTO dbo.DETAIL_PRESTASI (TGL_KEGIATAN, NAMA_LOMBA, LOKASI, PENYELENGGARA) 
+//     // VALUES (:tanggal, :nama_lomba, :lokasi, :penyelenggara);
+//     $sql = "INSERT INTO dbo.PRESTASI (NIM, NAMA_LOMBA, KATEGORI_JUARA, dosbing, TANGGAL, TIPE_PRESTASI, TINGKAT_PRESTASI) 
+//             VALUES (:nim, :nama_lomba, :kategori_juara, :dosbing, :tanggal, :tipe_prestasi, :tingkat_prestasi)";
+//     $stmt = $conn->prepare($sql);
 
-        // Eksekusi query
-        if ($stmt->execute()) {
-            echo "script>alert('Data prestasi berhasil dimasukkan.');';</script>";
-        } else {
-            echo "Terjadi kesalahan saat memasukkan data.";
-        }
-    }
-}
+//     // Bind parameter
+//     $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+//     $stmt->bindParam(':nama_lomba', $nama_lomba, PDO::PARAM_STR);
+//     $stmt->bindParam(':kategori_juara', $kategori_juara, PDO::PARAM_STR);
+//     $stmt->bindParam(':dosbing', $dosbing, PDO::PARAM_STR);
+//     $stmt->bindParam(':tanggal', $date, PDO::PARAM_STR);
+//     $stmt->bindParam(':tipe_prestasi', $tipe_prestasi, PDO::PARAM_STR);
+//     $stmt->bindParam(':tingkat_prestasi', $tingkat_prestasi, PDO::PARAM_STR);
+
+//     // Eksekusi query
+//     if ($stmt->execute()) {
+//         echo "script>alert('Data prestasi berhasil dimasukkan.');';</script>";
+//     } else {
+//         echo "Terjadi kesalahan saat memasukkan data.";
+//     }
+// }
 ?>

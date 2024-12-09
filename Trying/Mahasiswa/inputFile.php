@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['nim'])) {
+    header("Location: input.php");
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    header("Location: inputSubmit.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -130,7 +144,7 @@
 
 
         <!-- File Upload Section -->
-        <form action="inputSubmit.html">
+        <form action="" method="POST">
             <div class="file-upload">
                 <span>Sertif</span>
                 <label>
@@ -160,11 +174,9 @@
             </div>
 
             <div class="continue-button">
-                <a href="inputSubmit.html">
-                    <button>
-                        Continue
-                    </button>
-                </a>
+                <button>
+                    Continue
+                </button>
             </div>
         </form>
     </div>
