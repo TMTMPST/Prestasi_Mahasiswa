@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "../connection.php";
 include "proses_tambah.php";
 
@@ -11,10 +10,6 @@ echo '</pre>';
 //     header('Location: input.php');
 //     exit();
 // }
-
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
 ?>
 
 <!DOCTYPE html>

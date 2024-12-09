@@ -1,47 +1,52 @@
 <?php
 include "../connection.php";
+session_start();
 
-// $nim = $_POST['nim'];
-// $nama_lomba = $_POST['nama-lomba'];
-// $kategori = $_POST['kategori-juara'];
-// $dosbing = $_POST['dosbing'];
-// $date = $_POST['date'];
-// $tipe = $_POST['tipe_prestasi'];
-// $tingkat = $_POST['tingkat_prestasi'];
-// $status = "Pending";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nim = $_SESSION['nim'];
     $nama_lomba = $_SESSION['nama-lomba'];
     $kategori = $_SESSION['kategori-juara'];
+    $penyelenggara = $_SESSION['penyelenggara'];
+    $lokasi = $_SESSION['lokasi'];
     $dosbing = $_SESSION['dosbing'];
     $date = $_SESSION['date'];
     $tipe = $_SESSION['tipe_prestasi'];
     $tingkat = $_SESSION['tingkat_prestasi'];
-    $status = "Pending";
-    // ID_PRESTASI,	NIM, ID_DOKUMEN, ID_DETAIL,	NIP, JENIS_PRESTASI, PERINGKAT, STATUS, ID_TINGKAT
-    // (NIM, ID_DOKUMEN, ID_DETAIL, NIP, JENIS_PRESTASI, PERINGKAT, STATUS)
+    $sertifikat = $_SESSION['sertifikat'];
+    $proposal = $_SESSION['proposal'];
+    $surat_tugas = $_SESSION['surat_tugas'];
+    $karya = $_SESSION['karya'];
 
-    // -- Cara Mendapatkan PK dari DETAIL_PRESTASI (Dilakukan dalam satu sesi execute)
-    // DECLARE @NewDetailPrestasiID INT;
-
-    // -- Masukkan data ke detail_prestasi
-    // INSERT INTO detail_prestasi (TGL_KEGIATAN, NAMA_LOMBA, LOKASI, PENYELENGGARA) 
-    // VALUES ('2024-06-15', 'Lomba', 'Lokasi', 'Politeknik Negeri Batam');
-
-    // SET @NewDetailPrestasiID = SCOPE_IDENTITY();
-
-    // -- Menggunakan @NewDetailPrestasiID yang telah diambil sebelumnya untuk menyisipkan data ke prestasi
-    // INSERT INTO prestasi (ID_DETAIL, JENIS_PRESTASI, PERINGKAT)
-    // VALUES (@NewDetailPrestasiID, 'nilaiA', 'nilaiB');
-    $tsql = "INSERT INTO dbo.PRESTASI (NIM, NIP, JENIS_PRESTASI, PERINGKAT, STATUS) 
-        VALUES (:nim, :dosbing, :tipe_prestasi, :kategori_juara, 'pending' )";
+    $tsql = "EXEC InsertPrestasi
+    @tanggal = :tanggal,
+	@lomba = :lomba,
+	@lokasi = :lokasi,
+	@penyelenggara = :penyelenggara,
+    @nim = :nim,
+	@nip = :dosbing,
+	@jenis_prestasi = :tipe_prestasi,
+	@peringkat = :kategori_juara,
+	@status = 'Pending',
+	@id_tingkat = :id_tingkat,
+	@sertifikat = :sertifikat,
+	@proposal = :proposal,
+	@surat_tugas = :surat_tugas,
+	@karya = :karya;";
 
     $stmt = $conn->prepare($tsql);
+    $stmt->bindParam(':tanggal', $date, PDO::PARAM_STR);
+    $stmt->bindParam(':lomba', $nama_lomba, PDO::PARAM_STR);
+    $stmt->bindParam(':lokasi', $lokasi, PDO::PARAM_STR);
+    $stmt->bindParam(':penyelenggara', $penyelenggara, PDO::PARAM_STR);
     $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
     $stmt->bindParam(':dosbing', $dosbing, PDO::PARAM_STR);
     $stmt->bindParam(':tipe_prestasi', $tipe, PDO::PARAM_STR);
     $stmt->bindParam(':kategori_juara', $kategori, PDO::PARAM_STR);
-    // $stmt->bindParam(':tingkat-prestasi', $tingkat_prestasi, PDO::PARAM_STR);
+    $stmt->bindParam(':id_tingkat', $tingkat, PDO::PARAM_STR);
+    $stmt->bindParam(':sertifikat', $sertifikat, PDO::PARAM_STR);
+    $stmt->bindParam(':proposal', $proposal, PDO::PARAM_STR);
+    $stmt->bindParam(':surat_tugas', $surat_tugas, PDO::PARAM_STR);
+    $stmt->bindParam(':karya', $karya, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
         header('location:inputSubmit.php?submit=success');
