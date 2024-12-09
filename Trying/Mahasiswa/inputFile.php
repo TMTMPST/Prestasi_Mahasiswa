@@ -1,14 +1,68 @@
 <?php
 session_start();
+include '../connection.php';
 
-if (!isset($_SESSION['nim'])) {
-    header("Location: input.php");
-    exit();
+$nim = $_SESSION['nim'] ?? null;
+if (!$nim) {
+    die("NIM tidak ditemukan!");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    header("Location: inputSubmit.php");
-    exit();
+// header("Location: inputSubmit.php");
+// exit();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
+    $targetDir = "../uploads/";
+
+    $filePaths = [
+        'sertifikat' => '',
+        'proposal' => '',
+        'surat_tugas' => '',
+        'karya' => ''
+    ];
+
+    foreach ($filePaths as $key => $value) {
+        $file = $_FILES[$key];
+
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            die("Terjadi kesalahan saat mengunggah file.");
+        }
+
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+
+        $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $fileName = basename($file['name'], "." . $fileExtension);
+
+        $newFileName = $nim . "_" . $fileName . "_" . time() . "." . $fileExtension;
+
+        $targetFilePath = $targetDir . DIRECTORY_SEPARATOR . $newFileName;
+
+        if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
+            $filePaths[$key] = $targetFilePath; // simpan path file
+            echo "$key berhasil diunggah sebagai " . $newFileName . "<br>";
+        } else {
+            echo "Gagal mengunggah file $key.";
+        }
+    }
+
+    $sql = "INSERT INTO DOKUMEN (SERTIFIKAT, PROPOSAL, SURAT_TUGAS, KARYA) 
+            VALUES (:sertifikat, :proposal, :surat_tugas, :karya);";
+
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameter
+    $stmt->bindParam(':sertifikat', $filePaths['sertifikat']);
+    $stmt->bindParam(':proposal', $filePaths['proposal']);
+    $stmt->bindParam(':surat_tugas', $filePaths['surat_tugas']);
+    $stmt->bindParam(':karya', $filePaths['karya']);
+
+    if ($stmt->execute()) {
+        echo "Informasi file berhasil di simpan di database.<br>";
+    } else {
+        echo "Gagal menyimpan informasi file di database.<br>";
+    }
+    
 }
 ?>
 
@@ -144,32 +198,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         <!-- File Upload Section -->
-        <form action="" method="POST">
+        <form action="inputFile.php" method="POST" enctype="multipart/form-data">
             <div class="file-upload">
                 <span>Sertif</span>
                 <label>
-                    <input type="file" class="file-input" />
+                    <input type="file" class="file-input" name="sertifikat" />
                 </label>
             </div>
 
             <div class="file-upload">
                 <span class="sr-only">Proposal</span>
                 <label>
-                    <input type="file" class="file-input" />
+                    <input type="file" class="file-input" name="proposal" />
                 </label>
             </div>
 
             <div class="file-upload">
                 <span class="sr-only">Surat Tugas</span>
                 <label>
-                    <input type="file" class="file-input" />
+                    <input type="file" class="file-input" name="surat_tugas" />
                 </label>
             </div>
 
             <div class="file-upload">
                 <span>Karya (bila ada)</span>
                 <label>
-                    <input type="file" class="file-input" />
+                    <input type="file" class="file-input" name="karya" />
                 </label>
             </div>
 
