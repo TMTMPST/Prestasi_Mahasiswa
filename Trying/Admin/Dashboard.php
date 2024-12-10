@@ -37,7 +37,7 @@ include "../connection.php";
         </div>
 
         <?php
-            require_once "../Chart.php";
+            require_once "../lineChart.php";
             ?>
         <div class="table-container">
             <table class="product-table">

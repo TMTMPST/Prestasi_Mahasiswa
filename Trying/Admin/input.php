@@ -2,14 +2,32 @@
 include "../connection.php";
 include "../proses/function.php";
 
-// if ($conn === false) {
-//     echo "Koneksi Gagal<br>";
-//     die(print_r(sqlsrv_errors(), true));
-// }
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $dosenList = getDosenList($conn);
     $tingkatList = getTingkat($conn);
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Ambil data dari form
+    // $_SESSION['nim'] = $_POST['nim'] ?? '';
+    $nim = htmlspecialchars($_POST['nim'] ?? '');
+    $_SESSION['nama-lomba'] = $_POST['nama-lomba'] ?? '';
+    $_SESSION['kategori-juara'] = $_POST['kategori-juara'] ?? '';
+    $_SESSION['penyelenggara'] = $_POST['penyelenggara'] ?? '';
+    $_SESSION['lokasi'] = $_POST['lokasi'] ?? '';
+    $_SESSION['dosbing'] = $_POST['dosbing'] ?? '';
+    $_SESSION['date'] = $_POST['date'] ?? '';   
+    $_SESSION['tipe_prestasi'] = $_POST['tipe-prestasi'] ?? '';
+    $_SESSION['tingkat_prestasi'] = $_POST['tingkat-prestasi'] ?? '';
+
+
+    $_SESSION['nim'] = $nim;
+    header('Location: inputFile.php');
+    exit();
+}
+
+
 
 ?>
 
@@ -40,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <main class="main-content">
         <div class="input-prestasi">
             <h2> Input Prestasi Kalian </h2>
-            <form method="POST" action="proses_tambah.php" enctype="multipart/form-data">
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                 <!-- <label for="nama-mahasiswa">
                     Nama Mahasiswa
                 </label>
@@ -52,11 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 <label for="nama-lomba">
                     Nama Lomba
                 </label>
-                <input id="nama-lomba" name="nama_lomba" type="text" />
-                <label for="kategori_juara">
+                <input id="nama-lomba" name="nama-lomba" type="text" />
+                <label for="kategori-juara">
                     Kategori Juara
                 </label>
-                <input id="kategori_juara" name="kategori_juara" type="text" />
+                <input id="kategori-juara" name="kategori-juara" type="text" />
                 <label for="penyelenggara">
                     Penyelenggara
                 </label>
@@ -87,18 +105,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     Date
                 </label>
                 <input id="date" name="date" type="date" />
-                <label for="tipe_prestasi">
+                <label for="tipe-prestasi">
                     Tipe Prestasi
                 </label>
-                <select id="tipe_prestasi" name="tipe-prestasi">
+                <select id="tipe-prestasi" name="tipe-prestasi">
                     <option> Pilih Tipe Prestasi </option>
                     <option> Akademik </option>
                     <option> Non-Akademik </option>
                 </select>
-                <label for="tingkat_prestasi">
+                <label for="tingkat-prestasi">
                     Tingkat Prestasi
                 </label>
-                <select id="tingkat_prestasi" name="tingkat-prestasi">
+                <select id="tingkat-prestasi" name="tingkat-prestasi">
                     <option> Pilih Tingkat Prestasi </option>
                     <?php
                     if (!empty($tingkatList)) {
@@ -113,7 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     ?>
                 </select>
                 <div class="submit">
-                    <a href="inputFile.php"></a>
                     <button type="submit">
                         Continue
                     </button>
@@ -124,3 +141,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </body>
 
 </html>
+<?php
+
+?>
