@@ -11,6 +11,7 @@ body {
 
 /* Main Content Styles */
 
+
 .main-content h2 {
     margin-bottom: 20px;
 }
@@ -62,10 +63,10 @@ body {
 }
 
 .main-content {
-    margin-left: 24rem;
+    margin-left: 20rem;
+    margin-top: 2rem;
     margin-right: 1rem;
     padding: 1rem;
-    margin-top: 3.5rem;
     flex-grow: 1;
-
+    
 }

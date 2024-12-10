@@ -76,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
         <?php renderNavbar(); ?>
         </div>
     <!-- Main Content -->
+    <h1>asdas</h1>
 
     <div class="main-content">
         <!-- Back Button -->

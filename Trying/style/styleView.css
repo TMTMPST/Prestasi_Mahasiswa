@@ -9,6 +9,16 @@ body {
 }
 
 /* font */
+
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 20rem;
+    margin-top: 2rem;
+}
+
+
 .inter-bold {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
@@ -62,6 +72,7 @@ td {
     justify-content: center;
     align-items: center;
     width: 9rem;
+    
 }
 
 .completed {
@@ -95,4 +106,8 @@ td {
     -o-border-radius: 50px;
     text-align: center;
     color: #C70000;
+}
+
+.center {
+    justify-items: center;
 }
