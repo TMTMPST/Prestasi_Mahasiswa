@@ -37,8 +37,8 @@ include "../connection.php";
         </div>
 
         <?php
-            require_once "../lineChart.php";
-            ?>
+        require_once "../Chart.php";
+        ?>
         <div class="table-container">
             <table class="product-table">
                 <thead class="table-header">
@@ -54,32 +54,43 @@ include "../connection.php";
                 <tbody>
                     <?php
 
-                    $tsql = "SELECT 
-                                    P.ID_PRESTASI, 
-                                    P.NIM, 
-                                    M.NAMA AS NAMA_MHS, 
-                                    P.PERINGKAT, 
-                                    P.JENIS_PRESTASI, 
-                                    P.STATUS 
-                                FROM dbo.PRESTASI P
-                                JOIN dbo.MAHASISWA M ON P.NIM = M.NIM"; // Join tabel PRESTASI dengan MAHASISWA berdasarkan NIM
+                    $tsql = "SELECT m.NAMA, m.NIM, p.PERINGKAT, dp.NAMA_LOMBA, t.TINGKATAN, p.STATUS
+                            FROM PRESTASI p
+                            JOIN MAHASISWA m ON m.NIM = p.NIM
+                            JOIN DETAIL_PRESTASI dp ON dp.ID_DETAIL = p.ID_DETAIL
+                            JOIN TINGKAT t ON t.ID_TINGKAT = p.ID_TINGKAT";
                     $stmt = $conn->prepare($tsql);
                     $stmt->execute();
 
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $statusClass = '';
+                        switch ($row['STATUS']) {
+                            case 'Pending':
+                                $statusClass = 'unreview';
+                                break;
+                            case 'Completed':
+                                $statusClass = 'completed';
+                                break;
+                            case 'Rejected':
+                                $statusClass = 'failed';
+                                break;
+                            default:
+                                $statusClass = 'other-status'; // Status lainnya jika ada
+                                break;
+                        }
                     ?>
 
                         <tr>
                             <td scope="row"><img src="../img/dummy/Group8.png"></td>
                             <td scope="row">
-                                <h3><?= htmlspecialchars($row['NAMA_MHS']); ?></h3>
+                                <h3><?= htmlspecialchars($row['NAMA']); ?></h3>
                                 <p><?= htmlspecialchars($row['NIM']); ?></p>
                             </td>
                             <td scope="row"><?= htmlspecialchars($row['PERINGKAT']); ?></td>
-                            <td scope="row"><?= htmlspecialchars($row['JENIS_PRESTASI']); ?></td>
-                            <td scope="row">Regional</td>
+                            <td scope="row"><?= htmlspecialchars($row['NAMA_LOMBA']); ?></td>
+                            <td scope="row"><?= htmlspecialchars($row['TINGKATAN']); ?></td>
                             <td scope="row">
-                                <button class="status completed">
+                                <button class="status <?= $statusClass; ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6"
                                         style="width: 15px; height:auto;">
@@ -90,57 +101,11 @@ include "../connection.php";
                                 </button>
                             </td>
                         </tr>
-                        <!-- <tr>
-                            <td scope="row"><img src="../img/dummy/Group8.png"></td>
-                            <td scope="row">
-                                <h3><?= $row['NAMA_MHS']; ?></h3>
-                                <p><?= $row['NIM']; ?></p>
-                            </td>
-                            <td scope="row"><?= $row['PERINGKAT']; ?></td>
-                            <td scope="row"><?= $row['JENIS_PRESTASI']; ?></td>
-                            <td scope="row">Nasional</td>
-
-                            <td>
-                                <button class="status failed">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="size-6"
-                                        style="width: 15px; height:auto;">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    </svg>
-                                    <span><?= $row['STATUS']; ?></span>
-                                </button>
-                            </td>
-                        </tr> -->
                 </tbody>
             <?php
                     }
             ?>
             </table>
-
-            <!-- <tr>
-                <td scope="row"><img src="../img/dummy/Group8.png"></td>
-                <td scope="row">
-                    <h3>Uwiii</h3>
-                    <p>2312351231</p>
-                </td>
-                <td scope="row">Harapan 1</td>
-                <td scope="row">GEMASTIK</td>
-                <td scope="row">Nasional</td>
-
-                <td>
-                    <button class="status failed">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="size-6"
-                            style="width: 15px; height:auto;">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        <span>Failed</span>
-                    </button>
-                </td>
-            </tr> -->
-
         </div>
     </main>
 </body>
