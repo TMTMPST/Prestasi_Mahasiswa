@@ -18,7 +18,6 @@ require_once '../component/navbar.php';
         rel="stylesheet">
     <link rel="stylesheet" href="../style/styleView.css">
     <link rel="stylesheet" href="../style/sidebar.css">
-    <link rel="stylesheet" href="../style/styledashboard.css    ">
     <title>View</title>
 </head>
 
@@ -51,19 +50,18 @@ require_once '../component/navbar.php';
             $statusClass = '';
             switch ($row['STATUS']) {
                 case 'Pending':
-                    $statusClass = 'pending';
+                    $statusClass = 'unreview';
                     break;
                 case 'Completed':
                     $statusClass = 'completed';
                     break;
                 case 'Rejected':
-                    $statusClass = 'rejected';
+                    $statusClass = 'failed';
                     break;
                 default:
-                    $statusClass = 'other-status'; // Status lainnya jika ada
+                    $statusClass = 'other-status';
                     break;
             }
-
         ?>
             <tr>
                 <td><?= htmlspecialchars($row['NAMA_LOMBA']); ?></td>
@@ -71,36 +69,17 @@ require_once '../component/navbar.php';
                 <td><?= htmlspecialchars($row['JENIS_PRESTASI']); ?></td>
                 <td><?= htmlspecialchars($row['TINGKATAN']); ?></td>
                 <td>
-                    <button class="status success">
-                        <img src="../img/icon/check.png" alt="check" class="check">
-                        <?= htmlspecialchars($row['STATUS']); ?>
+                    <button class="status <?= $statusClass ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="size-6"
+                            style="width: 15px; height:auto;">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span><?= htmlspecialchars($row['STATUS']); ?></span>
                     </button>
                 </td>
             </tr>
-            <!-- <tr>
-                    <td>KMIPN</td>
-                    <td>Juara 1</td>
-                    <td>Akademik</td>
-                    <td>Lokal</td>
-                    <td>
-                        <button class="status rejected">
-                            <img src="../img/icon/check.png" alt="check" class="check">
-                            REJECTED
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Taekwondo</td>
-                    <td>Juara 3</td>
-                    <td>Non Akademik</td>
-                    <td>National</td>
-                    <td>
-                        <button class="status pending">
-                            <img src="../img/icon/check.png" alt="check" class="check">
-                            PENDING
-                        </button>
-                    </td>
-                </tr> -->
         <?php
         }
         ?>
