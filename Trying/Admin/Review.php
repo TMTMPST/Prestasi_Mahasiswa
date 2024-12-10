@@ -1,5 +1,8 @@
 <?php
 include "../connection.php";
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -32,26 +35,33 @@ include "../connection.php";
                         <th scope="col">Nim</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Prodi</th>
-                        <th scope="col">Kelas</th>
                         <th scope="col">Manage</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                     $sql = "SELECT * FROM dbo.MAHASISWA";
+                     $stmt = $conn->prepare($sql);
+                     $stmt->execute();
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    ?>
                     <tr>
-                        <td scope="row">2312331122"</td>
-                        <td>Dong Zhuo</td>
-                        <td>Teknik Informatika</td>
-                        <td>2F</td>
-                        <td class="unmanage"><a href="ReviewMhs.html" class="unmanage-btn">Review</a></td>
+                        <td scope="row"><?= htmlspecialchars($row['NIM']); ?></td>
+                        <td><?= htmlspecialchars($row['NAMA']); ?></td>
+                        <td><?= htmlspecialchars($row['PRODI']); ?></td>
+                        <td class="unmanage"><a href="ReviewMhs.php" class="unmanage-btn">Review</a></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td scope="row">2312351231</td>
                         <td>Cao Cao</td>
                         <td>Teknik Informatika</td>
                         <td>2F</td>
                         <td class="unmanage"><a href="ReviewMhs.html" class="unmanage-btn">Review</a></td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <?php
+                    }
+                    ?>
+                    <!-- <tr>
                         <td scope="row">2312351231</td>
                         <td>Uwiii</td>
                         <td>Teknik Informatika</td>
@@ -59,7 +69,7 @@ include "../connection.php";
                         <td class="manage">
                             Complete
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
