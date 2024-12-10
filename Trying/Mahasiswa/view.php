@@ -2,6 +2,9 @@
 include "../connection.php";
 require_once '../component/sidebar.php';
 require_once '../component/navbar.php';
+
+session_start();
+$nim = $_SESSION['nim'];
 ?>
 
 
@@ -40,11 +43,13 @@ require_once '../component/navbar.php';
         </thead>
         <?php
 
-        $tsql = "SELECT dp.NAMA_LOMBA, p.PERINGKAT, p.JENIS_PRESTASI , t.TINGKATAN, p.STATUS
+        $tsql = "SELECT p.nim, dp.NAMA_LOMBA, p.PERINGKAT, p.JENIS_PRESTASI , t.TINGKATAN, p.STATUS
                             FROM PRESTASI p
                             JOIN DETAIL_PRESTASI dp ON dp.ID_DETAIL = p.ID_DETAIL
-                            JOIN TINGKAT t ON t.ID_TINGKAT = p.ID_TINGKAT";
+                            JOIN TINGKAT t ON t.ID_TINGKAT = p.ID_TINGKAT
+                            where p.NIM = :nim";
         $stmt = $conn->prepare($tsql);
+        $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
         $stmt->execute();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -84,7 +89,7 @@ require_once '../component/navbar.php';
                     <td>Lokal</td>
                     <td>
                         <button class="status rejected">
-                            <img src="../img/icon/check.png" alt="check" class="check">
+                            <img sr c="../img/icon/check.png" alt="check" class="check">
                             REJECTED
                         </button>
                     </td>
