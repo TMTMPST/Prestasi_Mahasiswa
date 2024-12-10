@@ -1,5 +1,31 @@
 <?php
 include "../connection.php";
+// $id_prestasi = $_SESSION['id_prestasi'];
+$id_prestasi = 36;
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['accept'])) {
+        $status = "Completed";
+    } elseif (isset($_POST['reject'])) {
+        $status = "Rejected";
+    }
+
+    $sql = "UPDATE PRESTASI 
+    SET STATUS = :status 
+    WHERE ID_PRESTASI = :id_prestasi;";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+    $stmt->bindParam(':id_prestasi', $id_prestasi, PDO::PARAM_STR);
+
+    if ($stmt->execute()) {
+        header('Location: Review.php');
+        exit();
+    } else {
+        echo "Data tidak berubah";
+    }
+
+}
 ?>
 
 
@@ -105,16 +131,14 @@ include "../connection.php";
             </div>
         </div>
         <div class="align-to-right">
-            <div class="ButtonAccept">
-                <a href="Review.php">
-                    <button>Accept</button>
-                </a>
-            </div>
-            <div class="ButtonReject">
-                <a href="Review.php ">
-                    <button>Reject</button>
-                </a>
-            </div>
+            <form action="" method="POST">
+                <div class="ButtonAccept">
+                    <button type="submit" name="accept">Accept</button>
+                </div>
+                <div class="ButtonReject">
+                    <button type="submit" name="reject">Reject</button>
+                </div>
+            </form>
         </div>
 </body>
 
