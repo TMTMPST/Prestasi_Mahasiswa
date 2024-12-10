@@ -33,7 +33,7 @@ function renderSidebar()
                     </svg>
                     Input
                 </a>
-                <a href="view.html">
+                <a href="view.php">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="sidebar-icon-svg">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -49,8 +49,8 @@ function renderSidebar()
                 <div class="user-menu">
                     <img src="../img/dummy/1.jpg" alt="User Avatar" class="user-avatar">
                     <div class="user-dropdown">
-                        <a href="#">Profile</a>
-                        <a href="#">Logout</a>
+                        <a href="editProfile.php">Profile</a>
+                        <a href="../login/login.php">Logout</a>
                     </div>
                 </div>
             </header>
