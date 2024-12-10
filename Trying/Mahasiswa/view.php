@@ -63,7 +63,7 @@ $nim = $_SESSION['nim'];
                 case 'Rejected':
                     $statusClass = 'failed';
                     break;
-                default:
+                default:    
                     $statusClass = 'other-status';
                     break;
             }
