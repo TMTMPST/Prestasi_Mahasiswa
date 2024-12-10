@@ -1,9 +1,9 @@
 <?php
 include "../connection.php";
-// $id_prestasi = $_SESSION['id_prestasi'];
-$id_prestasi = 36;
+$id_prestasi = $_GET['id_prestasi'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
+    $id_prestasi = htmlspecialchars($_GET['id_prestasi']);
     if (isset($_POST['accept'])) {
         $status = "Completed";
     } elseif (isset($_POST['reject'])) {
@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Data tidak berubah";
     }
-
 }
 ?>
 
