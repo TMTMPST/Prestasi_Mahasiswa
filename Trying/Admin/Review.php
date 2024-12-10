@@ -1,8 +1,5 @@
 <?php
 include "../connection.php";
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -35,41 +32,36 @@ include "../connection.php";
                         <th scope="col">Nim</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Prodi</th>
+                        <th scope="col">Lomba</th>
                         <th scope="col">Manage</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                     $sql = "SELECT * FROM dbo.MAHASISWA";
-                     $stmt = $conn->prepare($sql);
-                     $stmt->execute();
+                    $sql = "SELECT m.NIM, m.NAMA, m.PRODI, p.ID_PRESTASI, dp.NAMA_LOMBA
+                            FROM dbo.MAHASISWA m
+                            JOIN dbo.PRESTASI p ON m.NIM = p.NIM
+                            JOIN dbo.DETAIL_PRESTASI dp ON p.ID_DETAIL = dp.ID_DETAIL
+                            WHERE STATUS = 'Pending';";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute();
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     ?>
-                    <tr>
-                        <td scope="row"><?= htmlspecialchars($row['NIM']); ?></td>
-                        <td><?= htmlspecialchars($row['NAMA']); ?></td>
-                        <td><?= htmlspecialchars($row['PRODI']); ?></td>
-                        <td class="unmanage"><a href="ReviewMhs.php" class="unmanage-btn">Review</a></td>
-                    </tr>
-                    <!-- <tr>
-                        <td scope="row">2312351231</td>
-                        <td>Cao Cao</td>
-                        <td>Teknik Informatika</td>
-                        <td>2F</td>
-                        <td class="unmanage"><a href="ReviewMhs.html" class="unmanage-btn">Review</a></td>
-                    </tr> -->
+                        <tr>
+                            <td scope="row"><?= htmlspecialchars($row['NIM']); ?></td>
+                            <td><?= htmlspecialchars($row['NAMA']); ?></td>
+                            <td><?= htmlspecialchars($row['PRODI']); ?></td>
+                            <td><?= htmlspecialchars($row['NAMA_LOMBA']); ?></td>
+                            <td class="unmanage">
+                                <form action="ReviewMhs.php" method="GET">
+                                    <input type="hidden" name="id_prestasi" value="<?= htmlspecialchars($row['ID_PRESTASI']); ?>">
+                                    <button type="submit" class="unmanage-btn">Review</button>
+                                </form>
+                            </td>
+                        </tr>
                     <?php
                     }
                     ?>
-                    <!-- <tr>
-                        <td scope="row">2312351231</td>
-                        <td>Uwiii</td>
-                        <td>Teknik Informatika</td>
-                        <td>2F</td>
-                        <td class="manage">
-                            Complete
-                        </td>
-                    </tr> -->
                 </tbody>
             </table>
         </div>

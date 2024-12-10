@@ -1,7 +1,7 @@
 <?php
 try {
-    $serverName = "LAPTOP-A6N5VPUV"; //kamila
-    // $serverName = "LAPTOP-315GD7L8"; //Tionusa
+    // $serverName = "LAPTOP-A6N5VPUV"; //kamila
+    $serverName = "LAPTOP-315GD7L8"; //Tionusa
     // $serverName = "ZETA";  // josh
     $database = "presma_web";
     
