@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 </label>
                 <input id="lokasi" name="lokasi" type="text">
 
-                <label for="dosbing">NIP Dosen</label>
+                <label for="dosbing">DOsen Pembimbing</label>
                 <select id="dosbing" name="dosbing" required>
                     <option value="">Dosen Pembimbing</option>
                     <?php
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <label for="tingkat-prestasi">
                     Tingkat Prestasi
                 </label>
-                <select id="tingkat_prestasi" name="tingkat-prestasi">
+                <select id="tingkat-prestasi" name="tingkat-prestasi">
                     <option> Pilih Tingkat Prestasi </option>
                     <?php
                     if (!empty($tingkatList)) {

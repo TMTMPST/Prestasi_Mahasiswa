@@ -1,5 +1,20 @@
 <?php
 include "../connection.php";
+include "proses_tambah.php";
+
+
+$nim = $_SESSION['nim'] ?? null;
+if (!$nim) {
+    die("NIM tidak ditemukan!");
+}
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $tsql = "SELECT * FROM dbo.MAHASISWA where NIM = :nim";
+    $stmt = $conn->prepare($tsql);
+    $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+    $stmt->execute();
+    $mahasiswa = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +38,7 @@ include "../connection.php";
     <!-- Main -->
     <div class="Main">
         <!-- Back Button -->
-        <a href="inputFile.html" style="text-decoration: none;">
+        <a href="inputFile.php" style="text-decoration: none;">
             <div class="ButtonBack">
                 <span class="BackText">Back</span>
             </div><br>
@@ -40,22 +55,22 @@ include "../connection.php";
             <div class="DataItem">
                 <span class="Label">Nama</span>
                 <span class="Colon">:</span>
-                <span class="Details">Lee Dong min</span>
+                <span class="Details"><?php echo htmlspecialchars($mahasiswa['NAMA']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">NIM</span>
                 <span class="Colon">:</span>
-                <span class="Details">2341720175</span>
+                <span class="Details"><?php echo $_SESSION['nim']; ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Prodi</span>
                 <span class="Colon">:</span>
-                <span class="Details">Teknik Informatika</span>
+                <span class="Details"><?php echo htmlspecialchars($mahasiswa['PRODI']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Angkatan</span>
                 <span class="Colon">:</span>
-                <span class="Details">2024</span>
+                <span class="Details"><?php echo htmlspecialchars($mahasiswa['ANGKATAN']); ?></span>
             </div>
         </div>
 
@@ -65,22 +80,22 @@ include "../connection.php";
             <div class="DataItem">
                 <span class="Label">Nama Lomba</span>
                 <span class="Colon">:</span>
-                <span class="Details">GEMASTIK</span>
+                <span class="Details"><?php echo $_SESSION['nama-lomba']; ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Kategori Juara</span>
                 <span class="Colon">:</span>
-                <span class="Details">Juara 2</span>
+                <span class="Details"><?php echo $_SESSION['kategori-juara']; ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Date</span>
                 <span class="Colon">:</span>
-                <span class="Details">Januari 2023</span>
+                <span class="Details"><?php echo $_SESSION['date']; ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Tingkat Prestasi</span>
                 <span class="Colon">:</span>
-                <span class="Details">Akademik - Nasional</span>
+                <span class="Details"><?php echo $_SESSION['tingkat_prestasi']; ?></span>
             </div>
         </div>
 
@@ -110,7 +125,7 @@ include "../connection.php";
         </div>
 
         <div class="ButtonSubmit">
-            <form id="myForm">
+            <form id="" action="proses_tambah.php" method="POST">
                 <button type="submit">Submit</button>
             </form>
         </div>

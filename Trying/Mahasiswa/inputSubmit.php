@@ -4,14 +4,26 @@ include "proses_tambah.php";
 require_once '../component/sidebar.php';
 require_once '../component/navbar.php';
 
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
+// echo '<pre>';
+// print_r($_SESSION);
+// echo '</pre>';
 
 // if (!isset($_SESSION['nim'])) {
 //     header('Location: input.php');
 //     exit();
 // }
+
+$nim = $_SESSION['nim'] ?? null;
+if (!$nim) {
+    die("NIM tidak ditemukan!");
+}
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $tsql = "SELECT * FROM dbo.MAHASISWA where NIM = :nim";
+    $stmt = $conn->prepare($tsql);
+    $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+    $stmt->execute();
+    $mahasiswa = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +66,7 @@ echo '</pre>';
             <div class="DataItem">
                 <span class="Label">Nama</span>
                 <span class="Colon">:</span>
-                <span class="Details"><?php echo $_SESSION['name']; ?></span>
+                <span class="Details"><?php echo htmlspecialchars($mahasiswa['NAMA']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">NIM</span>
@@ -64,12 +76,12 @@ echo '</pre>';
             <div class="DataItem">
                 <span class="Label">Prodi</span>
                 <span class="Colon">:</span>
-                <span class="Details">Teknik Informatika</span>
+                <span class="Details"><?php echo htmlspecialchars($mahasiswa['PRODI']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Angkatan</span>
                 <span class="Colon">:</span>
-                <span class="Details">2024</span>
+                <span class="Details"><?php echo htmlspecialchars($mahasiswa['ANGKATAN']); ?></span>
             </div>
         </div>
 
