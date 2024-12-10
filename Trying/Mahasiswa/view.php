@@ -29,8 +29,8 @@ $nim = $_SESSION['nim'];
     <div class="navbar">
         <?php renderNavbar(); ?>
     </div>
-
-
+    <h1>dasda</h1>
+    <main class="main-content">
     <h1>View Your Prestation</h1>
     <table>
         <thead>
@@ -73,7 +73,7 @@ $nim = $_SESSION['nim'];
                 <td><?= htmlspecialchars($row['PERINGKAT']); ?></td>
                 <td><?= htmlspecialchars($row['JENIS_PRESTASI']); ?></td>
                 <td><?= htmlspecialchars($row['TINGKATAN']); ?></td>
-                <td>
+                <td class="center">
                     <button class="status <?= $statusClass ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="size-6"
@@ -89,6 +89,8 @@ $nim = $_SESSION['nim'];
         }
         ?>
     </table>
+    </main>
+    <script src="../js/sidebar.js"></script>
 </body>
 
 </html>

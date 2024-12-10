@@ -40,10 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
 </head>
 
 <body class="inter">
-    <?php
-    include "../component/sidebarAdmin.php";
-    echo renderSidebar();
-    ?>
+<?php echo renderSidebar(); ?>
+        <div class="navbar">
+        <?php renderNavbar(); ?>
+        </div>
+    <h1>asdasd</h1>
 
     <!-- Main -->
     <div class="Main">

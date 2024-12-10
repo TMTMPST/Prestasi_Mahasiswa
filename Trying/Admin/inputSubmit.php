@@ -1,6 +1,8 @@
 <?php
 include "../connection.php";
 include "proses_tambah.php";
+require_once '../component/sidebarAdmin.php';
+require_once '../component/navbar.php';
 
 
 $nim = $_SESSION['nim'] ?? null;
@@ -25,15 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/styleSubmit.css">
     <link rel="stylesheet" href="../style/popup.css">
+    <link rel="stylesheet" href="../style/sidebar.css">
     <title>Submit</title>
 </head>
 
 <body class="inter">
     <!-- Navigation -->
-    <?php
-    include "../component/sidebarAdmin.php";
-    echo renderSidebar();
-    ?>
+    <?php echo renderSidebar(); ?>
+        <div class="navbar">
+        <?php renderNavbar(); ?>
+        </div>
+    <h1>asdasd</h1>
 
     <!-- Main -->
     <div class="Main">

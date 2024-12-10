@@ -67,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         </div>
 
     <!-- Main Content -->
+    <h1>asdas</h1>
     <main class="main-content">
         <div class="input-prestasi">
             <h2> Input Prestasi Kalian </h2>

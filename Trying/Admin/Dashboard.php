@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "../connection.php";
+require_once '../component/sidebarAdmin.php';
+require_once '../component/navbar.php';
 ?>
 
 
@@ -17,17 +19,19 @@ include "../connection.php";
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../style/Table.css">
+    <link rel="stylesheet" href="../style/sidebar.css">
     <title>Dashboard</title>
 
 </head>
 
 <body class="inter">
     <!-- Navigation -->
-    <?php
-    include "../component/sidebarAdmin.php";
-    echo renderSidebar();
-    ?>
+    <?php echo renderSidebar(); ?>
+        <div class="navbar">
+        <?php renderNavbar(); ?>
+        </div>
 
+    <h1>asdasd</h1>
     <!-- Main Content -->
     <main class="main-content">
         <div class="dashboard-box dashboard-tall">
