@@ -2,6 +2,8 @@
 session_start();
 include "../connection.php";
 include "../proses/function.php";
+require_once '../component/sidebar.php';
+require_once '../component/navbar.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $dosenList = getDosenList($conn);
@@ -49,20 +51,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/styleInput.css">
+    <link rel="stylesheet" href="../style/sidebar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
     <title>Input</title>
-
 </head>
 
-<body class="inter">
-    <?php
-    include '../component/sidebar.php';
-    echo renderSidebar();
-    ?>
+<body>
+        <?php echo renderSidebar(); ?>
+        <div class="navbar">
+        <?php renderNavbar(); ?>
+        </div>
 
     <!-- Main Content -->
     <main class="main-content">

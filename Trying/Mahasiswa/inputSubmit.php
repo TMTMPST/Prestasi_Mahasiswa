@@ -1,6 +1,8 @@
 <?php
 include "../connection.php";
 include "proses_tambah.php";
+require_once '../component/sidebar.php';
+require_once '../component/navbar.php';
 
 echo '<pre>';
 print_r($_SESSION);
@@ -21,15 +23,16 @@ echo '</pre>';
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/styleSubmit.css">
     <link rel="stylesheet" href="../style/popup.css">
+    <link rel="stylesheet" href="../style/sidebar.css">
     <title>Submit</title>
 </head>
 
 <body class="inter">
     <!-- Navigation -->
-    <?php
-    include '../component/sidebar.php';
-    echo renderSidebar();
-    ?>
+    <?php echo renderSidebar(); ?>
+        <div class="navbar">
+        <?php renderNavbar(); ?>
+        </div>
 
     <!-- Main -->
     <div class="Main">

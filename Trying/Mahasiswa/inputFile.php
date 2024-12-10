@@ -1,6 +1,9 @@
 <?php
 session_start();
 include '../connection.php';
+require_once '../component/navbar.php';
+require_once '../component/sidebar.php';
+
 
 $nim = $_SESSION['nim'] ?? null;
 if (!$nim) {
@@ -63,15 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/styleInputFile.css">
+    <link rel="stylesheet" href="../style/sidebar.css">
     <title>Input File</title>
 </head>
 
 <body class="inter">
-    <?php
-    include '../component/sidebar.php';
-    echo renderSidebar();
-    ?>
-
+    <?php echo renderSidebar(); ?>
+        <div class="navbar">
+        <?php renderNavbar(); ?>
+        </div>
     <!-- Main Content -->
 
     <div class="main-content">
