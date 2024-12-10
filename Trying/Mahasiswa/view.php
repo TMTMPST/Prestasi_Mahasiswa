@@ -23,33 +23,61 @@ require_once '../component/navbar.php';
 </head>
 
 <body>
-        <?php echo renderSidebar(); ?>
-        <div class="navbar">
-            <?php renderNavbar(); ?>
-            </div>
+    <?php echo renderSidebar(); ?>
+    <div class="navbar">
+        <?php renderNavbar(); ?>
+    </div>
 
-            <h1>View Your Prestation</h1>
-            <table>
-                <thead>
-                    <th>Nama Lomba</th>
-                    <th>Kategori Juara</th>
-                    <th>Tipe Prestasi</th>
-                    <th>Tingkat Prestasi</th>
-                    <th>Status</th>
-                </thead>
-                <tr>
-                    <td>GEMASTIK</td>
-                    <td>Juara 2</td>
-                    <td>Akademik</td>
-                    <td>National</td>
-                    <td>
-                        <button class="status success">
-                            <img src="../img/icon/check.png" alt="check" class="check">
-                            COMPLETED
-                        </button>
-                    </td>
-                </tr>
-                <tr>
+
+    <h1>View Your Prestation</h1>
+    <table>
+        <thead>
+            <th>Nama Lomba</th>
+            <th>Kategori Juara</th>
+            <th>Tipe Prestasi</th>
+            <th>Tingkat Prestasi</th>
+            <th>Status</th>
+        </thead>
+        <?php
+
+        $tsql = "SELECT dp.NAMA_LOMBA, p.PERINGKAT, p.JENIS_PRESTASI , t.TINGKATAN, p.STATUS
+                            FROM PRESTASI p
+                            JOIN DETAIL_PRESTASI dp ON dp.ID_DETAIL = p.ID_DETAIL
+                            JOIN TINGKAT t ON t.ID_TINGKAT = p.ID_TINGKAT";
+        $stmt = $conn->prepare($tsql);
+        $stmt->execute();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $statusClass = '';
+            switch ($row['STATUS']) {
+                case 'Pending':
+                    $statusClass = 'pending';
+                    break;
+                case 'Completed':
+                    $statusClass = 'completed';
+                    break;
+                case 'Rejected':
+                    $statusClass = 'rejected';
+                    break;
+                default:
+                    $statusClass = 'other-status'; // Status lainnya jika ada
+                    break;
+            }
+
+        ?>
+            <tr>
+                <td><?= htmlspecialchars($row['NAMA_LOMBA']); ?></td>
+                <td><?= htmlspecialchars($row['PERINGKAT']); ?></td>
+                <td><?= htmlspecialchars($row['JENIS_PRESTASI']); ?></td>
+                <td><?= htmlspecialchars($row['TINGKATAN']); ?></td>
+                <td>
+                    <button class="status success">
+                        <img src="../img/icon/check.png" alt="check" class="check">
+                        <?= htmlspecialchars($row['STATUS']); ?>
+                    </button>
+                </td>
+            </tr>
+            <!-- <tr>
                     <td>KMIPN</td>
                     <td>Juara 1</td>
                     <td>Akademik</td>
@@ -72,8 +100,11 @@ require_once '../component/navbar.php';
                             PENDING
                         </button>
                     </td>
-                </tr>
-            </table>
+                </tr> -->
+        <?php
+        }
+        ?>
+    </table>
 </body>
 
 </html>
