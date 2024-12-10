@@ -36,20 +36,9 @@ include "../connection.php";
             </h1>
         </div>
 
-        <div class="dashboard-grid-2col " style="border-radius: 50px; border: 10px solid #FEC113;">
-            <div class="dashboard-grid-item-1">
-                <p class="dashboard-placeholder">
-                    <img src="../img/test/leo.jpeg" alt="">
-                </p>
-            </div>
-            <div class="dashboard-grid-item-2">
-                <p class="dashboard-placeholder">
-                <h1>Ini Admin</h1>
-                <h2>Admin JTI</h2>
-                <h3>19581238123</h3>
-                </p>
-            </div>
-        </div>
+        <?php
+            require_once "../Chart.php";
+            ?>
         <div class="table-container">
             <table class="product-table">
                 <thead class="table-header">

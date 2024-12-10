@@ -23,7 +23,7 @@ include "../connection.php";
     <!-- Main -->
     <div class="Main">
         <!-- Back Button -->
-        <a href="Review.html" style="text-decoration: none;">
+        <a href="Review.php" style="text-decoration: none;">
             <div class="ButtonBack">
                 <span class="BackText">Back</span>
             </div><br>
@@ -106,12 +106,12 @@ include "../connection.php";
         </div>
         <div class="align-to-right">
             <div class="ButtonAccept">
-                <a href="Review.html">
+                <a href="Review.php">
                     <button>Accept</button>
                 </a>
             </div>
             <div class="ButtonReject">
-                <a href="Review.html">
+                <a href="Review.php ">
                     <button>Reject</button>
                 </a>
             </div>
