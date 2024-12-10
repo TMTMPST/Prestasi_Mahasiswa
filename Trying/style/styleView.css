@@ -6,7 +6,6 @@
 
 body {
     line-height: 1.6;
-    
 }
 
 /* font */
@@ -57,26 +56,43 @@ td {
     border-radius: 6px;
     padding: 4px;
     border: none;
+    font-weight: 900;
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
+    width: 9rem;
 }
 
-.success {
+.completed {
+    border-radius: 50px;
     background-color: #037D32;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    text-align: center;
     color: #02FF74;
 }
 
-.rejected {
-    background-color: #9A3733;
-    color: #d87b78;
+.unreview {
+    border-radius: 50px;
+    background-color: rgba(0, 20, 241, .4);
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    text-align: center;
+    color: #0014F1;
 }
 
-.pending {
-    background-color: #d2a21c;
-    color: #ffd970;
-}
-
-img.check {
-    width: 12px;
-    height: auto;
-    margin-top: 2px;
-    margin-right: 2px;
+.failed {
+    border-radius: 50px;
+    background-color:rgba(199, 0, 0, .4);
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    text-align: center;
+    color: #C70000;
 }
