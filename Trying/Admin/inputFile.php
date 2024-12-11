@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../connection.php';
-require_once '../component/sidebarAdmin.php';
+require_once '../component/sidebar.php';
 require_once '../component/navbar.php';
 
 $nim = $_SESSION['nim'] ?? null;
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
 
 <body class="inter">
     <!-- Navigation -->
-    <?php echo renderSidebar(); ?>
+    <?php echo renderSidebar("Dashboard.php", "input.php", "review.php"); ?>
         <div class="navbar">
         <?php renderNavbar(); ?>
         </div>

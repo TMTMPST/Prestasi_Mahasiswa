@@ -1,6 +1,6 @@
 <?php
 include "../connection.php";
-require_once "../component/sidebarAdmin.php";
+require_once "../component/sidebar.php";
 require_once "../component/navbarAdmin.php";
 $id_prestasi = $_GET['id_prestasi'];
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
 </head>
 
 <body class="inter">
-<?php echo renderSidebar(); ?>
+<?php echo renderSidebar("Dashboard.php", "input.php", "review.php"); ?>
         <div class="navbar">
         <?php renderNavbar(); ?>
         </div>
