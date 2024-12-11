@@ -83,7 +83,9 @@ body {
     /* Agar text di Details tidak rata kanan */
 }
 
-.FileItem div {
+
+
+.FileItem .UploadSuccess {
     display: inline;
     color: black;
     padding: 6px 18px;
@@ -91,8 +93,21 @@ body {
     border-radius: 20px;
     font-weight: 600;
     font-size: 11px;
-    margin-top: 20px;
     width: auto;
+    margin-left: 10px;
+
+}
+
+.FileItem .ViewImage {
+    display: inline;
+    color: black;
+    padding: 6px 18px;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 11px;
+    width: auto;
+    height: 10px;
 }
 
 .ViewImage {

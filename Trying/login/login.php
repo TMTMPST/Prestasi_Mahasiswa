@@ -105,9 +105,6 @@
             }
             ?>
             <div class="options">
-                <label>
-                    <input type="checkbox"> Remember me
-                </label>
                 <a href="forgotpass.php">Forgot Password?</a>
             </div>
             <button class="login-btn">LOGIN</button>

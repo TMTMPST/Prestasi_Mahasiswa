@@ -33,7 +33,6 @@ function renderSidebar($dashboard, $input, $view)
             </a>
         </nav>
     </aside>
-    <script src="../js/sidebar.js"></script>
 <?php
     return ob_get_clean();
 }

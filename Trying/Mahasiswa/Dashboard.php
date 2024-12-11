@@ -40,6 +40,7 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/styledashboard.css">
     <link rel="stylesheet" href="../style/sidebar.css">
+    <link rel="stylesheet" href="../style/navbar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -94,7 +95,7 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC)
                 </table>
             </section>
     </main>
-    <script src="../js/sidebar.js"></script>
+
 </body>
 
 </html>

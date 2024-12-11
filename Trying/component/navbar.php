@@ -11,7 +11,7 @@ function renderNavbar() {
             </div>
         </div>
     </nav>
-    <script sr="../js/sidebar.js"></script>
+    <script src="../js/sidebar.js"></script>
     <?php
 }
 ?>

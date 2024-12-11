@@ -28,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <link rel="stylesheet" href="../style/styleSubmit.css">
     <link rel="stylesheet" href="../style/popup.css">
     <link rel="stylesheet" href="../style/sidebar.css">
+    <link rel="stylesheet" href="../style/imagePopup.css">
+    <script src="../js/popup.js"></script>
+    <script src="../js/image.js"></script>
     <title>Submit</title>
 </head>
 
@@ -108,23 +111,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="SectionHeader">File Prestasi</div>
             <div class="FileItem">
                 <span class="Label">Sertifikat</span>
-                <div class="ViewImage">View Image</div>
-                <div class="UploadSuccess">Upload Success</div>
+                <div style="display: flex; width: auto;">
+                    <div><span class="ViewImage" onclick="showPopupImg('../img/test/leo.jpeg')">View Image</span></div>
+                    <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
+                        <img id="popupImage" src="" alt="Popup Image" />
+                    </div>
+                    <div class="UploadSuccess">Upload Success</div>
+                </div>
             </div>
             <div class="FileItem">
                 <span class="Label">Proposal</span>
-                <div class="ViewImage">View Image</div>
-                <div class="UploadSuccess">Upload Success</div>
+                <div style="display: flex; width: auto;">
+                    <div><span class="ViewImage" onclick="showPopupImg('../img/test/leo.jpeg')">View Image</span></div>
+                    <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
+                        <img id="popupImage" src="" alt="Popup Image" />
+                    </div>
+                    <div class="UploadSuccess">Upload Success</div>
+                </div>
             </div>
             <div class="FileItem">
                 <span class="Label">Surat Tugas</span>
-                <div class="ViewImage">View Image</div>
-                <div class="UploadSuccess">Upload Success</div>
+                <div style="display: flex; width: auto;">
+                    <div><span class="ViewImage" onclick="showPopupImg('../img/test/leo.jpeg')">View Image</span></div>
+                    <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
+                        <img id="popupImage" src="" alt="Popup Image" />
+                    </div>
+                    <div class="UploadSuccess">Upload Success</div>
+                </div>
             </div>
             <div class="FileItem">
                 <span class="Label">Karya</span>
-                <div class="ViewImage">View Image</div>
-                <div class="UploadSuccess">Upload Success</div>
+                <div style="display: flex; width: auto;">
+                    <div><span class="ViewImage" onclick="showPopupImg('../img/test/leo.jpeg')">View Image</span></div>
+                    <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
+                        <img id="popupImage" src="" alt="Popup Image" />
+                    </div>
+                    <div class="UploadSuccess">Upload Success</div>
+                </div>
             </div>
         </div>
 
