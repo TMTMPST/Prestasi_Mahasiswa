@@ -25,21 +25,30 @@ $nim = $_SESSION['nim'];
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Ambil data dari form
-        $nama = $_POST['nama'] ?? '';
-        $password = $_POST['password'] ?? '';
-        $email = $_POST['email'] ?? '';
-
-
-        $tsql = "UPDATE dbo.MAHASISWA 
-                    SET PASSWORD = :password, EMAIL = :email 
-                    WHERE NIM = :nim";
-                $stmt2 = $conn->prepare($tsql);
-                $stmt2->bindParam(':password', $password, PDO::PARAM_STR);
-                $stmt2->bindParam(':email', $email, PDO::PARAM_STR);
-                $stmt2->bindParam(':nim', $nim, PDO::PARAM_STR);
-                $stmt2->execute();
         
+    $password = $_POST['password'] ?? '';
+    $email = $_POST['email'] ?? '';
+
+    try {
+        $tsql = "UPDATE dbo.MAHASISWA 
+                 SET PASSWORD = :password, EMAIL = :email 
+                 WHERE NIM = :nim";
+        $stmt2 = $conn->prepare($tsql);
+        $stmt2->bindParam(':password', $password, PDO::PARAM_STR);
+        $stmt2->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt2->bindParam(':nim', $nim, PDO::PARAM_STR);
+        $stmt2->execute();
+
+        // Refresh data setelah update
+        $sql = "SELECT * FROM dbo.MAHASISWA WHERE NIM = :nim";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+        $stmt->execute();
+        $mahasiswa = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        exit();
+    }
     }
 ?>
 
