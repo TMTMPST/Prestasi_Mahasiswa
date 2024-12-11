@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/imagePopup.css">
+    <title>Image Popup</title>
+    <style>
+        /* Popup container - hidden by default */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 999; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+        }
+
+        /* Popup content (image) */
+        .popup img {
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Close popup by clicking outside */
+        .popup:target {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Click on the image to view it in a popup</h1>
+
+<!-- Example image -->
+<img src="example.jpg" alt="Example Image" style="width: 300px; cursor: pointer;" onclick="showPopup(this.src)" />
+
+<!-- Popup container -->
+<div id="imagePopup" class="popup" onclick="hidePopup()">
+    <img id="popupImage" src="" alt="Popup Image" />
+</div>
+
+<div class="FileItem">
+    <span class="Label">Karya</span>
+    <div class="ViewImage" onclick="showPopup('../img/test/leo.jpeg')">View Image</div>
+    <div class="UploadSuccess popup" id="imagePopup" onclick="hidePopup()">
+        <img id="popupImage" src="" alt="Popup Image" />
+    </div>
+</div>
+
+<script>
+    // Function to show popup
+    function showPopup(imageSrc) {
+        const popup = document.getElementById('imagePopup');
+        const popupImage = document.getElementById('popupImage');
+        popupImage.src = imageSrc;
+        popup.style.display = 'block';
+    }
+
+    // Function to hide popup
+    function hidePopup() {
+        const popup = document.getElementById('imagePopup');
+        popup.style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
