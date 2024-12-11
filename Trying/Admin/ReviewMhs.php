@@ -1,5 +1,7 @@
 <?php
 include "../connection.php";
+require_once "../component/sidebarAdmin.php";
+require_once "../component/navbarAdmin.php";
 $id_prestasi = $_GET['id_prestasi'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
@@ -36,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/Review.css">
     <link rel="stylesheet" href="../style/styledashboard.css">
+    <link rel="stylesheet" href="../style/sidebar.css">
     <title>Submit</title>
 </head>
 
@@ -44,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
         <div class="navbar">
         <?php renderNavbar(); ?>
         </div>
-    <h1>asdasd</h1>
 
     <!-- Main -->
     <div class="Main">
