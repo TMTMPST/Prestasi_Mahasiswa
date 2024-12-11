@@ -42,11 +42,7 @@ require_once '../component/navbar.php';
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT m.NIM, m.NAMA, m.PRODI, p.ID_PRESTASI, dp.NAMA_LOMBA
-                            FROM dbo.MAHASISWA m
-                            JOIN dbo.PRESTASI p ON m.NIM = p.NIM
-                            JOIN dbo.DETAIL_PRESTASI dp ON p.ID_DETAIL = dp.ID_DETAIL
-                            WHERE STATUS = 'Pending';";
+                    $sql = "SELECT * FROM REVIEW_MAHASISWA;";
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

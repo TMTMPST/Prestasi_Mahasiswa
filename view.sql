@@ -1,0 +1,73 @@
+use presma_web;
+
+
+CREATE VIEW D_PRESTASI_MAHASISWA AS
+SELECT
+	p.nim,
+    d.nama_lomba, 
+    t.tingkatan, 
+    t.poin,  
+    d.tgl_kegiatan 
+FROM 
+    PRESTASI p 
+JOIN 
+    DETAIL_PRESTASI d ON p.ID_DETAIL = d.ID_DETAIL
+JOIN 
+    TINGKAT t ON p.ID_TINGKAT = t.ID_TINGKAT;
+
+select * from V_PRESTASI_MAHASISWA where nim ='1234';
+
+CREATE VIEW D_JMLH_POIN_KEGIATAN AS
+SELECT
+	p.NIM,
+    COUNT(dp.ID_DETAIL) AS jumlah_kegiatan,
+    SUM(t.poin) AS jumlah_poin
+FROM 
+    PRESTASI p
+JOIN 
+    DETAIL_PRESTASI dp ON p.ID_DETAIL = dp.ID_DETAIL
+JOIN 
+    TINGKAT t ON p.ID_TINGKAT = t.ID_TINGKAT
+GROUP BY 
+	p.NIM;
+
+CREATE VIEW V_PRESTASI AS
+SELECT 
+	p.nim, 
+	dp.NAMA_LOMBA, 
+	p.PERINGKAT, 
+	p.JENIS_PRESTASI , 
+	t.TINGKATAN, 
+	p.STATUS
+FROM 
+	PRESTASI p
+JOIN 
+	DETAIL_PRESTASI dp ON dp.ID_DETAIL = p.ID_DETAIL
+JOIN 
+	TINGKAT t ON t.ID_TINGKAT = p.ID_TINGKAT;
+
+
+
+CREATE VIEW D_ADMIN_PRESTASI AS
+SELECT 
+	m.NAMA, 
+	m.NIM, 
+	p.PERINGKAT, 
+	dp.NAMA_LOMBA, 
+	t.TINGKATAN, 
+	p.STATUS
+FROM 
+	PRESTASI p
+JOIN 
+	MAHASISWA m ON m.NIM = p.NIM
+JOIN
+	DETAIL_PRESTASI dp ON dp.ID_DETAIL = p.ID_DETAIL
+JOIN
+	TINGKAT t ON t.ID_TINGKAT = p.ID_TINGKAT;
+
+create view REVIEW_MAHASISWA AS
+SELECT m.NIM, m.NAMA, m.PRODI, p.ID_PRESTASI, dp.NAMA_LOMBA
+                            FROM dbo.MAHASISWA m
+                            JOIN dbo.PRESTASI p ON m.NIM = p.NIM
+                            JOIN dbo.DETAIL_PRESTASI dp ON p.ID_DETAIL = dp.ID_DETAIL
+							where STATUS ='pending';

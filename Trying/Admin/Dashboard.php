@@ -58,11 +58,7 @@ require_once '../component/navbar.php';
                 <tbody>
                     <?php
 
-                    $tsql = "SELECT m.NAMA, m.NIM, p.PERINGKAT, dp.NAMA_LOMBA, t.TINGKATAN, p.STATUS
-                            FROM PRESTASI p
-                            JOIN MAHASISWA m ON m.NIM = p.NIM
-                            JOIN DETAIL_PRESTASI dp ON dp.ID_DETAIL = p.ID_DETAIL
-                            JOIN TINGKAT t ON t.ID_TINGKAT = p.ID_TINGKAT";
+                    $tsql = "SELECT * FROM D_ADMIN_PRESTASI";
                     $stmt = $conn->prepare($tsql);
                     $stmt->execute();
 
