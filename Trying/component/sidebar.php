@@ -1,21 +1,21 @@
 <?php
-function renderSidebar()
+function renderSidebar($dashboard, $input, $view)
 {
     ob_start();
-    ?>
+?>
     <aside class="sidebar">
         <div class="sidebar-header inter-bold">
             <img src="../img/placeholder.png" alt="">
             <span>ACHIVEHUB</span>
         </div>
         <nav class="sidebar-nav">
-            <a href="Dashboard.php" class="">
+            <a href="<?= $dashboard?>">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
                 </svg>
                 Dashboard
             </a>
-            <a href="input.php">
+            <a href="<?= $input?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="sidebar-icon-svg">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -23,7 +23,7 @@ function renderSidebar()
                 </svg>
                 Input
             </a>
-            <a href="view.php">
+            <a href="<?= $view?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="sidebar-icon-svg">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -34,7 +34,7 @@ function renderSidebar()
         </nav>
     </aside>
     <script src="../js/sidebar.js"></script>
-    <?php
+<?php
     return ob_get_clean();
 }
 ?>

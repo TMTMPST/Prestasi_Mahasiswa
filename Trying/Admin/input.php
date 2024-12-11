@@ -1,7 +1,7 @@
 <?php
 include "../connection.php";
 include "../proses/function.php";
-require_once '../component/sidebarAdmin.php';
+require_once '../component/sidebar.php';
 require_once '../component/navbar.php';
 
 session_start();
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body class="inter">
     <!-- Navigation -->
-    <?php echo renderSidebar(); ?>
+    <?php echo renderSidebar("Dashboard.php", "input.php", "review.php"); ?>
         <div class="navbar">
         <?php renderNavbar(); ?>
         </div>

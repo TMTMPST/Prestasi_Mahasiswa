@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 <body class="inter">
     <!-- Navigation -->
-    <?php echo renderSidebar(); ?>
+    <?php echo renderSidebar("Dashboard.php", "input.php", "view.php"); ?>
         <div class="navbar">
         <?php renderNavbar(); ?>
         </div>

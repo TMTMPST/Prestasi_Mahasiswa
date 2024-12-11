@@ -1,6 +1,6 @@
 <?php
 include "../connection.php";
-require_once '../component/sidebarAdmin.php';
+require_once '../component/sidebar.php';
 require_once '../component/navbar.php';
 ?>
 
@@ -21,7 +21,7 @@ require_once '../component/navbar.php';
 </head>
 
 <body class="inter">
-<?php echo renderSidebar(); ?>
+<?php echo renderSidebar("Dashboard.php", "input.php", "review.php"); ?>
         <div class="navbar">
         <?php renderNavbar(); ?>
         </div>

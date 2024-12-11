@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
 </head>
 
 <body class="inter">
-    <?php echo renderSidebar(); ?>
+    <?php echo renderSidebar("Dashboard.php", "input.php", "view.php"); ?>
         <div class="navbar">
         <?php renderNavbar(); ?>
         </div>

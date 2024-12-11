@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 </head>
 
 <body>
-        <?php echo renderSidebar(); ?>
+        <?php echo renderSidebar("Dashboard.php", "input.php", "view.php"); ?>
         <div class="navbar">
         <?php renderNavbar(); ?>
         </div>
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 </label>
                 <input id="lokasi" name="lokasi" type="text">
 
-                <label for="dosbing">DOsen Pembimbing</label>
+                <label for="dosbing">Dosen Pembimbing</label>
                 <select id="dosbing" name="dosbing" required>
                     <option value="">Dosen Pembimbing</option>
                     <?php

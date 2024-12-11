@@ -25,7 +25,7 @@ $nim = $_SESSION['nim'];
 </head>
 
 <body>
-    <?php echo renderSidebar(); ?>
+    <?php echo renderSidebar("Dashboard.php", "input.php", "view.php"); ?>
     <div class="navbar">
         <?php renderNavbar(); ?>
     </div>

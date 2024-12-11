@@ -56,7 +56,7 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC)
 </head>
 
 <body>
-    <?php echo renderSidebar(); ?>
+    <?php echo renderSidebar("Dashboard.php", "input.php", "view.php"); ?>
     <div class="navbar">
         <?php renderNavbar(); ?>
     </div>
