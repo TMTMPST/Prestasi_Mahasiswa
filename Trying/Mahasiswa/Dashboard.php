@@ -11,6 +11,34 @@ if (!isset($_SESSION['nim'])) {
 }
 
 $nim = $_SESSION['nim'];
+$nama = $_SESSION['name'];
+
+$sql = "SELECT d.nama_lomba, t.tingkatan, t.poin,  d.tgl_kegiatan 
+        from PRESTASI p 
+        join DETAIL_PRESTASI d on p.ID_DETAIL = d.ID_DETAIL
+        join TINGKAT t on p.ID_TINGKAT = t.ID_TINGKAT
+        WHERE p.NIM = :nim";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+$stmt->execute();
+
+
+$jumlah = " SELECT 
+            COUNT(dp.ID_DETAIL) AS jumlah_kegiatan,
+            SUM(t.poin) AS jumlah_poin
+        FROM 
+            PRESTASI p
+        JOIN 
+            DETAIL_PRESTASI dp ON p.ID_DETAIL = dp.ID_DETAIL
+        JOIN 
+            TINGKAT t ON p.ID_TINGKAT = t.ID_TINGKAT
+        WHERE 
+            NIM=:nim";
+
+$stmt2 = $conn->prepare($jumlah);
+$stmt2 ->bindParam(':nim', $nim, PDO::PARAM_STR);
+$stmt2->execute();
+$jnilai = $stmt2->fetch(PDO::FETCH_ASSOC)
 ?>
 
 <!DOCTYPE html>
@@ -28,59 +56,53 @@ $nim = $_SESSION['nim'];
 </head>
 
 <body>
-        <?php echo renderSidebar(); ?>
-        <div class="navbar">
-            <?php renderNavbar(); ?>
-        </div>
+    <?php echo renderSidebar(); ?>
+    <div class="navbar">
+        <?php renderNavbar(); ?>
+    </div>
 
-        <h1> asdas</h1>
-        <main class="main-content">
-            <h1>Welcome Back, Nama</h1>
-            <section class="card-grid">
-                <div class="card">
-                    <h3>Total Achievement Points</h3>
-                    <div class="value">440</div>
-                </div>
-                <div class="card">
-                    <h3>Achievements Recorded</h3>
-                    <div class="value">12</div>
-                </div>
-            </section>
+    <h1> asdas</h1>
+    <main class="main-content">
+        <h1>Welcome Back, <?php echo $nama; ?></h1>
+        <section class="card-grid">
+            <div class="card">
+                <h3>Total Achievement Points</h3>
+                <div class="value"><?= htmlspecialchars($jnilai['jumlah_poin'])?></div>
+            </div>
+            <div class="card">
+                <h3>Achievements Recorded</h3>
+                <div class="value"><?= htmlspecialchars($jnilai['jumlah_kegiatan'])?></div>
+            </div>
+        </section>
+        <section class="card">
             <section class="card">
-                <section class="card">
-                    <h3>Recent Achievements</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nama Lomba</th>
-                                <th>Kategori</th>
-                                <th>Poin</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
+                <h3>Recent Achievements</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Lomba</th>
+                            <th>Kategori</th>
+                            <th>Poin</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    ?>
                         <tbody>
                             <tr>
-                                <td>Nama Lomba</td>
-                                <td>Academic</td>
-                                <td>50</td>
-                                <td>2023-05-15</td>
-                            </tr>
-                            <tr>
-                                <td>Captain of Basketball Team</td>
-                                <td>Sports</td>
-                                <td>30</td>
-                                <td>2023-04-22</td>
-                            </tr>
-                            <tr>
-                                <td>Volunteer at Local Shelter</td>
-                                <td>Community Service</td>
-                                <td>20</td>
-                                <td>2023-06-01</td>
+                                <td><?= htmlspecialchars($row['nama_lomba']); ?></td>
+                                <td><?= htmlspecialchars($row['tingkatan']); ?></td>
+                                <td><?= htmlspecialchars($row['poin']); ?></td>
+                                <td><?= htmlspecialchars($row['tgl_kegiatan']); ?></td>
                             </tr>
                         </tbody>
-                    </table>
-                </section>
-        </main>
+                    <?php
+                    }
+                    ?>
+                </table>
+            </section>
+    </main>
     <script src="../js/sidebar.js"></script>
 </body>
 
