@@ -1,0 +1,27 @@
+.popupimg {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 999; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+}
+
+/* Popup content (image) */
+.popupimg img {
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Close popupimg by clicking outside */
+.popupimg:target {
+    display: block;
+}

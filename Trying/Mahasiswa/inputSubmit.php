@@ -36,16 +36,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <link rel="stylesheet" href="../style/styleSubmit.css">
     <link rel="stylesheet" href="../style/popup.css">
     <link rel="stylesheet" href="../style/sidebar.css">
+    <link rel="stylesheet" href="../style/imagePopup.css">
+    <script src="../js/popup.js"></script>
+    <script src="../js/image.js"></script>
     <title>Submit</title>
 </head>
 
 <body class="inter">
     <!-- Navigation -->
     <?php echo renderSidebar("Dashboard.php", "input.php", "view.php"); ?>
-        <div class="navbar">
+    <div class="navbar">
         <?php renderNavbar(); ?>
-        </div>
-        <h1>asdas</h1>
+    </div>
+    <h1>asdas</h1>
 
     <!-- Main -->
     <div class="Main">
@@ -131,8 +134,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             </div>
             <div class="FileItem">
                 <span class="Label">Karya</span>
-                <div class="ViewImage">View Image</div>
-                <div class="UploadSuccess">Upload Success</div>
+                <div class="ViewImage" onclick="showPopupImg('../img/test/leo.jpeg')">View Image</div>
+                <div class="UploadSuccess popupimg" id="imagePopup" onclick="hidePopupImg()">
+                    <img id="popupImage" src="" alt="Popup Image" />
+                </div>
             </div>
         </div>
 
@@ -148,8 +153,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <p>SUBMIT SUCCESS</p>
             </div>
         </div>
-
-        <script src="../js/popup.js"></script>
+    </div>
+    
 
 </body>
 
