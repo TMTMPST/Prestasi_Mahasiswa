@@ -30,29 +30,16 @@ $nim = $_SESSION['nim'];
         $password = $_POST['password'] ?? '';
         $email = $_POST['email'] ?? '';
 
-        try {
-            // Validasi sederhana
-            if (empty($nama) || empty($password) || empty($email)) {
-                echo "<script>alert('Semua field wajib diisi.');</script>";
-            } else {
-                // Update data di database
-                $sql = "UPDATE dbo.MAHASISWA 
+
+        $tsql = "UPDATE dbo.MAHASISWA 
                     SET PASSWORD = :password, EMAIL = :email 
                     WHERE NIM = :nim";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-                $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-                $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
-
-                if ($stmt->execute()) {
-                    echo "<script>alert('Profil berhasil diperbarui!'); window.location.href = 'Dashboard.php';</script>";
-                } else {
-                    echo "<script>alert('Gagal memperbarui profil.');</script>";
-                }
-            }
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
+                $stmt2 = $conn->prepare($tsql);
+                $stmt2->bindParam(':password', $password, PDO::PARAM_STR);
+                $stmt2->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt2->bindParam(':nim', $nim, PDO::PARAM_STR);
+                $stmt2->execute();
+        
     }
 ?>
 
@@ -295,7 +282,7 @@ $nim = $_SESSION['nim'];
     <h2>
      Edit Personal Information
     </h2>
-    <form>
+    <form action="" method="post">
      <div class="form-group">
       <label for="name">
        Nama
