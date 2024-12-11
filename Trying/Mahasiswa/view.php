@@ -42,11 +42,7 @@ $nim = $_SESSION['nim'];
         </thead>
         <?php
 
-        $tsql = "SELECT p.nim, dp.NAMA_LOMBA, p.PERINGKAT, p.JENIS_PRESTASI , t.TINGKATAN, p.STATUS
-                            FROM PRESTASI p
-                            JOIN DETAIL_PRESTASI dp ON dp.ID_DETAIL = p.ID_DETAIL
-                            JOIN TINGKAT t ON t.ID_TINGKAT = p.ID_TINGKAT
-                            where p.NIM = :nim";
+        $tsql = "SELECT * FROM V_PRESTASI where NIM = :nim";
         $stmt = $conn->prepare($tsql);
         $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
         $stmt->execute();

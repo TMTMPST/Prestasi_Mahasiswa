@@ -13,25 +13,16 @@ if (!isset($_SESSION['nim'])) {
 $nim = $_SESSION['nim'];
 $nama = $_SESSION['name'];
 
-$sql = "SELECT d.nama_lomba, t.tingkatan, t.poin,  d.tgl_kegiatan 
-        from PRESTASI p 
-        join DETAIL_PRESTASI d on p.ID_DETAIL = d.ID_DETAIL
-        join TINGKAT t on p.ID_TINGKAT = t.ID_TINGKAT
-        WHERE p.NIM = :nim";
+$sql = "SELECT * FROM D_PRESTASI_MAHASISWA WHERE NIM = :nim";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
 $stmt->execute();
 
 
-$jumlah = " SELECT 
-            COUNT(dp.ID_DETAIL) AS jumlah_kegiatan,
-            SUM(t.poin) AS jumlah_poin
+$jumlah = "SELECT 
+            *
         FROM 
-            PRESTASI p
-        JOIN 
-            DETAIL_PRESTASI dp ON p.ID_DETAIL = dp.ID_DETAIL
-        JOIN 
-            TINGKAT t ON p.ID_TINGKAT = t.ID_TINGKAT
+            D_JMLH_POIN_KEGIATAN
         WHERE 
             NIM=:nim";
 
