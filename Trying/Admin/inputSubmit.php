@@ -2,7 +2,7 @@
 include "../connection.php";
 include "proses_tambah.php";
 require_once '../component/sidebar.php';
-require_once '../component/navbar.php';
+require_once '../component/navbarAdmin.php';
 
 
 $nim = $_SESSION['nim'] ?? null;

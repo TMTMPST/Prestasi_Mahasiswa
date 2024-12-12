@@ -2,7 +2,7 @@
 session_start();
 include '../connection.php';
 require_once '../component/sidebar.php';
-require_once '../component/navbar.php';
+require_once '../component/navbarAdmin.php';
 
 $nim = $_SESSION['nim'] ?? null;
 if (!$nim) {
