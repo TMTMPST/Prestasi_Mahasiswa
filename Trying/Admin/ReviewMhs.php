@@ -143,7 +143,7 @@ JOIN
             <div class="FileItem">
                 <span class="Label">Sertifikat</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('../img/gedung.jpg')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?= $_SESSION['sertifikat']?>')">View Image</span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
@@ -152,7 +152,7 @@ JOIN
             <div class="FileItem">
                 <span class="Label">Proposal</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('../img/gedung.jpg')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?= $_SESSION['proposal']?>')">View Image</span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
@@ -161,7 +161,7 @@ JOIN
             <div class="FileItem">
                 <span class="Label">Surat Tugas</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('../img/gedung.jpg')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?= $_SESSION['surat_tugas']?>')">View Image</span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
@@ -170,7 +170,7 @@ JOIN
             <div class="FileItem">
                 <span class="Label">Karya</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('../img/gedung.jpg')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?= $_SESSION['karya']?>')">View Image</span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
