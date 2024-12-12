@@ -24,7 +24,7 @@ require_once '../component/navbarAdmin.php';
 
 </head>
 
-<body class="inter">
+<body class="inter" style="padding: 0;">
     <!-- Navigation -->
     <?php echo renderSidebar("Dashboard.php", "input.php", "review.php"); ?>
         <div class="navbar">
