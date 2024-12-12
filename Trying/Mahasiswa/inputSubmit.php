@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="FileItem">
                 <span class="Label">Sertifikat</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('../img/test/leo.jpeg')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['sertifikat']; ?>')">View Image</span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="FileItem">
                 <span class="Label">Proposal</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('../img/test/leo.jpeg')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['proposal']; ?>')">View Image</span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="FileItem">
                 <span class="Label">Surat Tugas</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('../img/test/leo.jpeg')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['surat_tugas']; ?>')">View Image</span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
@@ -150,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="FileItem">
                 <span class="Label">Karya</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('../img/test/leo.jpeg')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['karya']; ?>')">View Image</span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
