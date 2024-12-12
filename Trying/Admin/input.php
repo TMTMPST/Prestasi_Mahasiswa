@@ -2,7 +2,7 @@
 include "../connection.php";
 include "../proses/function.php";
 require_once '../component/sidebar.php';
-require_once '../component/navbar.php';
+require_once '../component/navbarAdmin.php';
 
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {

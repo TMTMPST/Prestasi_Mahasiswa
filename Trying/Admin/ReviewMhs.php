@@ -1,7 +1,7 @@
 <?php
 include "../connection.php";
 require_once "../component/sidebar.php";
-require_once "../component/navbar.php";
+require_once "../component/navbarAdmin.php";
 $id_prestasi = $_GET['id_prestasi'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {

@@ -2,7 +2,7 @@
 session_start();
 include "../connection.php";
 require_once '../component/sidebar.php';
-require_once '../component/navbar.php';
+require_once '../component/navbarAdmin.php';
 ?>
 
 
@@ -41,7 +41,7 @@ require_once '../component/navbar.php';
         </div>
 
         <?php
-        require_once "../Chart.php";
+        require_once "../chart.php";
         ?>
         <div class="table-container">
             <table class="product-table">

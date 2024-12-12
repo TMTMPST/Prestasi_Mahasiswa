@@ -1,7 +1,7 @@
 <?php
 include "../connection.php";
 require_once '../component/sidebar.php';
-require_once '../component/navbar.php';
+require_once '../component/navbarAdmin.php';
 ?>
 
 <!DOCTYPE html>
