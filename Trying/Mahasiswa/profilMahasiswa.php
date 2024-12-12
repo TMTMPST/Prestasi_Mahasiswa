@@ -267,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="section">
             <div class="profile-info">
-                <img alt="Profile picture of student" height="80" src="https://storage.googleapis.com/a1aa/image/1X2OHtd7pL5jM9wYD4QVcvMOB9Z8Qef3GUqVIqenmsoQpnznA.jpg" width="80" />
+                <img alt="Profile picture of student" height="80" src="<?= $_SESSION['profile'];?>" width="80" />
                 <div class="details">
                     <div class="name">
                         <?php echo htmlspecialchars($mahasiswa['NAMA']); ?>
