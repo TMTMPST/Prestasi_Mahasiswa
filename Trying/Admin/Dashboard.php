@@ -41,7 +41,7 @@ require_once '../component/navbarAdmin.php';
         </div>
 
         <?php
-        require_once "../chart.php";
+        require_once "../linechart.php";
         ?>
         <div class="table-container">
             <table class="product-table">
