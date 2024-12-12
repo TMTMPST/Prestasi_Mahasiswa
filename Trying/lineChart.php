@@ -28,17 +28,20 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Menyiapkan array untuk data tahun dan poin
 $years = [];
 $points = [];
+$amount = [];
 
 // Mengambil data dari hasil query dan menyimpannya dalam array
 if ($data) {
     foreach ($data as $row) {
         $years[] = $row['tahun'];
         $points[] = $row['jumlah_poin'];
+        $amount[] = $row['jumlah_kegiatan'];
     }
 } else {
     // Jika tidak ada data, gunakan data default (contoh)
     $years = [2019, 2020, 2021, 2022, 2023, 2024];
     $points = [0, 0, 0, 0, 0, 0];
+    $amount = [0, 0, 0, 0, 0, 0];
 }
 
 ?>
@@ -71,20 +74,29 @@ if ($data) {
     <script>
         // Menyusun data dari PHP ke dalam JavaScript
         const xValues = <?php echo json_encode($years); ?>;
-        const yValues = <?php echo json_encode($points); ?>;
+        const pointValues = <?php echo json_encode($points); ?>;
+        const amountValues = <?php echo json_encode($amount); ?>;
 
         new Chart("myChart", {
             type: "line",
             data: {
                 labels: xValues,
                 datasets: [{
-                    label: "Prestasi Mahasiswa",
+                    label: "Kenaikan Poin",
+                    fill: true,
+                    backgroundColor: "rgba(0, 0, 255, 0.2)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    lineTension: 0.1,
+                    borderWidth: 5,
+                    data: pointValues
+                },{
+                    label: "Kenaikan Prestasi",
                     fill: true,
                     lineTension: 0.1,
-                    backgroundColor: "rgba(0,0,255,0.2)",
-                    borderColor: "rgba(0,0,255,0.1)",
-                    borderWidth: 2,
-                    data: yValues
+                    backgroundColor: "rgba(255, 0, 30, 0.2)",
+                    borderColor: "rgba(255, 0, 30, 0.1)",
+                    borderWidth: 5,
+                    data: amountValues
                 }]
             },
             options: {
@@ -100,13 +112,9 @@ if ($data) {
                         }
                     }],
                     yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Poin'
-                        },
                         ticks: {
                             min: 0,
-                            max: Math.max(...yValues) + 10 // Dinamis menyesuaikan max poin
+                            max: Math.max(...pointValues) + 10 // Dinamis menyesuaikan max poin
                         }
                     }]
                 }
