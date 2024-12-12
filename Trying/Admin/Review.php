@@ -2,6 +2,7 @@
 include "../connection.php";
 require_once '../component/sidebar.php';
 require_once '../component/navbarAdmin.php';
+session_start();
 ?>
 
 <!DOCTYPE html>

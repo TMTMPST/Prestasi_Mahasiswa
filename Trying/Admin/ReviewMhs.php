@@ -3,6 +3,7 @@ include "../connection.php";
 require_once "../component/sidebar.php";
 require_once "../component/navbarAdmin.php";
 $id_prestasi = $_GET['id_prestasi'];
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
     $id_prestasi = htmlspecialchars($_GET['id_prestasi']);
