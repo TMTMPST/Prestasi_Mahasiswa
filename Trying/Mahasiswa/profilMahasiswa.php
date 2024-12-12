@@ -366,19 +366,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input id="password" name="password" type="password" value="<?php echo htmlspecialchars($mahasiswa['PASSWORD']); ?>" />
                 </div>
 
-
-                <div class="form-group">
-                    <label for="prodi">
-                        Prodi
-                    </label>
-                    <input id="prodi" name="prodi" type="text" value="<?php echo htmlspecialchars($mahasiswa['PRODI']); ?>" readonly />
-                </div>
-                <div class="form-group">
-                    <label for="angkatan">
-                        Angkatan
-                    </label>
-                    <input id="angkatan" name="angkatan" type="text" value="<?php echo htmlspecialchars($mahasiswa['ANGKATAN']); ?>" readonly />
-                </div>
                 <div class="form-group">
                     <button type="submit">
                         Save
