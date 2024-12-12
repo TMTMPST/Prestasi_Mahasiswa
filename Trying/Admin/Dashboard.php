@@ -24,7 +24,7 @@ require_once '../component/navbarAdmin.php';
 
 </head>
 
-<body class="inter">
+<body class="inter" style="padding: 0;">
     <!-- Navigation -->
     <?php echo renderSidebar("Dashboard.php", "input.php", "review.php"); ?>
         <div class="navbar">
@@ -41,7 +41,7 @@ require_once '../component/navbarAdmin.php';
         </div>
 
         <?php
-        require_once "../chart.php";
+        require_once "../linechart.php";
         ?>
         <div class="table-container">
             <table class="product-table">
