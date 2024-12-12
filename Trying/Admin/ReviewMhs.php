@@ -2,6 +2,7 @@
 include "../connection.php";
 require_once "../component/sidebar.php";
 require_once "../component/navbarAdmin.php";
+// $nim  = $_GET['NIM'];
 $id_prestasi = $_GET['id_prestasi'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
@@ -27,6 +28,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
         echo "Data tidak berubah";
     }
 }
+
+
+    $tsql = "SELECT
+	m.NAMA, m.NIM, m.PRODI, m.ANGKATAN, 
+    d.NAMA_LOMBA, d.TGL_KEGIATAN,p.PERINGKAT, p.JENIS_PRESTASI, t.TINGKATAN
+FROM 
+    PRESTASI p 
+JOIN
+    MAHASISWA m ON p.NIM = m.NIM
+JOIN 
+    DETAIL_PRESTASI d ON p.ID_DETAIL = d.ID_DETAIL
+JOIN 
+    TINGKAT t ON p.ID_TINGKAT = t.ID_TINGKAT
+    where p.id_prestasi = :id_prestasi;";
+
+    $stmt2 = $conn->prepare($tsql);
+    // $stmt->bindParam(':nim', $status, PDO::PARAM_STR);
+    $stmt2->bindParam(':id_prestasi', $id_prestasi, PDO::PARAM_STR);
+    $stmt2->execute();
+    $row = $stmt2->fetch(PDO::FETCH_ASSOC);
+    
+
 ?>
 
 
@@ -68,22 +91,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
             <div class="DataItem">
                 <span class="Label">Nama</span>
                 <span class="Colon">:</span>
-                <span class="Details">Lee Dong min</span>
+                <span class="Details"><?= htmlspecialchars($row['NAMA']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">NIM</span>
                 <span class="Colon">:</span>
-                <span class="Details">2341720175</span>
+                <span class="Details"><?= htmlspecialchars($row['NIM']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Prodi</span>
                 <span class="Colon">:</span>
-                <span class="Details">Teknik Informatika</span>
+                <span class="Details"><?= htmlspecialchars($row['PRODI']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Angkatan</span>
                 <span class="Colon">:</span>
-                <span class="Details">2024</span>
+                <span class="Details"><?= htmlspecialchars($row['ANGKATAN']); ?></span>
             </div>
         </div>
 
@@ -93,22 +116,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
             <div class="DataItem">
                 <span class="Label">Nama Lomba</span>
                 <span class="Colon">:</span>
-                <span class="Details">GEMASTIK</span>
+                <span class="Details"><?= htmlspecialchars($row['NAMA_LOMBA']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Kategori Juara</span>
                 <span class="Colon">:</span>
-                <span class="Details">Juara 2</span>
+                <span class="Details"><?= htmlspecialchars($row['PERINGKAT']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Date</span>
                 <span class="Colon">:</span>
-                <span class="Details">Januari 2023</span>
+                <span class="Details"><?= htmlspecialchars($row['TGL_KEGIATAN']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Tingkat Prestasi</span>
                 <span class="Colon">:</span>
-                <span class="Details">Akademik - Nasional</span>
+                <span class="Details"><?= htmlspecialchars($row['TINGKATAN']); ?></span>
             </div>
         </div>
 
