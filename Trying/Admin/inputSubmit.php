@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
         <!-- Header -->
         <div class="Header">
-            <h1>Cekk</h1>
+            <h1>Review Prestasi</h1>
         </div>
 
         <!-- Data Prestasi Section -->

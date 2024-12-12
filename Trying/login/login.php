@@ -105,9 +105,9 @@
                 }
             }
             ?>
-            <div class="options">
+            <!-- <div class="options">
                 <a href="forgotpass.php">Forgot Password?</a>
-            </div>
+            </div> -->
             <button class="login-btn">LOGIN</button>
         </form>
     </div>
