@@ -47,6 +47,10 @@ session_start();
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $_SESSION['karya'] = $row['KARYA'];
+                        $_SESSION['proposal'] = $row['PROPOSAL'];
+                        $_SESSION['sertifikat'] = $row['SERTIFIKAT'];
+                        $_SESSION['surat_tugas'] = $row['SURAT_TUGAS'];
                     ?>
                         <tr>
                             <td scope="row"><?= htmlspecialchars($row['NIM']); ?></td>

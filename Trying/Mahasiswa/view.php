@@ -38,7 +38,7 @@ if (isset($_POST['delete'])) {
     </div>
     <h1>dasda</h1>
     <main class="main-content">
-        <h1>View Your Prestation</h1>
+        <h1>View Your Submit</h1>
         <table>
             <thead>
                 <th>Nama Lomba</th>
