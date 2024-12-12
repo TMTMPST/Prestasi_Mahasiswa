@@ -34,7 +34,7 @@ require_once '../component/navbarAdmin.php';
     <h1>asd</h1>
     <!-- Main Content -->
     <main class="main-content">
-        <div class="dashboard-box dashboard-tall">
+        <div class="dashboard-box dashboard-tall"  style="margin-bottom: 1rem;">
             <h1 class="dashboard-placeholder inter-bold" style="text-align: center;">
                 <span class="yellow">WELCOME</span> BACK
             </h1>
