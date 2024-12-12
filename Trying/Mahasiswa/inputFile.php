@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
 
         $newFileName = $nim . "_" . $fileName . "_" . time() . "." . $fileExtension;
 
-        $targetFilePath = $targetDir . DIRECTORY_SEPARATOR . $newFileName;
+        $targetFilePath = $targetDir . $newFileName;
 
         if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
             $filePaths[$key] = $targetFilePath; // simpan path file
