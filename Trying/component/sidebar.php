@@ -9,13 +9,13 @@ function renderSidebar($dashboard, $input, $view)
             <span>ACHIVEHUB</span>
         </div>
         <nav class="sidebar-nav">
-            <a href="<?= $dashboard?>">
+            <a href="<?= $dashboard ?>">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
                 </svg>
                 Dashboard
             </a>
-            <a href="<?= $input?>">
+            <a href="<?= $input ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="sidebar-icon-svg">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -23,13 +23,18 @@ function renderSidebar($dashboard, $input, $view)
                 </svg>
                 Input
             </a>
-            <a href="<?= $view?>">
+            <a href="<?= $view ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="sidebar-icon-svg">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                 </svg>
-                View
+                <?php if ($_SESSION['role'] == 'admin') {
+                    echo "Review";
+                } else {
+                    echo "View";
+                }
+                ?>
             </a>
         </nav>
     </aside>

@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <div class="navbar">
         <?php renderNavbar(); ?>
     </div>
-    <h1>asdas</h1>
+
 
     <!-- Main -->
     <div class="Main">

@@ -65,6 +65,7 @@
                                 $_SESSION['nim'] = $mahasiswa['NIM'];
                                 $_SESSION['name'] = $mahasiswa['NAMA'];
                                 $_SESSION['role'] = 'mahasiswa';
+                                $_SESSION['profile'] = $mahasiswa['FOTO_PROFIL'];
 
                                 // Redirect ke dashboard mahasiswa
                                 header("Location: ../Mahasiswa/Dashboard.php");
