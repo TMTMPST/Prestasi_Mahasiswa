@@ -29,7 +29,7 @@ public class Input extends javax.swing.JFrame {
 
 //    NIM , ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, tanggal_lomba, DOSEN, ID_PRESTASI, sertifikat, proposal, surat_tugas, karya
     public Input(
-            String nim, int tingkat, String jenis, String lomba, String peringkat, String tglLomba, 
+            String nim, int tingkat, String jenis, String lomba, String peringkat, Date tglLomba,
             String dosen, int id_prestasi, String sertifikat, String proposal, String surat_tugas, String karya) {
         initComponents();
         txtNIM.setText(nim);
@@ -46,11 +46,10 @@ public class Input extends javax.swing.JFrame {
         txtNIM.setEnabled(false);
         edit = true;
         this.id_prestasi = id_prestasi;
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date date = sdf.parse(tglLomba);
-            dateChooser.setDate(date);
+            dateChooser.setDate(tglLomba);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Format tanggal salah");
@@ -280,10 +279,12 @@ public class Input extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "NIM tidak sesuai/tidak ada!");
             txtNIM.requestFocus();
         } else if (nimCheck(txtNIM.getText())) {
-//            NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
+            // Ambil tanggal dari JDateChooser
+            java.util.Date selectedDate = dateChooser.getDate();
+            java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
             InputFile file = new InputFile(
                     txtNIM.getText(), comboBoxTingkatan.getSelectedIndex() + 1, comboBoxTipe.getSelectedItem().toString(), txtLomba.getText(),
-                    txtJuara.getText(), "Pending", dateChooser.toString(), txtDosen.getText(), edit, id_prestasi, sertifikat, proposal,
+                    txtJuara.getText(), "Pending", sqlDate, txtDosen.getText(), edit, id_prestasi, sertifikat, proposal,
                     surat_tugas, karya
             );
             file.show();

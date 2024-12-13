@@ -61,9 +61,9 @@
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                              <Component id="txtUsername" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtUsername" alignment="0" pref="258" max="32767" attributes="0"/>
                               <Component id="txtNama" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtPassword" alignment="0" pref="258" max="32767" attributes="0"/>
+                              <Component id="txtPassword" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -144,7 +144,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonSimpanActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtPassword">
+        <Component class="javax.swing.JPasswordField" name="txtPassword">
         </Component>
       </SubComponents>
     </Container>

@@ -7,6 +7,7 @@ package backend;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +19,8 @@ public class Prestasi {
 
     private int ID_PRESTASI, ID_TINGKAT;
     private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS,
-            tanggal_lomba, sertifikat, proposal, surat_tugas, karya, DOSEN;
+            sertifikat, proposal, surat_tugas, karya, DOSEN;
+    private Date tanggal_lomba;
 
     public Prestasi() {
     }
@@ -30,7 +32,7 @@ public class Prestasi {
         this.PERINGKAT = PERINGKAT;
     }
 
-    public Prestasi(String NIM, int ID_TINGKAT, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT, String STATUS, String tanggal_lomba, String sertifikat, String proposal, String surat_tugas, String karya, String DOSEN) {
+    public Prestasi(String NIM, int ID_TINGKAT, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT, String STATUS, Date tanggal_lomba, String sertifikat, String proposal, String surat_tugas, String karya, String DOSEN) {
         this.NIM = NIM;
         this.ID_TINGKAT = ID_TINGKAT;
         this.JENIS_PRESTASI = JENIS_PRESTASI;
@@ -53,13 +55,14 @@ public class Prestasi {
         this.ID_TINGKAT = ID_TINGKAT;
     }
 
-    public String getTanggal_lomba() {
+    public Date getTanggal_lomba() {
         return tanggal_lomba;
     }
 
-    public void setTanggal_lomba(String tanggal_lomba) {
+    public void setTanggal_lomba(Date tanggal_lomba) {
         this.tanggal_lomba = tanggal_lomba;
     }
+
 
     public String getSertifikat() {
         return sertifikat;
@@ -159,7 +162,7 @@ public class Prestasi {
             prs.setNAMA_LOMBA(rs.getString("NAMA_LOMBA"));
             prs.setPERINGKAT(rs.getString("PERINGKAT"));
             prs.setSTATUS(rs.getString("STATUS"));
-            prs.setTanggal_lomba(rs.getString("tanggal_lomba"));
+            prs.setTanggal_lomba(rs.getDate("tanggal_lomba"));
             prs.setSertifikat(rs.getString("sertifikat"));
             prs.setProposal(rs.getString("proposal"));
             prs.setSurat_tugas(rs.getString("surat_tugas"));
@@ -196,8 +199,7 @@ public class Prestasi {
 
         try {
             while (rs.next()) {
-                Prestasi prs = new Prestasi();
-                prs = setPrestasi(rs);
+                Prestasi prs = setPrestasi(rs);
 
                 ListPrestasi.add(prs);
             }
@@ -220,8 +222,7 @@ public class Prestasi {
 
         try {
             while (rs.next()) {
-                Prestasi prs = new Prestasi();
-                prs = setPrestasi(rs);
+                Prestasi prs = setPrestasi(rs);
 
                 ListPrestasi.add(prs);
             }
@@ -267,6 +268,7 @@ public class Prestasi {
                 + "WHERE ID_PRESTASI = " + this.ID_PRESTASI + ";";
         DBHelper.executeQuery(SQL);
         System.out.println("UPDATE BERHASIL");
+        System.out.println(tanggal_lomba);
         System.out.println(DOSEN);
         System.out.println(ID_PRESTASI);
     }

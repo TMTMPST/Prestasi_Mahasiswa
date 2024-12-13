@@ -5,6 +5,7 @@
 package frontend;
 
 import backend.Mahasiswa;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,15 +22,21 @@ public class InputMahasiswa extends javax.swing.JFrame {
     }
 
 //    "NAMA", "NIM", "EMAIL", "TGL_LAHIR", "KELAMIN", "PRODI"
-    public InputMahasiswa(String nama, String nim, String email, String tgl_lahir, String kelamin, String password) {
+    public InputMahasiswa(String nama, String nim, String email, Date tgl_lahir, String kelamin, String password) {
         initComponents();
         txtNama.setText(nama);
         txtNIM.setText(nim);
         txtEmail.setText(email);
-        txtTglLahir.setText(tgl_lahir);
         comboBoxKelamin.setSelectedItem(kelamin);
         txtPassword.setText(password);
         txtNIM.setEnabled(false);
+
+        try {
+            dateChooser.setDate(tgl_lahir);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Format tanggal salah");
+        }
     }
 
     /**
@@ -48,7 +55,6 @@ public class InputMahasiswa extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNIM = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtTglLahir = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
@@ -57,8 +63,9 @@ public class InputMahasiswa extends javax.swing.JFrame {
         btnKembali = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         comboBoxKelamin = new javax.swing.JComboBox<>();
+        txtPassword = new javax.swing.JPasswordField();
+        dateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,13 +90,6 @@ public class InputMahasiswa extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Tanggal Lahir");
-
-        txtTglLahir.setText("2024-12-20");
-        txtTglLahir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTglLahirActionPerformed(evt);
-            }
-        });
 
         jLabel5.setText("Jenis Kelamin");
 
@@ -126,12 +126,6 @@ public class InputMahasiswa extends javax.swing.JFrame {
 
         jLabel18.setText("Password");
 
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
-
         comboBoxKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pria", "Wanita" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -146,22 +140,21 @@ public class InputMahasiswa extends javax.swing.JFrame {
                 .addGap(43, 43, 43))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(comboBoxKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel16)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel17)
-                        .addComponent(txtNama)
-                        .addComponent(txtNIM)
-                        .addComponent(txtTglLahir, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                        .addComponent(txtEmail)
-                        .addComponent(txtPassword)
-                        .addComponent(jLabel18)))
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel17)
+                    .addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                    .addComponent(txtNIM)
+                    .addComponent(txtEmail)
+                    .addComponent(jLabel18)
+                    .addComponent(txtPassword)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -182,7 +175,7 @@ public class InputMahasiswa extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTglLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,18 +213,19 @@ public class InputMahasiswa extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        if (txtNIM.getText().equals("") || txtNama.getText().equals("") || txtTglLahir.getText().equals("") || txtEmail.getText().equals("") || txtPassword.getText().equals("")) {
+        if (txtNIM.getText().equals("") || txtNama.getText().equals("") || txtEmail.getText().equals("") || txtPassword.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Harap Lengkapi Form");
         } else {
             if (JOptionPane.showConfirmDialog(rootPane, "Anda Yakin Ingin menyimpan?") == 0) {
-                //    NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
+                java.util.Date selectedDate = dateChooser.getDate();
+                java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
                 Mahasiswa mhs = new Mahasiswa();
                 mhs.setNAMA(txtNama.getText());
                 mhs.setPRODI("Teknik Informatika");
                 mhs.setEMAIL(txtEmail.getText());
                 mhs.setPASSWORD(txtPassword.getText());
                 mhs.setNIM(txtNIM.getText());
-                mhs.setTGL_LAHIR(txtTglLahir.getText());
+                mhs.setTGL_LAHIR(sqlDate);
                 mhs.setKELAMIN(comboBoxKelamin.getSelectedItem().toString());
                 mhs.save();
                 TampilanMahasiswa tampilanMhs = new TampilanMahasiswa();
@@ -242,22 +236,13 @@ public class InputMahasiswa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        btnSimpan.requestFocus();
-
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         txtNIM.requestFocus();
     }//GEN-LAST:event_txtNamaActionPerformed
 
     private void txtNIMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNIMActionPerformed
-        txtTglLahir.requestFocus();
+        dateChooser.requestFocus();
     }//GEN-LAST:event_txtNIMActionPerformed
-
-    private void txtTglLahirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTglLahirActionPerformed
-        comboBoxKelamin.requestFocus();
-    }//GEN-LAST:event_txtTglLahirActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         txtPassword.requestFocus();
@@ -309,6 +294,7 @@ public class InputMahasiswa extends javax.swing.JFrame {
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox<String> comboBoxKelamin;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -322,8 +308,7 @@ public class InputMahasiswa extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNIM;
     private javax.swing.JTextField txtNama;
-    private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtTglLahir;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 
 }

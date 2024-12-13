@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -27,8 +28,9 @@ public class InputFile extends javax.swing.JFrame {
 //    NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN, sertifikat, proposal, surat_tugas, karya
 
     private int ID_TINGKAT, id_prestasi;
-    private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN, path1, path2, path3, path4;
+    private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, DOSEN, path1, path2, path3, path4;
     private boolean edit;
+    private Date tanggal_lomba;
 
     /**
      * Creates new form InputFile
@@ -39,7 +41,7 @@ public class InputFile extends javax.swing.JFrame {
 
     public InputFile(
             String NIM, int ID_TINGKAT, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT,
-            String STATUS, String tanggal_lomba, String DOSEN, boolean edit, int id_prestasi,
+            String STATUS, Date tanggal_lomba, String DOSEN, boolean edit, int id_prestasi,
             String sertifikat, String proposal, String surat_tugas, String karya) {
         initComponents();
         this.NIM = NIM;

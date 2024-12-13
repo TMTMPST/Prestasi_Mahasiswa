@@ -36,7 +36,6 @@ public class Event extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         nama_lomba = new javax.swing.JTextField();
-        tgl_lomba = new javax.swing.JTextField();
         penyelenggara = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         lokasi = new javax.swing.JTextField();
@@ -46,6 +45,7 @@ public class Event extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         link = new javax.swing.JTextField();
         kategori_lomba = new javax.swing.JTextField();
+        tgl_lomba = new com.toedter.calendar.JDateChooser();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -101,27 +101,24 @@ public class Event extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButtonSimpan)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(95, 95, 95))
-                        .addComponent(jButtonBack, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(nama_lomba, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                        .addComponent(tgl_lomba, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(penyelenggara, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lokasi, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(deskripsi, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(link, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(kategori_lomba, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(jButtonSimpan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nama_lomba, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .addComponent(penyelenggara)
+                    .addComponent(lokasi)
+                    .addComponent(deskripsi)
+                    .addComponent(link)
+                    .addComponent(kategori_lomba)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jButtonBack)
+                    .addComponent(jLabel7)
+                    .addComponent(tgl_lomba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -183,7 +180,7 @@ public class Event extends javax.swing.JFrame {
         Events evnt = new Events();
 
         evnt.setNama_lomba(nama_lomba.getText());
-        evnt.setTgl_lomba(tgl_lomba.getText());
+        evnt.setTgl_lomba(tgl_lomba.getDate());
         evnt.setKategori(kategori_lomba.getText());
         evnt.setPenyelenggara(penyelenggara.getText());
         evnt.setLokasi(lokasi.getText());
@@ -254,6 +251,6 @@ public class Event extends javax.swing.JFrame {
     private javax.swing.JTextField lokasi;
     private javax.swing.JTextField nama_lomba;
     private javax.swing.JTextField penyelenggara;
-    private javax.swing.JTextField tgl_lomba;
+    private com.toedter.calendar.JDateChooser tgl_lomba;
     // End of variables declaration//GEN-END:variables
 }

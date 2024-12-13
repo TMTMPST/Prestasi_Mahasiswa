@@ -5,11 +5,14 @@
 package frontend;
 
 import backend.Events;
+import java.util.Date;
+
 /**
  *
  * @author BISMILLAH NAWAITU
  */
 public class EditEvent extends javax.swing.JFrame {
+    private int id;
 
     /**
      * Creates new form Events
@@ -17,16 +20,17 @@ public class EditEvent extends javax.swing.JFrame {
     public EditEvent() {
         initComponents();
     }
-    
-    public EditEvent(String nama, String tglLomba, String kategori, String penye, String lok, String desk, String lin) {
+
+    public EditEvent(String nama, Date tglLomba, String kategori, String penye, String lok, String desk, String lin, int id) {
         initComponents();
         nama_lomba.setText(nama);
-        tgl_lomba.setText(tglLomba);
+        dateChooser.setDate(tglLomba);
         kategori_lomba.setText(kategori);
         penyelenggara.setText(penye);
         lokasi.setText(lok);
         deskripsi.setText(desk);
         link.setText(lin);
+        this.id = id;
     }
 
     /**
@@ -47,7 +51,6 @@ public class EditEvent extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         nama_lomba = new javax.swing.JTextField();
-        tgl_lomba = new javax.swing.JTextField();
         penyelenggara = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         lokasi = new javax.swing.JTextField();
@@ -57,6 +60,7 @@ public class EditEvent extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         link = new javax.swing.JTextField();
         kategori_lomba = new javax.swing.JTextField();
+        dateChooser = new com.toedter.calendar.JDateChooser();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -118,28 +122,24 @@ public class EditEvent extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButtonSimpan)
-                        .addComponent(nama_lomba, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                        .addComponent(tgl_lomba, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(penyelenggara, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lokasi, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(deskripsi, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(link, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(kategori_lomba, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButtonBack, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                    .addComponent(jButtonSimpan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nama_lomba, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .addComponent(penyelenggara)
+                    .addComponent(lokasi)
+                    .addComponent(deskripsi)
+                    .addComponent(link)
+                    .addComponent(kategori_lomba)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jButtonBack)
+                    .addComponent(jLabel7)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -156,7 +156,7 @@ public class EditEvent extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tgl_lomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,7 +187,7 @@ public class EditEvent extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-        Dashboard d= new Dashboard();
+        Dashboard d = new Dashboard();
         d.show();
         dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
@@ -199,16 +199,18 @@ public class EditEvent extends javax.swing.JFrame {
     private void jButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimpanActionPerformed
         // TODO add your handling code here:
         Events evnt = new Events();
-
+        java.util.Date selectedDate = dateChooser.getDate();
+        java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
         evnt.setNama_lomba(nama_lomba.getText());
-        evnt.setTgl_lomba(tgl_lomba.getText());
+        evnt.setTgl_lomba(sqlDate);
         evnt.setKategori(kategori_lomba.getText());
         evnt.setPenyelenggara(penyelenggara.getText());
         evnt.setLokasi(lokasi.getText());
         evnt.setDeskripsi(deskripsi.getText());
         evnt.setLink(link.getText());
-        evnt.save(); 
-        Dashboard d= new Dashboard();
+        evnt.setId_event(id);
+        evnt.edit();
+        Dashboard d = new Dashboard();
         d.show();
         dispose();
     }//GEN-LAST:event_jButtonSimpanActionPerformed
@@ -219,7 +221,7 @@ public class EditEvent extends javax.swing.JFrame {
 
     private void nama_lombaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nama_lombaActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_nama_lombaActionPerformed
 
     /**
@@ -261,6 +263,7 @@ public class EditEvent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JTextField deskripsi;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonSimpan;
@@ -279,6 +282,5 @@ public class EditEvent extends javax.swing.JFrame {
     private javax.swing.JTextField lokasi;
     private javax.swing.JTextField nama_lomba;
     private javax.swing.JTextField penyelenggara;
-    private javax.swing.JTextField tgl_lomba;
     // End of variables declaration//GEN-END:variables
 }

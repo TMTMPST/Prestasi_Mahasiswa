@@ -56,16 +56,14 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel1" min="-2" pref="73" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtNama" max="32767" attributes="0"/>
-                                  <Component id="jLabel4" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                                  <Component id="txtPassword" alignment="0" pref="266" max="32767" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                                  <Component id="txtUsername" pref="266" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txtNama" max="32767" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                              <Component id="txtUsername" pref="266" max="32767" attributes="0"/>
+                              <Component id="txtPassword" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -132,8 +130,6 @@
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtPassword">
-        </Component>
         <Component class="javax.swing.JTextField" name="txtNama">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNamaActionPerformed"/>
@@ -146,6 +142,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKembaliActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="txtPassword">
         </Component>
       </SubComponents>
     </Container>

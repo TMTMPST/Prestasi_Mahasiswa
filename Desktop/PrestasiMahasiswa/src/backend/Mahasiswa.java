@@ -7,6 +7,7 @@ package backend;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,12 +17,13 @@ import java.util.logging.Logger;
  */
 public class Mahasiswa {
 
-    private String NAMA, PRODI, EMAIL, PASSWORD, NIM, TGL_LAHIR, KELAMIN;
+    private String NAMA, PRODI, EMAIL, PASSWORD, NIM, KELAMIN;
+    private Date TGL_LAHIR;
 
     public Mahasiswa() {
     }
 
-    public Mahasiswa(String NAMA, String PRODI, String EMAIL, String PASSWORD, String NIM, String TGL_LAHIR, String KELAMIN) {
+    public Mahasiswa(String NAMA, String PRODI, String EMAIL, String PASSWORD, String NIM, Date TGL_LAHIR, String KELAMIN) {
         this.NAMA = NAMA;
         this.PRODI = PRODI;
         this.EMAIL = EMAIL;
@@ -71,11 +73,11 @@ public class Mahasiswa {
         this.NIM = NIM;
     }
 
-    public String getTGL_LAHIR() {
+    public Date getTGL_LAHIR() {
         return TGL_LAHIR;
     }
 
-    public void setTGL_LAHIR(String TGL_LAHIR) {
+    public void setTGL_LAHIR(Date TGL_LAHIR) {
         this.TGL_LAHIR = TGL_LAHIR;
     }
 
@@ -96,7 +98,7 @@ public class Mahasiswa {
             mhs.setEMAIL(rs.getString("EMAIL"));
             mhs.setPASSWORD(rs.getString("PASSWORD"));
             mhs.setNIM(rs.getString("NIM"));
-            mhs.setTGL_LAHIR(rs.getString("TGL_LAHIR"));
+            mhs.setTGL_LAHIR(rs.getDate("TGL_LAHIR"));
             mhs.setKELAMIN(rs.getString("KELAMIN"));
         } catch (SQLException ex) {
             Logger.getLogger(Mahasiswa.class.getName()).log(Level.SEVERE, null, ex);
@@ -137,7 +139,7 @@ public class Mahasiswa {
 
         return ListMahasiswa;
     }
-    
+
     public ArrayList<Mahasiswa> search(String keyword) {
         ArrayList<Mahasiswa> ListMahasiswa = new ArrayList();
 
@@ -163,6 +165,7 @@ public class Mahasiswa {
     }
 
     public void save() {
+        System.out.println(TGL_LAHIR);
         if (getById(NIM).getNIM() == null) {
             String SQL = "INSERT INTO MAHASISWA (NAMA, PRODI, EMAIL, PASSWORD, NIM, TGL_LAHIR, KELAMIN) VALUES("
                     + "'" + this.NAMA + "', "

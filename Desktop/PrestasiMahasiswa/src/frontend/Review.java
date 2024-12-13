@@ -5,6 +5,7 @@
 package frontend;
 
 import backend.DBHelper;
+import java.util.Date;
 
 /**
  *
@@ -21,12 +22,12 @@ public class Review extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Review(String nim, String lomba, String peringkat, String tglLomba, String dosen, int tingkatan, String tipe, int id) {
+    public Review(String nim, String lomba, String peringkat, Date tglLomba, String dosen, int tingkatan, String tipe, int id) {
         initComponents();
         txtNIM.setText(nim);
         txtLomba.setText(lomba);
         txtPeringkat.setText(peringkat);
-        txtTglLomba.setText(tglLomba);
+        dateChooser.setDate(tglLomba);
         txtDosen.setText(dosen);
         comboBoxTingkatan.setSelectedIndex(tingkatan - 1);
         comboBoxTipe.setSelectedItem(tipe);
@@ -52,7 +53,6 @@ public class Review extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtPeringkat = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        txtTglLomba = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnKembali = new javax.swing.JButton();
@@ -61,6 +61,7 @@ public class Review extends javax.swing.JFrame {
         comboBoxTipe = new javax.swing.JComboBox<>();
         btnAccept = new javax.swing.JButton();
         btnDecline = new javax.swing.JButton();
+        dateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,8 +84,6 @@ public class Review extends javax.swing.JFrame {
         txtPeringkat.setEnabled(false);
 
         jLabel18.setText("Tanggal Lomba");
-
-        txtTglLomba.setEnabled(false);
 
         jLabel19.setText("Dosen Pembimbing");
 
@@ -124,6 +123,8 @@ public class Review extends javax.swing.JFrame {
             }
         });
 
+        dateChooser.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -134,10 +135,15 @@ public class Review extends javax.swing.JFrame {
                     .addComponent(txtNIM)
                     .addComponent(txtLomba)
                     .addComponent(txtPeringkat)
-                    .addComponent(txtTglLomba)
                     .addComponent(txtDosen)
                     .addComponent(comboBoxTingkatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboBoxTipe, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDecline)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAccept))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -149,12 +155,7 @@ public class Review extends javax.swing.JFrame {
                             .addComponent(jLabel17)
                             .addComponent(jLabel20))
                         .addGap(0, 322, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDecline)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAccept)))
+                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -177,8 +178,8 @@ public class Review extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTglLomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,6 +276,7 @@ public class Review extends javax.swing.JFrame {
     private javax.swing.JButton btnKembali;
     private javax.swing.JComboBox<String> comboBoxTingkatan;
     private javax.swing.JComboBox<String> comboBoxTipe;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -288,6 +290,5 @@ public class Review extends javax.swing.JFrame {
     private javax.swing.JTextField txtLomba;
     private javax.swing.JTextField txtNIM;
     private javax.swing.JTextField txtPeringkat;
-    private javax.swing.JTextField txtTglLomba;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,6 @@
 package frontend;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import backend.*;
 
@@ -63,7 +62,7 @@ public class Dashboard extends javax.swing.JFrame {
         tblMenu = new javax.swing.JTable();
         btnInput = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -432,10 +431,10 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("EDIT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
 
@@ -455,7 +454,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(btnEdit))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -485,7 +484,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
                     .addComponent(btnInput)
-                    .addComponent(jButton1))
+                    .addComponent(btnEdit))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -546,9 +545,9 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)tblMenu.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
         int row = tblMenu.getSelectedRow();
-        
+
         Events evnt = new Events().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
         evnt.delete();
         tampilkanData();
@@ -574,7 +573,7 @@ public class Dashboard extends javax.swing.JFrame {
         cari(txtCari.getText());
     }//GEN-LAST:event_btnCariActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         if (tblMenu.getSelectedRow() != -1) {
             int row = tblMenu.getSelectedRow();
 
@@ -585,12 +584,12 @@ public class Dashboard extends javax.swing.JFrame {
 //            String nama, String tglLomba, String kategori, String penye, String lok, String desk, String lin
             EditEvent edit = new EditEvent(
                     eve.getNama_lomba(), eve.getTgl_lomba(), eve.getKategori(), eve.getPenyelenggara(),
-                    eve.getLokasi(), eve.getDeskripsi(), eve.getLink()
+                    eve.getLokasi(), eve.getDeskripsi(), eve.getLink(), eve.getId_event()
             );
             edit.show();
             dispose();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
 
     private void pnlAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlAdminMouseClicked
         TampilanAdmin adm = new TampilanAdmin();
@@ -632,9 +631,9 @@ public class Dashboard extends javax.swing.JFrame {
         String[] kolom = {"ID_EVENT", "NAMA_EVENT", "TGL_LOMBA", "KATEGORI_LOMBA", "PENYELENGGARA", "LOKASI", "DESKRIPSI", "LINK_LOMBA"};
         ArrayList<Events> list = new Events().getAll();
         Object rowData[] = new Object[8];
-        
-        tblMenu.setModel(new DefaultTableModel(new Object[][] {}, kolom));
-        
+
+        tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
+
         for (Events evnt : list) {
             rowData[0] = evnt.getId_event();
             rowData[1] = evnt.getNama_lomba();
@@ -644,19 +643,18 @@ public class Dashboard extends javax.swing.JFrame {
             rowData[5] = evnt.getLokasi();
             rowData[6] = evnt.getDeskripsi();
             rowData[7] = evnt.getLink();
-            
-            ((DefaultTableModel)tblMenu.getModel()).addRow(rowData);
+
+            ((DefaultTableModel) tblMenu.getModel()).addRow(rowData);
         }
     }
-    
-    
+
     public void cari(String keyword) {
         String[] kolom = {"ID_EVENT", "NAMA_EVENT", "TGL_LOMBA", "KATEGORI_LOMBA", "PENYELENGGARA", "LOKASI", "DESKRIPSI", "LINK_LOMBA"};
         ArrayList<Events> list = new Events().getAll();
         Object rowData[] = new Object[8];
-        
-        tblMenu.setModel(new DefaultTableModel(new Object[][] {}, kolom));
-        
+
+        tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
+
         for (Events evnt : list) {
             rowData[0] = evnt.getId_event();
             rowData[1] = evnt.getNama_lomba();
@@ -666,13 +664,11 @@ public class Dashboard extends javax.swing.JFrame {
             rowData[5] = evnt.getLokasi();
             rowData[6] = evnt.getDeskripsi();
             rowData[7] = evnt.getLink();
-            
-            ((DefaultTableModel)tblMenu.getModel()).addRow(rowData);
+
+            ((DefaultTableModel) tblMenu.getModel()).addRow(rowData);
         }
     }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -699,13 +695,6 @@ public class Dashboard extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -718,8 +707,8 @@ public class Dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnInput;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;

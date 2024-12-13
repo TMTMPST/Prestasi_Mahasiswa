@@ -4,21 +4,24 @@
  */
 package backend;
 
-import java.sql.*;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author BISMILLAH NAWAITU
  */
 public class Events {
+
     private int id_event;
-    private String nama_lomba, tgl_lomba, kategori_lomba, penyelenggara, lokasi, deskripsi, link;
+    private String nama_lomba, kategori_lomba, penyelenggara, lokasi, deskripsi, link;
+    private Date tgl_lomba;
 
     public Events() {
     }
 
-    public Events(int id_event, String nama_lomba, String tgl_lomba, String kategori_lomba, String penyelenggara, String lokasi, String deskripsi, String link) {
+    public Events(int id_event, String nama_lomba, Date tgl_lomba, String kategori_lomba, String penyelenggara, String lokasi, String deskripsi, String link) {
         this.id_event = id_event;
         this.nama_lomba = nama_lomba;
         this.tgl_lomba = tgl_lomba;
@@ -36,18 +39,18 @@ public class Events {
     public void setKategori_lomba(String kategori_lomba) {
         this.kategori_lomba = kategori_lomba;
     }
-    
-    public Events getById(int id_event){
+
+    public Events getById(int id_event) {
         Events evnt = new Events();
-        ResultSet rs= DBHelper.selectQuery("SELECT * FROM EVENTS "
-                                            + " WHERE id_event = '" + id_event + "'");
-        
+        ResultSet rs = DBHelper.selectQuery("SELECT * FROM EVENTS "
+                + " WHERE id_event = '" + id_event + "'");
+
         try {
-            while(rs.next()){
+            while (rs.next()) {
                 evnt = new Events();
                 evnt.setId_event(rs.getInt("id_event"));
                 evnt.setNama_lomba(rs.getString("nama_event"));
-                evnt.setTgl_lomba(rs.getString("tgl_lomba"));
+                evnt.setTgl_lomba(rs.getDate("tgl_lomba"));
                 evnt.setKategori(rs.getString("kategori_lomba"));
                 evnt.setPenyelenggara(rs.getString("penyelenggara"));
                 evnt.setLokasi(rs.getString("lokasi"));
@@ -59,38 +62,40 @@ public class Events {
         }
         return evnt;
     }
-    
-    public void save(){
-        if (getById(id_event).getId_event()== 0) {
-            String SQL = "INSERT INTO EVENTS (nama_event, tgl_lomba, kategori_lomba, penyelenggara, lokasi, deskripsi, link_lomba) VALUES("
-                    + " '" + this.nama_lomba + "', "
-                    + " '" + this.tgl_lomba + "', "
-                    + " '" + this.kategori_lomba + "', "
-                    + " '" + this.penyelenggara + "', "
-                    + " '" + this.lokasi + "', "
-                    + " '" + this.deskripsi + "', "
-                    + " '" + this.link + "' "
-                    + " )";
-            this.id_event = DBHelper.insertQueryGetId(SQL);
-        } else {
-            String SQL = "UPDATE EVENTS SET"
-                    + "nama_event = '" + this.nama_lomba + "', "
-                    + "tgl_lomba = '" + this.tgl_lomba + "', "
-                    + "kategori_lomba= '" + this.kategori_lomba + "', "
-                    + "penyelenggara= '" + this.penyelenggara + "', "
-                    + "lokasi= '" + this.lokasi + "', "
-                    + "deskripsi= '" + this.deskripsi + "', "
-                    + " link_lomba= '" + this.link + "', "
-                    + " WHERE id_event = '" + this.id_event + "'";
-            DBHelper.executeQuery(SQL);
-        }
+
+    public void save() {
+        String SQL = "INSERT INTO EVENTS (nama_event, tgl_lomba, kategori_lomba, penyelenggara, lokasi, deskripsi, link_lomba) VALUES("
+                + " '" + this.nama_lomba + "', "
+                + " '" + this.tgl_lomba + "', "
+                + " '" + this.kategori_lomba + "', "
+                + " '" + this.penyelenggara + "', "
+                + " '" + this.lokasi + "', "
+                + " '" + this.deskripsi + "', "
+                + " '" + this.link + "' "
+                + " )";
+        this.id_event = DBHelper.insertQueryGetId(SQL);
     }
-    
-    public void delete(){
+
+    public void edit() {
+        String SQL = "UPDATE EVENTS SET "
+                + "nama_event = '" + this.nama_lomba + "', "
+                + "tgl_lomba = '" + this.tgl_lomba + "', "
+                + "kategori_lomba= '" + this.kategori_lomba + "', "
+                + "penyelenggara= '" + this.penyelenggara + "', "
+                + "lokasi= '" + this.lokasi + "', "
+                + "deskripsi= '" + this.deskripsi + "', "
+                + " link_lomba= '" + this.link + "' "
+                + " WHERE id_event = " + this.id_event + ";";
+        DBHelper.executeQuery(SQL);
+        System.out.println(id_event);
+        System.out.println(tgl_lomba);
+    }
+
+    public void delete() {
         String SQL = "DELETE FROM EVENTS WHERE id_event = '" + this.id_event + "'";
         DBHelper.executeQuery(SQL);
     }
-    
+
     public ArrayList<Events> getAll() {
         ArrayList<Events> ListEvent = new ArrayList();
 
@@ -101,7 +106,7 @@ public class Events {
                 Events evnt = new Events();
                 evnt.setId_event(rs.getInt("id_event"));
                 evnt.setNama_lomba(rs.getString("nama_event"));
-                evnt.setTgl_lomba(rs.getString("tgl_lomba"));
+                evnt.setTgl_lomba(rs.getDate("tgl_lomba"));
                 evnt.setKategori(rs.getString("kategori_lomba"));
                 evnt.setPenyelenggara(rs.getString("penyelenggara"));
                 evnt.setLokasi(rs.getString("lokasi"));
@@ -133,11 +138,11 @@ public class Events {
         this.nama_lomba = nama_lomba;
     }
 
-    public String getTgl_lomba() {
+    public Date getTgl_lomba() {
         return tgl_lomba;
     }
 
-    public void setTgl_lomba(String tgl_lomba) {
+    public void setTgl_lomba(Date tgl_lomba) {
         this.tgl_lomba = tgl_lomba;
     }
 
