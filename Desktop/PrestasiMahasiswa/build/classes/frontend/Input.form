@@ -32,10 +32,6 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="org.jdatepicker.util.JDatePickerUtil" name="jDatePickerUtil1">
-    </Component>
-    <Component class="org.jdatepicker.util.JDatePickerUtil" name="jDatePickerUtil2">
-    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>

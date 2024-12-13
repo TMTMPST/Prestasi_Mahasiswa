@@ -4,7 +4,6 @@
  */
 package frontend;
 
-import backend.Mahasiswa;
 import backend.Prestasi;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -56,7 +55,6 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMenu = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
         txtSearch = new javax.swing.JTextField();
         btnEdit = new javax.swing.JButton();
@@ -381,18 +379,16 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
 
         tblMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
         jScrollPane1.setViewportView(tblMenu);
-
-        jLabel1.setText("jLabel1");
 
         btnSearch.setText("cari");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -433,7 +429,6 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
@@ -449,9 +444,7 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearch)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -461,7 +454,7 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit)
                     .addComponent(btnInput))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -499,8 +492,8 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
     }
 
     private void tableModel(ArrayList<Prestasi> list) {
-        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI"};
-        Object rowData[] = new Object[5];
+        String[] kolom = {"ID_PRESTASI", "NIM", "PERINGKAT", "NAMA_LOMBA", "JENIS_PRESTASI", "STATUS"};
+        Object rowData[] = new Object[6];
 
         tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
 
@@ -510,6 +503,7 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
             rowData[2] = prs.getPERINGKAT();
             rowData[3] = prs.getNAMA_LOMBA();
             rowData[4] = prs.getJENIS_PRESTASI();
+            rowData[5] = prs.getSTATUS();
 
             ((DefaultTableModel) tblMenu.getModel()).addRow(rowData);
         }
@@ -570,7 +564,7 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
 
             Input inp = new Input(
                     prs.getNIM(), prs.getID_TINGKAT(), prs.getJENIS_PRESTASI(), prs.getNAMA_LOMBA(), 
-                    prs.getPERINGKAT(), prs.getTanggal_lomba(), prs.getDOSEN()
+                    prs.getPERINGKAT(), prs.getTanggal_lomba(), prs.getDOSEN(), prs.getID_PRESTASI()
             );
             inp.show();
             dispose();
@@ -618,7 +612,6 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnInput;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

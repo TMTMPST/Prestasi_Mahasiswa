@@ -233,7 +233,7 @@ public class Prestasi {
     }
 
     public void save() {
-        String SQL = "INSERT INTO PRESTASI (NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN) VALUES("
+        String SQL = "INSERT INTO PRESTASI (NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN, sertifikat, proposal, surat_tugas, karya) VALUES("
                 + "'" + this.NIM + "', "
                 + " " + this.ID_TINGKAT + ", "
                 + "'" + this.JENIS_PRESTASI + "', "
@@ -241,7 +241,11 @@ public class Prestasi {
                 + "'" + this.PERINGKAT + "', "
                 + "'" + this.STATUS + "', "
                 + "'" + this.tanggal_lomba + "', "
-                + "'" + this.DOSEN + "')";
+                + "'" + this.DOSEN + "',"
+                + "'" + this.sertifikat + "',"
+                + "'" + this.proposal + "',"
+                + "'" + this.surat_tugas + "',"
+                + "'" + this.karya + "')";
         this.ID_PRESTASI = DBHelper.insertQueryGetId(SQL);
         System.out.println("INSERT berhasil");
     }
@@ -254,10 +258,16 @@ public class Prestasi {
                 + "PERINGKAT = '" + this.PERINGKAT + "', "
                 + "STATUS = '" + this.STATUS + "', "
                 + "tanggal_lomba = '" + this.tanggal_lomba + "', "
-                + "ID_TINGKAT = " + this.ID_TINGKAT + "' "
-                + "WHERE ID_PRESTASI = " + this.ID_PRESTASI + "'";
+                + "DOSEN = '" + this.DOSEN + "', "
+                + "sertifikat = '" + this.sertifikat + "', "
+                + "proposal = '" + this.proposal + "', "
+                + "surat_tugas = '" + this.surat_tugas + "', "
+                + "karya = '" + this.karya + "', "
+                + "ID_TINGKAT = '" + this.ID_TINGKAT + "' "
+                + "WHERE ID_PRESTASI = " + this.ID_PRESTASI + ";";
         DBHelper.executeQuery(SQL);
         System.out.println("UPDATE BERHASIL");
+        System.out.println(DOSEN);
         System.out.println(ID_PRESTASI);
     }
 

@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
  * @author TNCP
  */
 public class Input extends javax.swing.JFrame {
+    private boolean edit = false;
+    private int id_prestasi = 0;
 
     /**
      * Creates new form Input
@@ -22,7 +24,7 @@ public class Input extends javax.swing.JFrame {
     }
 
 //    NIM , ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, tanggal_lomba, DOSEN
-    public Input(String nim, int tingkat, String jenis, String lomba, String peringkat, String tglLomba, String dosen) {
+    public Input(String nim, int tingkat, String jenis, String lomba, String peringkat, String tglLomba, String dosen, int id_prestasi) {
         initComponents();
         txtNIM.setText(nim);
         comboBoxTingkatan.setSelectedIndex(tingkat-1);
@@ -32,6 +34,8 @@ public class Input extends javax.swing.JFrame {
         txtDate.setText(tglLomba);
         txtDosen.setText(dosen);
         txtNIM.setEnabled(false);
+        edit = true;
+        this.id_prestasi = id_prestasi;
     }
 
     /**
@@ -45,8 +49,6 @@ public class Input extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         jDialog1 = new javax.swing.JDialog();
-        jDatePickerUtil1 = new org.jdatepicker.util.JDatePickerUtil();
-        jDatePickerUtil2 = new org.jdatepicker.util.JDatePickerUtil();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -264,7 +266,7 @@ public class Input extends javax.swing.JFrame {
 //            NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
             InputFile file = new InputFile(
                     txtNIM.getText(), comboBoxTingkatan.getSelectedIndex() + 1, comboBoxTipe.getSelectedItem().toString(), txtLomba.getText(),
-                    txtJuara.getText(), "Pending", txtDate.getText(), txtDosen.getText()
+                    txtJuara.getText(), "Pending", txtDate.getText(), txtDosen.getText(), edit, id_prestasi
             );
             file.show();
             dispose();
@@ -322,8 +324,6 @@ public class Input extends javax.swing.JFrame {
     private javax.swing.JButton btnNext;
     private javax.swing.JComboBox<String> comboBoxTingkatan;
     private javax.swing.JComboBox<String> comboBoxTipe;
-    private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil1;
-    private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
