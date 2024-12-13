@@ -306,7 +306,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Karya (Bila ada)"/>
+                <Property name="text" type="java.lang.String" value="Karya"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnFile4">

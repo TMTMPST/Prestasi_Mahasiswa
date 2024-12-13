@@ -23,7 +23,7 @@ import javax.swing.JScrollPane;
  * @author USER
  */
 public class InputFile extends javax.swing.JFrame {
-//    NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
+//    NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN, sertifikat, proposal, surat_tugas, karya
 
     private int ID_TINGKAT, id_prestasi;
     private String NIM, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN, path1, path2, path3, path4;
@@ -36,7 +36,10 @@ public class InputFile extends javax.swing.JFrame {
         initComponents();
     }
 
-    public InputFile(String NIM, int ID_TINGKAT, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT, String STATUS, String tanggal_lomba, String DOSEN, boolean edit, int id_prestasi) {
+    public InputFile(
+            String NIM, int ID_TINGKAT, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT, 
+            String STATUS, String tanggal_lomba, String DOSEN, boolean edit, int id_prestasi,
+            String sertifikat, String proposal, String surat_tugas, String karya) {
         initComponents();
         this.NIM = NIM;
         this.ID_TINGKAT = ID_TINGKAT;
@@ -48,6 +51,10 @@ public class InputFile extends javax.swing.JFrame {
         this.DOSEN = DOSEN;
         this.edit = edit;
         this.id_prestasi = id_prestasi;
+        path1 = sertifikat;
+        path2 = proposal;
+        path3 = surat_tugas;
+        path4 = karya;
     }
 
     /**
@@ -210,7 +217,7 @@ public class InputFile extends javax.swing.JFrame {
 
         jPanel5.setPreferredSize(new java.awt.Dimension(303, 58));
 
-        jLabel4.setText("Karya (Bila ada)");
+        jLabel4.setText("Karya");
 
         btnFile4.setText("Choose File");
         btnFile4.addActionListener(new java.awt.event.ActionListener() {

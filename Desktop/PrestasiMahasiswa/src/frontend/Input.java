@@ -6,6 +6,8 @@ package frontend;
 
 import backend.*;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,8 +15,10 @@ import javax.swing.JOptionPane;
  * @author TNCP
  */
 public class Input extends javax.swing.JFrame {
+
     private boolean edit = false;
     private int id_prestasi = 0;
+    private String sertifikat = "", proposal = "", surat_tugas = "", karya = "";
 
     /**
      * Creates new form Input
@@ -23,19 +27,34 @@ public class Input extends javax.swing.JFrame {
         initComponents();
     }
 
-//    NIM , ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, tanggal_lomba, DOSEN
-    public Input(String nim, int tingkat, String jenis, String lomba, String peringkat, String tglLomba, String dosen, int id_prestasi) {
+//    NIM , ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, tanggal_lomba, DOSEN, ID_PRESTASI, sertifikat, proposal, surat_tugas, karya
+    public Input(
+            String nim, int tingkat, String jenis, String lomba, String peringkat, String tglLomba, 
+            String dosen, int id_prestasi, String sertifikat, String proposal, String surat_tugas, String karya) {
         initComponents();
         txtNIM.setText(nim);
-        comboBoxTingkatan.setSelectedIndex(tingkat-1);
+        comboBoxTingkatan.setSelectedIndex(tingkat - 1);
         comboBoxTipe.setSelectedItem(jenis);
         txtLomba.setText(lomba);
         txtJuara.setText(peringkat);
-        txtDate.setText(tglLomba);
+        dateChooser.setDateFormatString("yyyy-MM-dd");
         txtDosen.setText(dosen);
+        this.sertifikat = sertifikat;
+        this.proposal = proposal;
+        this.surat_tugas = surat_tugas;
+        this.karya = karya;
         txtNIM.setEnabled(false);
         edit = true;
         this.id_prestasi = id_prestasi;
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = sdf.parse(tglLomba);
+            dateChooser.setDate(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Format tanggal salah");
+        }
     }
 
     /**
@@ -62,11 +81,11 @@ public class Input extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         comboBoxTipe = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
-        txtDate = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txtDosen = new javax.swing.JTextField();
         btnNext = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        dateChooser = new com.toedter.calendar.JDateChooser();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -130,8 +149,6 @@ public class Input extends javax.swing.JFrame {
 
         jLabel17.setText("Tanggal lomba");
 
-        txtDate.setText("2024-12-20");
-
         jLabel18.setText("Dosen Pembimbing");
 
         btnNext.setText("Next");
@@ -162,17 +179,17 @@ public class Input extends javax.swing.JFrame {
                         .addGap(428, 428, 428))
                     .addComponent(comboBoxTipe, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboBoxTingkatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtJuara)
-                            .addComponent(txtLomba)
-                            .addComponent(txtDate)
-                            .addComponent(txtNIM)
-                            .addComponent(txtDosen)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtJuara, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLomba, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNIM, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDosen, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
@@ -206,7 +223,7 @@ public class Input extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -266,7 +283,8 @@ public class Input extends javax.swing.JFrame {
 //            NIM, ID_TINGKAT, JENIS_PRESTASI, NAMA_LOMBA, PERINGKAT, STATUS, tanggal_lomba, DOSEN
             InputFile file = new InputFile(
                     txtNIM.getText(), comboBoxTingkatan.getSelectedIndex() + 1, comboBoxTipe.getSelectedItem().toString(), txtLomba.getText(),
-                    txtJuara.getText(), "Pending", txtDate.getText(), txtDosen.getText(), edit, id_prestasi
+                    txtJuara.getText(), "Pending", dateChooser.toString(), txtDosen.getText(), edit, id_prestasi, sertifikat, proposal,
+                    surat_tugas, karya
             );
             file.show();
             dispose();
@@ -324,6 +342,7 @@ public class Input extends javax.swing.JFrame {
     private javax.swing.JButton btnNext;
     private javax.swing.JComboBox<String> comboBoxTingkatan;
     private javax.swing.JComboBox<String> comboBoxTipe;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
@@ -335,7 +354,6 @@ public class Input extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtDosen;
     private javax.swing.JTextField txtJuara;
     private javax.swing.JTextField txtLomba;

@@ -564,7 +564,8 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
 
             Input inp = new Input(
                     prs.getNIM(), prs.getID_TINGKAT(), prs.getJENIS_PRESTASI(), prs.getNAMA_LOMBA(), 
-                    prs.getPERINGKAT(), prs.getTanggal_lomba(), prs.getDOSEN(), prs.getID_PRESTASI()
+                    prs.getPERINGKAT(), prs.getTanggal_lomba(), prs.getDOSEN(), prs.getID_PRESTASI(),
+                    prs.getSertifikat(), prs.getProposal(), prs.getSurat_tugas(), prs.getKarya()
             );
             inp.show();
             dispose();
