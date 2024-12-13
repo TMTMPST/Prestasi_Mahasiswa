@@ -17,6 +17,7 @@ import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -37,7 +38,7 @@ public class InputFile extends javax.swing.JFrame {
     }
 
     public InputFile(
-            String NIM, int ID_TINGKAT, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT, 
+            String NIM, int ID_TINGKAT, String JENIS_PRESTASI, String NAMA_LOMBA, String PERINGKAT,
             String STATUS, String tanggal_lomba, String DOSEN, boolean edit, int id_prestasi,
             String sertifikat, String proposal, String surat_tugas, String karya) {
         initComponents();
@@ -412,13 +413,38 @@ public class InputFile extends javax.swing.JFrame {
 
     private String fileChooser() {
         JFileChooser chooser = new JFileChooser();
+
+        // Menambahkan filter untuk hanya menerima gambar
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "jpeg");
+        chooser.setFileFilter(filter);
+
         int returnValue = chooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
-            return selectedFile.getAbsolutePath();
+
+            // Verifikasi ekstensi file
+            String filePath = selectedFile.getAbsolutePath();
+            String extension = getFileExtension(filePath).toLowerCase();
+
+            // Memastikan file yang dipilih sesuai dengan filter
+            if (extension.equals("jpg") || extension.equals("png") || extension.equals("gif") || extension.equals("jpeg")) {
+                return filePath;
+            } else {
+                JOptionPane.showMessageDialog(null, "Hanya file gambar yang diperbolehkan!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return null;  // Mengembalikan null jika file yang dipilih tidak valid
+            }
         } else {
-            return null;
+            return null;  // Kembali null jika file tidak dipilih
         }
+    }
+
+// Fungsi untuk mendapatkan ekstensi file
+    private String getFileExtension(String filePath) {
+        int dotIndex = filePath.lastIndexOf('.');
+        if (dotIndex > 0) {
+            return filePath.substring(dotIndex + 1);
+        }
+        return "";
     }
 
     void tampilkanGambar(String path) {
