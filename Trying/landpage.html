@@ -27,16 +27,15 @@
             </svg>
         </button>
         <div class="menu" id="menu">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#team">Team</a>
         </div>
         <button class="button" onclick="location.href='login/login.php'" >Sign In</button>
     </nav>
 
     <main class="main">
-        <section class="hero">
+        <section class="hero" id="home">
             <p class="hero-title">
                 <span class="text-wrapper">UNLEASH</span>
                 <span class="span"> YOUR FULL POTENTIAL</span>
@@ -46,7 +45,7 @@
 
         <section class="department">
             <img src="img/gedung.jpg" />
-            <div class="div">
+            <div class="div" id="about">
                 <div class="text-wrapper">JTI</div>
                 <p class="p">
                     The Department of Informatics Engineering (JTI) is committed to
@@ -55,7 +54,7 @@
                     opportunities for achievement are the foundations of a successful
                     future.
                 </p>
-                <a href="https://jti.polinema.ac.id/">
+                <a href="https://jti.polinema.ac.id/" style="text-decoration:none;">
                 <div class="div-2">
                     <div class="text-wrapper-2">Learn More</div>
                     <img class="arrow" src="img/icon/Arrow.png" />
@@ -64,9 +63,9 @@
             </div>
         </section>
 
-        <section class="champions">
+        <section class="champions" id="champions">
             <div>
-                <h1 class="text-wrapper">OUR CHAMPIONS ON JTI</h1>
+                <h1 class="text-wrapper" style="margin-bottom: 4rem;">OUR CHAMPIONS ON JTI</h1>
             </div>
             <div class="content">
             <div class="carousel">            
@@ -86,7 +85,7 @@
 
         <section class="cta-section">
             <div class="cta-subtitle">Are you ready ?</div>
-            <p class="cta-main-title">
+            <p class="cta-main-title" style="margin-bottom: 4rem;">
                 <span class="cta-title-base">Become A Next </span>
                 <span class="cta-title-highlight">Champions</span>
             </p>
@@ -95,9 +94,34 @@
             </div>
         </section>
     </main>
-    <script src="carousel.js"></script>
 
+    <section class="team" id="team">
+        <h2>Our Team</h2>
+        <div class="team-list">
+            <div class="team-member">
+                <h3>Textona Ardha Rilianta</h3>
+                <p>UI/UX</p>
+            </div>
+            <div class="team-member">
+                <h3>Vidi Joshubzky Saviola</h3>
+                <p>FrontEnd</p>
+            </div>
+            <div class="team-member">
+                <h3>Tionusa Catur Pamungkas</h3>
+                <p>FrontEnd</p>
+            </div>
+            <div class="team-member">
+                <h3>Kamila Habiba Putri Ananta</h3>
+                <p>Backend</p>
+            </div>
+            <div class="team-member">
+                <h3>Diana Rahmawati</h3>
+                <p>Database</p>
+            </div>
+        </div>
+    </section>
     <footer class="footer">
+        <p>&copy; 2024 ACHIVEHUB. All rights reserved.</p>
     </footer>
 </body>
 
