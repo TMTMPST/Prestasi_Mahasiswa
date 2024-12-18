@@ -18,7 +18,6 @@ $stmt = $conn->prepare($sql);
 $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
 $stmt->execute();
 
-
 $jumlah = "SELECT 
             *
         FROM 
@@ -29,7 +28,7 @@ $jumlah = "SELECT
 $stmt2 = $conn->prepare($jumlah);
 $stmt2 ->bindParam(':nim', $nim, PDO::PARAM_STR);
 $stmt2->execute();
-$jnilai = $stmt2->fetch(PDO::FETCH_ASSOC)
+$jnilai = $stmt2->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +74,7 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC)
                             <th>Nama Lomba</th>
                             <th>Kategori</th>
                             <th>Poin</th>
+                            <th>Nama Admin</th>
                             <th>Date</th>
                         </tr>
                     </thead>
@@ -86,7 +86,8 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC)
                                 <td><?= htmlspecialchars($row['nama_lomba']); ?></td>
                                 <td><?= htmlspecialchars($row['tingkatan']); ?></td>
                                 <td><?= htmlspecialchars($row['poin']); ?></td>
-                                <td><?= htmlspecialchars($row['tgl_kegiatan']); ?></td>
+                                <td><?= htmlspecialchars($row['NAMA_ADMIN']); ?></td>
+                                <td><?= htmlspecialchars(date('d-m-Y', strtotime($row['tgl_kegiatan']))); ?></td>
                             </tr>
                         </tbody>
                     <?php
