@@ -1,8 +1,50 @@
 <?php
 session_start();
 include "../connection.php";
+include "../proses/function.php";
 require_once '../component/sidebar.php';
 require_once '../component/navbarAdmin.php';
+
+
+// Ambil data dari database
+try {
+    $dosenList = getDosenList($conn);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $name = $_POST['name'] ?? '';
+    $nip = $_POST['nip'] ?? '';
+    $nip_del = $_POST['nip_del'] ?? '';
+
+    try {
+        if (isset($_POST['delete'])) {
+            echo "del button";
+            $delete_query = "DELETE FROM DOSEN WHERE NIP = :nip";
+            $stmt = $conn->prepare($delete_query);
+            $stmt->bindParam(':nip', $nip_del, PDO::PARAM_STR);
+            $stmt->execute();
+            header("Location: dosen.php");
+            exit();
+        } else if (isset($_POST['add'])) {
+            echo "data insert";
+            $insert_query = "INSERT INTO DOSEN (NIP, NAMA_DOSEN) VALUES (:nip, :name)";
+            $stmt2 = $conn->prepare($insert_query);
+            $stmt2->bindParam(':nip', $nip, PDO::PARAM_STR);
+            $stmt2->bindParam(':name', $name, PDO::PARAM_STR);
+            $stmt2->execute();
+
+            header("Location: dosen.php");
+            exit();
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +79,7 @@ require_once '../component/navbarAdmin.php';
             align-items: center;
             padding: 0;
         }
+
         #addButton svg {
             width: 24px;
             height: 24px;
@@ -129,9 +172,8 @@ require_once '../component/navbarAdmin.php';
         }
 
         .delete-btn {
-            background-color: #ff4136;
             color: white;
-            border: none;
+            border-color: #ff4136;
             padding: 5px 10px;
             cursor: pointer;
             border-radius: 3px;
@@ -160,14 +202,31 @@ require_once '../component/navbarAdmin.php';
                     </tr>
                 </thead>
                 <tbody>
-
-            </tbody>
+                    <?php
+                    foreach ($dosenList as $row) {
+                    ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['NAMA_DOSEN']); ?></td>
+                            <td><?php echo htmlspecialchars($row['NIP']); ?></td>
+                            <td>
+                                <form method="POST" style="display: inline;">
+                                    <input type="hidden" name="nip_del" value="<?= htmlspecialchars($row['NIP']); ?>">
+                                    <button type="submit" class="delete-btn" name="delete">
+                                        <img src="
+                                        data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB4PSIwIiB5PSIwIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGcgdHJhbnNmb3JtPSJtYXRyaXgoMC44MzMzMzMzMzMzMzMzMzQzLDAsMCwwLjgzMzMzMzMzMzMzMzMzNDMsNDIuNjY2NjY3OTM4MjMxNzEsNDIuNjY2NjY2NjY2NjY2NTE1KSI+PHBhdGggZD0iTTQ0OCA4NS4zMzNoLTY2LjEzM0MzNzEuNjYgMzUuNzAzIDMyOC4wMDIuMDY0IDI3Ny4zMzMgMGgtNDIuNjY3Yy01MC42NjkuMDY0LTk0LjMyNyAzNS43MDMtMTA0LjUzMyA4NS4zMzNINjRjLTExLjc4MiAwLTIxLjMzMyA5LjU1MS0yMS4zMzMgMjEuMzMzUzUyLjIxOCAxMjggNjQgMTI4aDIxLjMzM3YyNzcuMzMzQzg1LjQwNCA0NjQuMjE0IDEzMy4xMTkgNTExLjkzIDE5MiA1MTJoMTI4YzU4Ljg4MS0uMDcgMTA2LjU5Ni00Ny43ODYgMTA2LjY2Ny0xMDYuNjY3VjEyOEg0NDhjMTEuNzgyIDAgMjEuMzMzLTkuNTUxIDIxLjMzMy0yMS4zMzNTNDU5Ljc4MiA4NS4zMzMgNDQ4IDg1LjMzM3pNMjM0LjY2NyAzNjIuNjY3YzAgMTEuNzgyLTkuNTUxIDIxLjMzMy0yMS4zMzMgMjEuMzMzLTExLjc4MyAwLTIxLjMzNC05LjU1MS0yMS4zMzQtMjEuMzMzdi0xMjhjMC0xMS43ODIgOS41NTEtMjEuMzMzIDIxLjMzMy0yMS4zMzMgMTEuNzgyIDAgMjEuMzMzIDkuNTUxIDIxLjMzMyAyMS4zMzN2MTI4em04NS4zMzMgMGMwIDExLjc4Mi05LjU1MSAyMS4zMzMtMjEuMzMzIDIxLjMzMy0xMS43ODIgMC0yMS4zMzMtOS41NTEtMjEuMzMzLTIxLjMzM3YtMTI4YzAtMTEuNzgyIDkuNTUxLTIxLjMzMyAyMS4zMzMtMjEuMzMzIDExLjc4MiAwIDIxLjMzMyA5LjU1MSAyMS4zMzMgMjEuMzMzdjEyOHpNMTc0LjMxNSA4NS4zMzNjOS4wNzQtMjUuNTUxIDMzLjIzOC00Mi42MzQgNjAuMzUyLTQyLjY2N2g0Mi42NjdjMjcuMTE0LjAzMyA1MS4yNzggMTcuMTE2IDYwLjM1MiA0Mi42NjdIMTc0LjMxNXoiIGZpbGw9IiNlMjMzMjYiIG9wYWNpdHk9IjEiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSIiPjwvcGF0aD48L2c+PC9zdmc+
+                                        " alt="Delete" style="width: 20px; height: 20px; object-fit: contain; padding: 0;">
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
         </div>
     </main>
     <button id="addButton" onclick="openModal()">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-      </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
     </button>
 
 
@@ -179,22 +238,22 @@ require_once '../component/navbarAdmin.php';
             <h2>
                 Tambah Data Dosen
             </h2>
-            <form action="" method="post">
+            <form method="post">
                 <div class="form-group">
                     <label for="name">
                         Nama Dosen
                     </label>
-                    <input id="name" name="name" type="text"/>
+                    <input id="name" name="name" type="text" />
                 </div>
                 <div class="form-group">
                     <label for="nim">
                         NIP Dosen
                     </label>
-                    <input id="nim" name="nim" type="text"/>
+                    <input id="nim" name="nim" type="text" />
                 </div>
 
                 <div class="form-group">
-                    <button type="submit">
+                    <button type="submit" name="add">
                         Save
                     </button>
                 </div>
@@ -204,7 +263,6 @@ require_once '../component/navbarAdmin.php';
     </div>
 
     <script>
-
         function openModal() {
             document.getElementById('editModal').style.display = 'block';
         }
