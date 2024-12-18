@@ -13,6 +13,30 @@ if (!$nim) {
 // exit();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
+    $allowedExtensions = ['png', 'jpg', 'jpeg'];
+    $maxFileSize = 2 * 1024 * 1024; // 2 MB dalam byte  
+
+    $files = [
+        'sertifikat' => $_FILES['sertifikat'],
+        'proposal' => $_FILES['proposal'],
+        'surat_tugas' => $_FILES['surat_tugas'],
+        'karya' => $_FILES['karya'],
+    ];
+
+    foreach ($files as $key => $file) {
+        if ($file['error'] === UPLOAD_ERR_OK) {
+            if ($file['size'] > $maxFileSize) {
+                echo "File {$key} terlalu besar. Maksimal ukuran file adalah 5 MB.";
+                exit();
+            }
+            $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        if (!in_array($fileExtension, $allowedExtensions)) {
+            echo "File {$key} memiliki format yang tidak diperbolehkan. Hanya file png, jpg, dan jpeg yang diperbolehkan.<br>";
+            exit();
+        }
+        }
+    }
+
     $targetDir = "../uploads/";
 
     $filePaths = [
@@ -97,30 +121,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
         <!-- File Upload Section -->
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="file-upload">
-                <span>Sertif</span>
+                <span>Sertifikat</span>
                 <label>
-                    <input type="file" class="file-input" name="sertifikat" />
+                    <input type="file" class="file-input" name="sertifikat" accept=".jpg,.jpeg,.png" />
                 </label>
             </div>
 
             <div class="file-upload">
                 <span class="sr-only">Proposal</span>
                 <label>
-                    <input type="file" class="file-input" name="proposal" />
+                    <input type="file" class="file-input" name="proposal" accept=".jpg,.jpeg,.png"/>
                 </label>
             </div>
 
             <div class="file-upload">
                 <span class="sr-only">Surat Tugas</span>
                 <label>
-                    <input type="file" class="file-input" name="surat_tugas" />
+                    <input type="file" class="file-input" name="surat_tugas" accept=".jpg,.jpeg,.png" />
                 </label>
             </div>
 
             <div class="file-upload">
                 <span>Karya (bila ada)</span>
                 <label>
-                    <input type="file" class="file-input" name="karya" />
+                    <input type="file" class="file-input" name="karya" accept=".jpg,.jpeg,.png"/>
                 </label>
             </div>
 
@@ -134,3 +158,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
 </body>
 
 </html>
+<script>
+    document.querySelectorAll('.file-input').forEach(input => {
+        input.addEventListener('change', function () {
+            const maxFileSize = 2 * 1024 * 1024; // 5 MB dalam byte
+            const allowedExtensions = ["png", "jpg", "jpeg"];
+            const file = this.files[0];
+            
+            if (file && file.size > maxFileSize) {
+                alert(`File "${file.name}" terlalu besar. Maksimal ukuran file adalah 5 MB.`);
+                this.value = ''; // Reset input file
+            }
+            
+            // if (file && !allowedExtensions.includes(fileExtension)) {
+            //     alert(`File "${fileInput.name}" memiliki format tidak valid. Hanya file dengan format png, jpg, atau jpeg yang diperbolehkan.`);
+            //                 event.preventDefault(); // Hentikan pengiriman form
+            //                 return;
+            // }
+        });
+    });
+</script>

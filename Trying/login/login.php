@@ -34,7 +34,7 @@
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $user = $_POST['USER']; // Ambil input NIM
                 $password = $_POST['PASSWORD']; // Ambil input password
-            
+
                 // Validasi input kosong
                 if (empty($user) || empty($password)) {
                     $error_message = "NIM dan Password tidak boleh kosong!";
@@ -105,10 +105,11 @@
                 }
             }
             ?>
-            <!-- <div class="options">
+            <div class="options">
                 <a href="forgotpass.php">Forgot Password?</a>
-            </div> -->
+            </div>
             <button class="login-btn">LOGIN</button>
+            <button type="button" class="back-btn" onclick="window.location.href='../landpage.html'">BACK</button>
         </form>
     </div>
 </body>

@@ -6,14 +6,17 @@ $sql = "
     SELECT 
         YEAR(dp.TGL_KEGIATAN) AS tahun,
         COUNT(dp.ID_DETAIL) AS jumlah_kegiatan,
-        SUM(t.poin) AS jumlah_poin
+        SUM(t.poin + pt.poin_peringkat) AS jumlah_poin
     FROM 
         PRESTASI p
     JOIN 
         DETAIL_PRESTASI dp ON p.ID_DETAIL = dp.ID_DETAIL
     JOIN 
         TINGKAT t ON p.ID_TINGKAT = t.ID_TINGKAT
+    JOIN
+        PERINGKAT pt ON pt.id_peringkat = p.PERINGKAT
     WHERE 
+    	p.STATUS = 'Completed' AND
         YEAR(dp.TGL_KEGIATAN) BETWEEN YEAR(GETDATE()) - 5 AND YEAR(GETDATE())
     GROUP BY 
         YEAR(dp.TGL_KEGIATAN)
@@ -89,7 +92,7 @@ if ($data) {
                     lineTension: 0.1,
                     borderWidth: 5,
                     data: pointValues
-                },{
+                }, {
                     label: "Kenaikan Prestasi",
                     fill: true,
                     lineTension: 0.1,

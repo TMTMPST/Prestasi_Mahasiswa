@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
 
     $tsql = "SELECT
 	m.NAMA, m.NIM, m.PRODI, m.ANGKATAN, 
-    d.NAMA_LOMBA, d.TGL_KEGIATAN,p.PERINGKAT, p.JENIS_PRESTASI, t.TINGKATAN
+    d.NAMA_LOMBA, d.TGL_KEGIATAN, pt.peringkat, p.JENIS_PRESTASI, t.TINGKATAN
 FROM 
     PRESTASI p 
 JOIN
@@ -42,6 +42,8 @@ JOIN
     DETAIL_PRESTASI d ON p.ID_DETAIL = d.ID_DETAIL
 JOIN 
     TINGKAT t ON p.ID_TINGKAT = t.ID_TINGKAT
+JOIN
+    PERINGKAT pt ON p.PERINGKAT = pt.id_peringkat
     where p.id_prestasi = :id_prestasi;";
 
     $stmt2 = $conn->prepare($tsql);
@@ -123,7 +125,7 @@ JOIN
             <div class="DataItem">
                 <span class="Label">Kategori Juara</span>
                 <span class="Colon">:</span>
-                <span class="Details"><?= htmlspecialchars($row['PERINGKAT']); ?></span>
+                <span class="Details"><?= htmlspecialchars($row['peringkat']); ?></span>
             </div>
             <div class="DataItem">
                 <span class="Label">Date</span>

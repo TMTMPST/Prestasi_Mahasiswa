@@ -18,15 +18,11 @@ $stmt = $conn->prepare($sql);
 $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
 $stmt->execute();
 
-$jumlah = "SELECT 
-            *
-        FROM 
-            D_JMLH_POIN_KEGIATAN
-        WHERE 
-            NIM=:nim";
+$jumlah = "SELECT * FROM D_JMLH_POIN_KEGIATAN
+        WHERE NIM = :nim";
 
 $stmt2 = $conn->prepare($jumlah);
-$stmt2 ->bindParam(':nim', $nim, PDO::PARAM_STR);
+$stmt2->bindParam(':nim', $nim, PDO::PARAM_STR);
 $stmt2->execute();
 $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -58,11 +54,27 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC);
         <section class="card-grid">
             <div class="card">
                 <h3>Total Achievement Points</h3>
-                <div class="value"><?= htmlspecialchars($jnilai['jumlah_poin'])?></div>
+                <div class="value">
+                    <?php
+                    if ($jnilai) {
+                        echo htmlspecialchars($jnilai['jumlah_poin']);
+                    } else {
+                        echo 0;
+                    }
+                    ?>
+                </div>
             </div>
             <div class="card">
                 <h3>Achievements Recorded</h3>
-                <div class="value"><?= htmlspecialchars($jnilai['jumlah_kegiatan'])?></div>
+                <div class="value">
+                    <?php
+                    if ($jnilai) {
+                        echo htmlspecialchars($jnilai['jumlah_kegiatan']);
+                    } else {
+                        echo 0;
+                    }
+                    ?>
+                </div>
             </div>
         </section>
         <section class="card">
@@ -72,7 +84,8 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC);
                     <thead>
                         <tr>
                             <th>Nama Lomba</th>
-                            <th>Kategori</th>
+                            <th>Tingkatan</th>
+                            <th>Peringkat</th>
                             <th>Poin</th>
                             <th>Nama Admin</th>
                             <th>Date</th>
@@ -85,8 +98,14 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC);
                             <tr>
                                 <td><?= htmlspecialchars($row['nama_lomba']); ?></td>
                                 <td><?= htmlspecialchars($row['tingkatan']); ?></td>
-                                <td><?= htmlspecialchars($row['poin']); ?></td>
-                                <td><?= htmlspecialchars($row['NAMA_ADMIN']); ?></td>
+                                <td><?= htmlspecialchars($row['nama_lomba']); ?></td>
+                                <td><?= htmlspecialchars($row['jumlah_poin']); ?></td>
+                                <td><?php if ($row['NAMA_ADMIN']) {
+                                        htmlspecialchars($row['NAMA_ADMIN']);
+                                    } else {
+                                        echo "";
+                                    }
+                                    ?></td>
                                 <td><?= htmlspecialchars(date('d-m-Y', strtotime($row['tgl_kegiatan']))); ?></td>
                             </tr>
                         </tbody>

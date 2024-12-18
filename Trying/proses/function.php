@@ -32,4 +32,21 @@ function getTingkat($conn) {
     }
 }
 
+function getPeringkat($conn) {
+    try {
+        $tsql = "SELECT * FROM dbo.PERINGKAT"; // Query SQL
+        $stmt = $conn->prepare($tsql);
+
+        // Eksekusi query
+        $stmt->execute();
+
+        // Ambil semua hasil query sebagai array
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+        return [];
+    }
+}
+
 ?>

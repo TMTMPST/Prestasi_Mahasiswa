@@ -62,19 +62,13 @@
                 <div class="input-icon">
                     <i class="fas fa-user"></i>
                 </div>
-                <input type="username" name="username" id="username" value="<?php echo htmlspecialchars($user['NAMA'] ?? ''); ?>">
+                <input type="username" name="username" id="username" placeholder="Masukkan username" >
             </div>
             <div class="input-container">
                 <div class="input-icon">
                     <i class="fas fa-lock"></i>
                 </div>
-                <input type="password" name="password" id="password" placeholder="Masukkan password" value="<?php echo htmlspecialchars($user['PASSWORD'] ?? ''); ?>">
-            </div>
-            <div class="input-container">
-                <div class="input-icon">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <input type="password" name="confirm-password" id="confirm-password" placeholder="Masukkan ulang password" value="<?php echo htmlspecialchars($user['PASSWORD'] ?? ''); ?>">
+                <input type="password" name="password" id="password" placeholder="Masukkan password" >
             </div>
             <button type="submit">Kirim</button>
         </form>
@@ -122,6 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Eksekusi query
             if ($stmt->execute()) {
                 echo "<script>alert('Profil berhasil diperbarui!'); window.location.href = 'Dashboard.php';</script>";
+                header("Location: ../login/login.php");
             } else {
                 echo "<script>alert('Gagal memperbarui profil.');</script>";
             }

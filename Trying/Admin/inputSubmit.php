@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <span class="Details"><?php echo $_SESSION['nama-lomba']; ?></span>
             </div>
             <div class="DataItem">
-                <span class="Label">Kategori Juara</span>
+                <span class="Label">Peringkat</span>
                 <span class="Colon">:</span>
                 <span class="Details"><?php echo $_SESSION['kategori-juara']; ?></span>
             </div>

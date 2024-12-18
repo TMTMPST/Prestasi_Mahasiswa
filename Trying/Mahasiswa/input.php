@@ -8,6 +8,7 @@ require_once '../component/navbar.php';
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $dosenList = getDosenList($conn);
     $tingkatList = getTingkat($conn);
+    $peringkatList = getPeringkat($conn);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     header('Location: inputFile.php');
     exit();
-}$nim = $_SESSION['nim'];
+}
+$nim = $_SESSION['nim'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Ambil data dari database
@@ -61,10 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 </head>
 
 <body>
-        <?php echo renderSidebar("Dashboard.php", "input.php", "view.php"); ?>
-        <div class="navbar">
+    <?php echo renderSidebar("Dashboard.php", "input.php", "view.php"); ?>
+    <div class="navbar">
         <?php renderNavbar(); ?>
-        </div>
+    </div>
 
     <!-- Main Content -->
     <h1>asdas</h1>
@@ -75,34 +77,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <label for="nim">
                     NIM
                 </label>
-                <input id="nim" name="nim" type="text" value="<?php echo htmlspecialchars($mahasiswa['NIM']);?>" readonly/>
+                <input id="nim" name="nim" type="text" value="<?php echo htmlspecialchars($mahasiswa['NIM']); ?>" readonly />
 
-                <label for="nama-lomba"> 
+                <label for="nama-lomba">
                     Nama Lomba
                 </label>
-                <input id="nama-lomba" name="nama-lomba" type="text" />
-
+                <input id="nama-lomba" name="nama-lomba" type="text" required />
                 <label for="kategori-juara">
-                    Kategori Juara
+                    Peringkat
                 </label>
-                <input id="kategori-juara" name="kategori-juara" type="text" />
-
+                <select id="kategori-juara" name="kategori-juara" required>
+                    <option value="">-=Peringkat Juara=-</option>
+                    <?php
+                    if (!empty($peringkatList)) {
+                        foreach ($peringkatList as $row) {
+                            echo '<option value="' . htmlspecialchars($row['id_peringkat']) . '">'
+                                .  htmlspecialchars($row['peringkat'])
+                                . '</option>';
+                        }
+                    } else {
+                        echo '<option value="">Tidak ada data dosen</option>';
+                    }
+                    ?>
+                </select>
                 <label for="penyelenggara">
                     Penyelenggara
                 </label>
-                <input id="penyelenggara" name="penyelenggara" type="text">
+                <input id="penyelenggara" name="penyelenggara" type="text" required>
                 <label for="lokasi">
                     Lokasi
                 </label>
-                <input id="lokasi" name="lokasi" type="text">
-
-                <label for="dosbing">Dosen Pembimbing</label>
+                <input id="lokasi" name="lokasi" type="text" required>
+                <label for="dosbing">
+                    Dosen Pembimbing
+                </label>
                 <select id="dosbing" name="dosbing" required>
                     <option value="">Dosen Pembimbing</option>
                     <?php
                     if (!empty($dosenList)) {
                         foreach ($dosenList as $row) {
-                            echo '<option value="'. htmlspecialchars($row['NIP']) .'">'
+                            echo '<option value="' . htmlspecialchars($row['NIP']) . '">'
                                 . htmlspecialchars($row['NIP']) . ' - ' .  htmlspecialchars($row['NAMA_DOSEN'])
                                 . '</option>';
                         }
@@ -115,31 +129,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <label for="date">
                     Date
                 </label>
-                <input id="date" name="date" type="date" />
-
+                <input id="date" name="date" type="date" required />
                 <label for="tipe-prestasi">
                     Tipe Prestasi
                 </label>
-                <select id="tipe-prestasi" name="tipe-prestasi">
-                    <option> Pilih Tipe Prestasi </option>
+                <select id="tipe-prestasi" name="tipe-prestasi" required>
+                    <option value=""> Pilih Tipe Prestasi </option>
                     <option> Akademik </option>
-                    <option> Non Akademik </option>
+                    <option> Non-Akademik </option>
                 </select>
-
                 <label for="tingkat-prestasi">
                     Tingkat Prestasi
                 </label>
-                <select id="tingkat-prestasi" name="tingkat-prestasi">
-                    <option> Pilih Tingkat Prestasi </option>
+                <select id="tingkat-prestasi" name="tingkat-prestasi" required>
+                    <option value=""> Pilih Tingkat Prestasi </option>
                     <?php
                     if (!empty($tingkatList)) {
                         foreach ($tingkatList as $row) {
-                            echo '<option value="'. htmlspecialchars($row['ID_TINGKAT']).'">'
-                                .htmlspecialchars($row['TINGKATAN'])
+                            echo '<option value="' . htmlspecialchars($row['ID_TINGKAT']) . '">'
+                                . htmlspecialchars($row['TINGKATAN'])
                                 . '</option>';
                         }
                     } else {
-                        echo '<option value="">Tidak ada data dosen</option>';
+                        echo '<option value="">Tidak ada data Tingkatan</option>';
                     }
                     ?>
                 </select>
