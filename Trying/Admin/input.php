@@ -12,20 +12,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil data dari form
     $nim = htmlspecialchars($_POST['nim'] ?? '');
-    $_SESSION['nama-lomba'] = $_POST['nama-lomba'] ?? '';
-    $_SESSION['kategori-juara'] = $_POST['kategori-juara'] ?? '';
-    $_SESSION['penyelenggara'] = $_POST['penyelenggara'] ?? '';
-    $_SESSION['lokasi'] = $_POST['lokasi'] ?? '';
-    $_SESSION['dosbing'] = $_POST['dosbing'] ?? '';
-    $_SESSION['date'] = $_POST['date'] ?? '';
-    $_SESSION['tipe_prestasi'] = $_POST['tipe-prestasi'] ?? '';
-    $_SESSION['tingkat_prestasi'] = $_POST['tingkat-prestasi'] ?? '';
 
-    $_SESSION['nim'] = $nim;
-    header('Location: inputFile.php');
-    exit();
+    // Cek apakah NIM sudah ada di database
+    $query = "SELECT * FROM mahasiswa WHERE nim = :nim";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) {
+        // Ambil data dari form
+        $_SESSION['nama-lomba'] = $_POST['nama-lomba'] ?? '';
+        $_SESSION['kategori-juara'] = $_POST['kategori-juara'] ?? '';
+        $_SESSION['penyelenggara'] = $_POST['penyelenggara'] ?? '';
+        $_SESSION['lokasi'] = $_POST['lokasi'] ?? '';
+        $_SESSION['dosbing'] = $_POST['dosbing'] ?? '';
+        $_SESSION['date'] = $_POST['date'] ?? '';
+        $_SESSION['tipe_prestasi'] = $_POST['tipe-prestasi'] ?? '';
+        $_SESSION['tingkat_prestasi'] = $_POST['tingkat-prestasi'] ?? '';
+
+        $_SESSION['nim'] = $nim;
+        header('Location: inputFile.php');
+        exit();
+    } else {
+        // NIM tidak ditemukan, tampilkan alert
+        $error_message = "NIM tidak ditemukan!";
+    }
 }
 
 
@@ -46,7 +58,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         rel="stylesheet">
     <link rel="stylesheet" href="../style/sidebar.css">
     <title>Input</title>
-
+    <style>
+        .error-message {
+            color: white;
+            background-color: red;
+            padding: 5px;
+            margin-top: 5px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+        input.error {
+            border-color: red;
+        }
+    </style>
 </head>
 
 <body class="inter">
@@ -68,7 +92,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="nim">
                     Nim
                 </label>
-                <input id="nim" name="nim" type="text" required />
+                <input id="nim" name="nim" type="text" class="<?php echo ($error_message ? 'error' : ''); ?>" required />
+                <?php if ($error_message): ?>
+                    <div class="error-message"><?php echo $error_message; ?></div>
+                <?php endif; ?>
                 <label for="nama-lomba">
                     Nama Lomba
                 </label>
