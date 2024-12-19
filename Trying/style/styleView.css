@@ -69,8 +69,6 @@ td {
     font-weight: 900;
     display: flex;
     gap: 3px;
-    justify-content: center;
-    align-items: center;
     width: 9rem;
     
 }
@@ -106,8 +104,4 @@ td {
     -o-border-radius: 50px;
     text-align: center;
     color: #C70000;
-}
-
-.center {
-    justify-items: center;
 }

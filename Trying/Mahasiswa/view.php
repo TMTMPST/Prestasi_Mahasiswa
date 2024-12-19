@@ -37,6 +37,7 @@ if (isset($_POST['delete'])) {
             color: white;
             border: none;
             border-radius: 5px;
+            background-color: transparent;
         }
 
         .modal {
@@ -131,7 +132,7 @@ if (isset($_POST['delete'])) {
                     <td><?= htmlspecialchars($row['PERINGKAT']); ?></td>
                     <td><?= htmlspecialchars($row['JENIS_PRESTASI']); ?></td>
                     <td><?= htmlspecialchars($row['TINGKATAN']); ?></td>
-                    <td class="center" style="display: inline-flex; align-items: center; justify-content: center; width: 100%;">
+                    <td class="center" style="display: inline-flex; align-items: center; width: 100%;">
                         <button class="status <?= $statusClass ?>" style="display: inline;">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6"
