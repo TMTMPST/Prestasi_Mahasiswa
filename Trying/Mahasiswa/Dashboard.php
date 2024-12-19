@@ -100,8 +100,9 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC);
                                 <td><?= htmlspecialchars($row['tingkatan']); ?></td>
                                 <td><?= htmlspecialchars($row['PERINGKAT']); ?></td>
                                 <td><?= htmlspecialchars($row['jumlah_poin']); ?></td>
-                                <td><?php if ($row['NAMA_ADMIN']) {
-                                        htmlspecialchars($row['NAMA_ADMIN']);
+                                <td><?php
+                                    if ($row['NAMA_ADMIN']) {
+                                        echo htmlspecialchars($row['NAMA_ADMIN']);
                                     } else {
                                         echo "";
                                     }

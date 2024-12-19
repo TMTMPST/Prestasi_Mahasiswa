@@ -105,9 +105,6 @@
                 }
             }
             ?>
-            <div class="options">
-                <a href="forgotpass.php">Forgot Password?</a>
-            </div>
             <button class="login-btn">LOGIN</button>
             <button type="button" class="back-btn" onclick="window.location.href='../landpage.html'">BACK</button>
         </form>

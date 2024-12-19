@@ -5,6 +5,7 @@ require_once "../component/navbarAdmin.php";
 // $nim  = $_GET['NIM'];
 $id_prestasi = $_GET['id_prestasi'];
 session_start();
+// echo $_SESSION['name'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
     $id_prestasi = htmlspecialchars($_GET['id_prestasi']);
@@ -15,12 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id_prestasi'])) {
     }
 
     $sql = "UPDATE PRESTASI 
-    SET STATUS = :status 
+    SET STATUS = :status, ID_ADMIN = :id_admin
     WHERE ID_PRESTASI = :id_prestasi;";
 
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':status', $status, PDO::PARAM_STR);
     $stmt->bindParam(':id_prestasi', $id_prestasi, PDO::PARAM_STR);
+    $stmt->bindParam(':id_admin', $_SESSION['name'], PDO::PARAM_STR);
 
     if ($stmt->execute()) {
         header('Location: Review.php');

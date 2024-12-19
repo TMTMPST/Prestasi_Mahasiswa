@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
             const file = this.files[0];
             
             if (file && file.size > maxFileSize) {
-                alert(`File "${file.name}" terlalu besar. Maksimal ukuran file adalah 5 MB.`);
+                alert(`File "${file.name}" terlalu besar. Maksimal ukuran file adalah 2 MB.`);
                 this.value = ''; // Reset input file
             }
             
