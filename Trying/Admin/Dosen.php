@@ -17,7 +17,7 @@ try {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $name = $_POST['name'] ?? '';
-    $nip = $_POST['nip'] ?? '';
+    $nip = $_POST['nip'];
     $nip_del = $_POST['nip_del'] ?? '';
 
     try {
@@ -221,6 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </tr>
                     <?php } ?>
                 </tbody>
+            </table>
         </div>
     </main>
     <button id="addButton" onclick="openModal()">
@@ -246,10 +247,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input id="name" name="name" type="text" />
                 </div>
                 <div class="form-group">
-                    <label for="nim">
+                    <label for="nip">
                         NIP Dosen
                     </label>
-                    <input id="nim" name="nim" type="text" />
+                    <input id="nip" name="nip" type="text" />
                 </div>
 
                 <div class="form-group">
