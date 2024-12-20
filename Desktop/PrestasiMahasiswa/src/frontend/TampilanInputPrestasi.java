@@ -4,9 +4,23 @@
  */
 package frontend;
 
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import backend.DBHelper;
 import backend.Prestasi;
 import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -40,6 +54,7 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
         txtSearch = new javax.swing.JTextField();
         btnEdit = new javax.swing.JButton();
         btnInput = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -136,13 +151,20 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Cetak");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
@@ -151,6 +173,8 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(btnInput, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -167,7 +191,8 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit)
-                    .addComponent(btnInput))
+                    .addComponent(btnInput)
+                    .addComponent(jButton1))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
@@ -257,7 +282,7 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         PanelInputLayout.setVerticalGroup(
             PanelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,7 +550,7 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
             prs = prs.getById(Integer.parseInt(tblMenu.getValueAt(row, 0).toString()));
 
             Input inp = new Input(
-                    prs.getNIM(), prs.getID_TINGKAT(), prs.getJENIS_PRESTASI(), prs.getNAMA_LOMBA(), 
+                    prs.getNIM(), prs.getID_TINGKAT(), prs.getJENIS_PRESTASI(), prs.getNAMA_LOMBA(),
                     prs.getPERINGKAT(), prs.getTanggal_lomba(), prs.getDOSEN(), prs.getID_PRESTASI(),
                     prs.getSertifikat(), prs.getProposal(), prs.getSurat_tugas(), prs.getKarya()
             );
@@ -571,6 +596,31 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Connection conn = DBHelper.bukaKoneksi2();
+            // Load file report .jasper
+            String reportPath = "src/report/reportDataPrestasi.jasper";
+//            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportPath);
+
+            // Siapkan parameter, jika diperlukan
+            // Map<String, Object> parameters = new HashMap<>();
+            // parameters.put("parameterName", value);
+            // Tentukan koneksi data, bisa menggunakan database atau data lainnya
+            // Jika Anda tidak memiliki koneksi database, bisa menggunakan empty connection atau parameter kosong
+            HashMap<String, Object> parameters = new HashMap<>();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameters, conn);
+
+            JasperViewer viewer = new JasperViewer(jasperPrint, false);
+            viewer.setVisible(true);
+            // Menampilkan laporan menggunakan JasperViewer
+//            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "Error generating report: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -612,6 +662,7 @@ public class TampilanInputPrestasi extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnInput;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

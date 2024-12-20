@@ -28,6 +28,23 @@ public class DBHelper {
             }
         }
     }
+    
+    public static Connection bukaKoneksi2() {
+        if (koneksi == null) {
+            try {
+                String url = "jdbc:sqlserver://localhost:1433;"
+                        + "databaseName=presma;encrypt=true;"
+                        + "trustServerCertificate=true;"
+                        + "integratedSecurity=true";
+                DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
+                koneksi = DriverManager.getConnection(url);
+            } catch (SQLException t) {
+                System.out.println("Error koneksi!");
+                t.printStackTrace();
+            }
+        }
+        return koneksi;
+    }
 
     public static int insertQueryGetId(String query) {
         bukaKoneksi();

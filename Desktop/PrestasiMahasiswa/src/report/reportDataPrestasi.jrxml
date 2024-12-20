@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd19b519-320a-47eb-bcb0-f35ed8b8f884">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM PRESTASI;]]>
+	</queryString>
+	<field name="NIM" class="java.lang.String"/>
+	<field name="ID_TINGKAT" class="java.lang.Integer"/>
+	<field name="JENIS_PRESTASI" class="java.lang.String"/>
+	<field name="NAMA_LOMBA" class="java.lang.String"/>
+	<field name="PERINGKAT" class="java.lang.String"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="ID_PRESTASI" class="java.lang.Integer"/>
+	<field name="tanggal_lomba" class="java.sql.Date"/>
+	<field name="sertifikat" class="java.lang.String"/>
+	<field name="proposal" class="java.lang.String"/>
+	<field name="surat_tugas" class="java.lang.String"/>
+	<field name="karya" class="java.lang.String"/>
+	<field name="DOSEN" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="161" y="32" width="223" height="33" uuid="0cbaa1bc-0b0c-4965-9469-f6d9df05f72b"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Report Data Prestasi]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="41" width="68" height="20" uuid="9ca7e946-205c-4146-8945-90ba06fb9c5a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[ID_PRESTASI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="41" width="73" height="20" uuid="bcc2bd52-ed0d-479c-9ab4-5bbe7769a433"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[NIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="41" width="73" height="20" uuid="57f027c0-bac1-4297-8b6a-68b4621188d0"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[PERINGKAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="41" width="101" height="20" uuid="8aa9f224-421b-495c-86f1-ba32ff8e1c1d"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[NAMA_LOMBA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="41" width="87" height="20" uuid="f4c58f56-5dda-4403-a879-0b73c7375143"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[JENIS_PRESTASI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="41" width="20" height="20" uuid="c28391ef-80cb-499c-be45-f3f64865985b"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="60" y="0" width="20" height="20" uuid="d02f0506-614e-4ec1-949a-9909bffcaf08"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="68" height="20" uuid="84593c98-a040-44e9-ba44-47d5cf4ae5ef"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ID_PRESTASI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="0" width="73" height="20" uuid="47caf8f3-e483-44c8-bbed-c2d983fffc86"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NIM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="0" width="73" height="20" uuid="5d343287-04ce-4782-a7f8-a9b253a86934"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PERINGKAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="381" y="0" width="101" height="20" uuid="9f0c3256-5ada-4e11-899c-9b0ec16f642a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NAMA_LOMBA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="0" width="87" height="20" uuid="fadbc868-6290-4540-a726-333d8a39e737"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{JENIS_PRESTASI}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
