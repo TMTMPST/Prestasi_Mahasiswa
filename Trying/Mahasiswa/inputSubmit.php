@@ -39,6 +39,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <link rel="stylesheet" href="../style/imagePopup.css">
     <script src="../js/popup.js"></script>
     <script src="../js/image.js"></script>
+    <script src="../js/pdfview.js"></script>
+    <style>
+        .popuppdf {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .popup-content {
+            background-color: transparent;
+            margin: 5% auto;
+            padding: 20px;
+            width: 80%;
+            height: 80%;
+            position: relative;
+        }
+
+        .close-btn {
+            color: #000;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #pdfViewer {
+            border: none;
+        }
+
+        .ViewPDF {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .ViewPDF:hover {
+            text-decoration: none;
+        }
+    </style>
     <title>Submit</title>
 </head>
 
@@ -120,7 +172,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="FileItem">
                 <span class="Label">Sertifikat</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['sertifikat']; ?>')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['sertifikat']; ?>')">View
+                            </span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
@@ -130,7 +183,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="FileItem">
                 <span class="Label">Proposal</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['proposal']; ?>')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['proposal']; ?>')">View
+                            </span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
@@ -140,17 +194,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="FileItem">
                 <span class="Label">Surat Tugas</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['surat_tugas']; ?>')">View Image</span></div>
-                    <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
-                        <img id="popupImage" src="" alt="Popup Image" />
+                    <div><span class="ViewImage" onclick="showPopupPDF('<?php echo $_SESSION['surat_tugas']; ?>')">View
+                            </span></div>
+                    <div class="popuppdf" id="pdfPopup">
+                        <div class="popup-content">
+                            <span class="close-btn" onclick="hidePopupPDF()">&times;</span>
+                            <iframe id="pdfViewer" src="" width="100%" height="100%"></iframe>
+                        </div>
                     </div>
                     <div class="UploadSuccess">Upload Success</div>
                 </div>
             </div>
+
             <div class="FileItem">
                 <span class="Label">Karya</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['karya']; ?>')">View Image</span></div>
+                    <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['karya']; ?>')">View
+                            </span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>

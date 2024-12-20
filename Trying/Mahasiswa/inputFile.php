@@ -15,7 +15,7 @@ if (!$nim) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
 
-    $allowedExtensions = ['png', 'jpg', 'jpeg'];
+    $allowedExtensions = ['png', 'jpg', 'jpeg', 'pdf'];
     $maxFileSize = 2 * 1024 * 1024; // 2 MB dalam byte  
 
     $files = [
