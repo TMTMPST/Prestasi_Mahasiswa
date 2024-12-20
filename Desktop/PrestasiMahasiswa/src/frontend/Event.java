@@ -5,6 +5,7 @@
 package frontend;
 
 import backend.Events;
+
 /**
  *
  * @author BISMILLAH NAWAITU
@@ -166,7 +167,7 @@ public class Event extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-        Dashboard d= new Dashboard();
+        Dashboard d = new Dashboard();
         d.show();
         dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
@@ -178,16 +179,17 @@ public class Event extends javax.swing.JFrame {
     private void jButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimpanActionPerformed
         // TODO add your handling code here:
         Events evnt = new Events();
-
+        java.util.Date selectedDate = tgl_lomba.getDate();
+        java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
         evnt.setNama_lomba(nama_lomba.getText());
-        evnt.setTgl_lomba(tgl_lomba.getDate());
+        evnt.setTgl_lomba(sqlDate);
         evnt.setKategori(kategori_lomba.getText());
         evnt.setPenyelenggara(penyelenggara.getText());
         evnt.setLokasi(lokasi.getText());
         evnt.setDeskripsi(deskripsi.getText());
         evnt.setLink(link.getText());
-        evnt.save(); 
-        Dashboard d= new Dashboard();
+        evnt.save();
+        Dashboard d = new Dashboard();
         d.show();
         dispose();
     }//GEN-LAST:event_jButtonSimpanActionPerformed

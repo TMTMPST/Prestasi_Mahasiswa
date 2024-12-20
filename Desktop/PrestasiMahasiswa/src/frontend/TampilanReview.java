@@ -446,7 +446,11 @@ public class TampilanReview extends javax.swing.JFrame {
                     prs.getDOSEN(),
                     prs.getID_TINGKAT(),
                     prs.getJENIS_PRESTASI(),
-                    prs.getID_PRESTASI()
+                    prs.getID_PRESTASI(),
+                    prs.getSertifikat(),
+                    prs.getProposal(),
+                    prs.getSurat_tugas(),
+                    prs.getKarya()
             );
             r.show();
             dispose();

@@ -12,6 +12,7 @@ import java.util.Date;
  * @author BISMILLAH NAWAITU
  */
 public class EditEvent extends javax.swing.JFrame {
+
     private int id;
 
     /**
@@ -24,7 +25,9 @@ public class EditEvent extends javax.swing.JFrame {
     public EditEvent(String nama, Date tglLomba, String kategori, String penye, String lok, String desk, String lin, int id) {
         initComponents();
         nama_lomba.setText(nama);
-        dateChooser.setDate(tglLomba);
+        java.util.Date selectedDate = tglLomba;
+        java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
+        dateChooser.setDate(sqlDate);
         kategori_lomba.setText(kategori);
         penyelenggara.setText(penye);
         lokasi.setText(lok);

@@ -5,14 +5,19 @@
 package frontend;
 
 import backend.DBHelper;
+import java.awt.Image;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 /**
  *
  * @author USER
  */
 public class Review extends javax.swing.JFrame {
-
+    private String sertifikat, proposal, surat_tugas, karya;
     private int id;
 
     /**
@@ -22,7 +27,7 @@ public class Review extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Review(String nim, String lomba, String peringkat, Date tglLomba, String dosen, int tingkatan, String tipe, int id) {
+    public Review(String nim, String lomba, String peringkat, Date tglLomba, String dosen, int tingkatan, String tipe, int id, String sertifikat, String proposal, String surat_tugas, String karya) {
         initComponents();
         txtNIM.setText(nim);
         txtLomba.setText(lomba);
@@ -32,6 +37,10 @@ public class Review extends javax.swing.JFrame {
         comboBoxTingkatan.setSelectedIndex(tingkatan - 1);
         comboBoxTipe.setSelectedItem(tipe);
         this.id = id;
+        this.sertifikat = sertifikat;
+        this.proposal = proposal;
+        this.surat_tugas = surat_tugas;
+        this.karya = karya;
     }
 
     /**
@@ -62,6 +71,11 @@ public class Review extends javax.swing.JFrame {
         btnAccept = new javax.swing.JButton();
         btnDecline = new javax.swing.JButton();
         dateChooser = new com.toedter.calendar.JDateChooser();
+        btnSertifikat = new javax.swing.JButton();
+        btnProposal = new javax.swing.JButton();
+        btnSuratTugas = new javax.swing.JButton();
+        btnKarya = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +139,34 @@ public class Review extends javax.swing.JFrame {
 
         dateChooser.setEnabled(false);
 
+        btnSertifikat.setText("Sertifikat");
+        btnSertifikat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSertifikatActionPerformed(evt);
+            }
+        });
+
+        btnProposal.setText("Proposal");
+        btnProposal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProposalActionPerformed(evt);
+            }
+        });
+
+        btnSuratTugas.setText("Surat Tugas");
+        btnSuratTugas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuratTugasActionPerformed(evt);
+            }
+        });
+
+        btnKarya.setText("Karya");
+        btnKarya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKaryaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -132,10 +174,7 @@ public class Review extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNIM)
-                    .addComponent(txtLomba)
                     .addComponent(txtPeringkat)
-                    .addComponent(txtDosen)
                     .addComponent(comboBoxTingkatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboBoxTipe, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -147,15 +186,36 @@ public class Review extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel18)
-                            .addComponent(jLabel19)
                             .addComponent(jLabel17)
-                            .addComponent(jLabel20))
-                        .addGap(0, 322, Short.MAX_VALUE))
-                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel19))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addGap(82, 82, 82))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtLomba, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                                    .addComponent(txtNIM))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnSertifikat, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSuratTugas))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnKarya, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1))
+                            .addComponent(btnProposal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDosen))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -165,21 +225,32 @@ public class Review extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSertifikat)
+                    .addComponent(btnProposal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtLomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSuratTugas)
+                    .addComponent(btnKarya))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(4, 4, 4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addGap(4, 4, 4)
                 .addComponent(txtPeringkat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(13, 13, 13)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,7 +267,7 @@ public class Review extends javax.swing.JFrame {
                     .addComponent(btnKembali)
                     .addComponent(btnAccept)
                     .addComponent(btnDecline))
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addContainerGap(300, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,6 +306,56 @@ public class Review extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnDeclineActionPerformed
 
+    private void btnSertifikatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSertifikatActionPerformed
+        tampilkanGambar(sertifikat);
+    }//GEN-LAST:event_btnSertifikatActionPerformed
+
+    private void btnProposalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProposalActionPerformed
+        tampilkanGambar(proposal);
+    }//GEN-LAST:event_btnProposalActionPerformed
+
+    private void btnSuratTugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuratTugasActionPerformed
+        tampilkanGambar(surat_tugas);
+    }//GEN-LAST:event_btnSuratTugasActionPerformed
+
+    private void btnKaryaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKaryaActionPerformed
+        tampilkanGambar(karya);
+    }//GEN-LAST:event_btnKaryaActionPerformed
+
+    void tampilkanGambar(String path) {
+        ImageIcon image = new ImageIcon(path);
+
+        int width = image.getIconWidth();
+        int height = image.getIconHeight();
+
+        // Tentukan batas maksimal untuk lebar dan tinggi gambar
+        int maxWidth = 1240;
+        int maxHeight = 1000;
+
+        if (height > width) {
+            while (height > maxHeight) {
+                height /= 1.5;
+            }
+            width = (int) (height * ((double) image.getIconWidth() / image.getIconHeight()));
+        } else {
+            if (width > maxWidth) {
+                while (width > maxWidth) {
+                    width /= 1.5;
+                }
+                height = (int) (width * ((double) image.getIconHeight() / image.getIconWidth()));
+            }
+        }
+
+        Image scaledImage = image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        ImageIcon newImage = new ImageIcon(scaledImage);
+
+        // Menampilkan gambar dalam pop-up
+        JLabel label = new JLabel(newImage);
+        JScrollPane scrollPane = new JScrollPane(label);
+        scrollPane.setPreferredSize(new java.awt.Dimension(900, 550));
+
+        JOptionPane.showMessageDialog(this, scrollPane, "Gambar yang Diupload", JOptionPane.PLAIN_MESSAGE);
+    }
     /**
      * @param args the command line arguments
      */
@@ -273,7 +394,11 @@ public class Review extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnDecline;
+    private javax.swing.JButton btnKarya;
     private javax.swing.JButton btnKembali;
+    private javax.swing.JButton btnProposal;
+    private javax.swing.JButton btnSertifikat;
+    private javax.swing.JButton btnSuratTugas;
     private javax.swing.JComboBox<String> comboBoxTingkatan;
     private javax.swing.JComboBox<String> comboBoxTipe;
     private com.toedter.calendar.JDateChooser dateChooser;
@@ -285,6 +410,7 @@ public class Review extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtDosen;
     private javax.swing.JTextField txtLomba;
