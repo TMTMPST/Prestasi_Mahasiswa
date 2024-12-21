@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="navbar">
         <?php renderNavbar(); ?>
     </div>
-
+    <h1>asdasd</h1>
     <!-- Main Content -->
     <main class="main-content">
         <div class="input-prestasi">
