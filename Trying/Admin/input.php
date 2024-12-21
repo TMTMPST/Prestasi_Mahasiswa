@@ -60,15 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Input</title>
     <style>
         .error-message {
-            color: white;
-            background-color: red;
-            padding: 5px;
-            margin-top: 5px;
-            font-size: 14px;
-            border-radius: 4px;
-        }
-        input.error {
-            border-color: red;
+            color: red;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -79,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="navbar">
         <?php renderNavbar(); ?>
     </div>
-    <h1>asdasd</h1>
+
     <!-- Main Content -->
     <main class="main-content">
         <div class="input-prestasi">
@@ -92,10 +85,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="nim">
                     Nim
                 </label>
-                <input id="nim" name="nim" type="text" class="<?php echo ($error_message ? 'error' : ''); ?>" required />
-                <?php if ($error_message): ?>
-                    <div class="error-message"><?php echo $error_message; ?></div>
-                <?php endif; ?>
+                <input id="nim" name="nim" type="search" required />
+                <div id="nim-error" class="error-message" style="display: none;">NIM tidak ada!</div>
+
                 <label for="nama-lomba">
                     Nama Lomba
                 </label>
@@ -180,9 +172,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     </main>
+    <script>
+        document.getElementById('nim').addEventListener('input', function() {
+            const nim = this.value;
+            const errorElement = document.getElementById('nim-error');
+
+            if (nim.trim() !== "") {
+                // Lakukan permintaan AJAX untuk cek NIM
+                fetch('check_nim.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            nim
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.exists) {
+                            errorElement.style.display = 'none';
+                            this.classList.remove('error');
+                        } else {
+                            errorElement.style.display = 'block';
+                            this.classList.add('error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                errorElement.style.display = 'none';
+                this.classList.remove('error');
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>
-<?php
-
-?>
