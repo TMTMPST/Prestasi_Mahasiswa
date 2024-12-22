@@ -68,6 +68,7 @@ JOIN
     <link rel="stylesheet" href="../style/sidebar.css">
     <link rel="stylesheet" href="../style/imagePopup.css">
     <script src="../js/image.js"></script>
+    <script src="../js/pdfview.js"></script>
     <title>Submit</title>
 </head>
 
