@@ -11,7 +11,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $peringkatList = getPeringkat($conn);
 }
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $searchTerm = htmlspecialchars($_POST['term'] ?? '');
+
+    // Query untuk mencari nama lomba  
+    $query = "SELECT TOP 10 * FROM detail_prestasi WHERE nama_lomba LIKE :term;";
+    $stmt5 = $conn->prepare($query);
+    $stmt5->bindValue(':term', '%' . $searchTerm . '%', PDO::PARAM_STR);
+    $stmt5->execute();
+
+    $results = $stmt5->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($results);
+
     $nim = htmlspecialchars($_POST['nim'] ?? '');
 
     if (!empty($nim)) {
@@ -21,9 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':nim', $nim, PDO::PARAM_STR);
         $stmt->execute();
         $mhs = $stmt->fetch(PDO::FETCH_ASSOC);
-       
+
         if ($mhs) {
-            echo "<script>alert('NIM ditemukan!');</script>";
             // Ambil data dari form
             $_SESSION['nama-lomba'] = $_POST['nama-lomba'] ?? '';
             $_SESSION['kategori-juara'] = $_POST['kategori-juara'] ?? '';
@@ -68,6 +80,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: red;
             margin-bottom: 20px;
         }
+
+        .live-search-results {
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+        }
+
+        .live-search-results li {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .live-search-results li:hover {
+            background-color: #f0f0f0;
+        }
     </style>
 </head>
 
@@ -95,7 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="nama-lomba">
                     Nama Lomba
                 </label>
-                <input id="nama-lomba" name="nama-lomba" type="text" required />
+                <input id="nama-lomba" name="nama-lomba" type="text" required autocomplete="off" />
+                <ul id="nama-lomba-results" class="live-search-results"></ul>
                 <label for="kategori-juara">
                     Peringkat
                 </label>
@@ -209,6 +244,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 errorElement.style.display = 'none';
                 this.classList.remove('error');
             }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('nama-lomba').addEventListener('input', function() {
+                const searchQuery = this.value; // Define searchQuery here
+                const resultsContainer = document.getElementById('nama-lomba-results');
+
+                if (searchQuery.trim() !== "") {
+                    fetch('search_nama_lomba.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                search: searchQuery
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            resultsContainer.innerHTML = ""; // Clear previous results
+                            if (data.length > 0) {
+                                data.forEach(item => {
+                                    const li = document.createElement('li');
+                                    li.textContent = item.nama_lomba;
+                                    li.addEventListener('click', function() {
+                                        document.getElementById('nama-lomba').value = item.nama_lomba;
+                                        resultsContainer.innerHTML = "";
+                                    });
+                                    resultsContainer.appendChild(li);
+                                });
+                            } else {
+                                resultsContainer.innerHTML = "<li>No results found</li>";
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                } else {
+                    resultsContainer.innerHTML = ""; // Clear results if input is empty
+                }
+            });
         });
     </script>
 
