@@ -122,6 +122,38 @@ public class Events {
         return ListEvent;
     }
 
+    public ArrayList<Events> search(String keyword) {
+        ArrayList<Events> ListPrestasi = new ArrayList();
+
+        ResultSet rs = DBHelper.selectQuery("SELECT * FROM EVENTS WHERE"
+                + " nama_event LIKE '%" + keyword + "%'"
+                + " OR kategori_lomba LIKE '%" + keyword + "%'"
+                + " OR penyelenggara LIKE '%" + keyword + "%'"
+                + " OR lokasi LIKE '%" + keyword + "%'"
+                + " OR deskripsi LIKE '%" + keyword + "%'"
+                + " OR link_lomba LIKE '%" + keyword + "%'");
+
+        try {
+            Events evnt = new Events();
+            while (rs.next()) {
+                evnt.setId_event(rs.getInt("id_event"));
+                evnt.setNama_lomba(rs.getString("nama_event"));
+                evnt.setTgl_lomba(rs.getDate("tgl_lomba"));
+                evnt.setKategori(rs.getString("kategori_lomba"));
+                evnt.setPenyelenggara(rs.getString("penyelenggara"));
+                evnt.setLokasi(rs.getString("lokasi"));
+                evnt.setDeskripsi(rs.getString("deskripsi"));
+                evnt.setLink(rs.getString("link_lomba"));
+
+                ListPrestasi.add(evnt);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ListPrestasi;
+    }
+
     public int getId_event() {
         return id_event;
     }

@@ -652,7 +652,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     public void cari(String keyword) {
         String[] kolom = {"ID_EVENT", "NAMA_EVENT", "TGL_LOMBA", "KATEGORI_LOMBA", "PENYELENGGARA", "LOKASI", "DESKRIPSI", "LINK_LOMBA"};
-        ArrayList<Events> list = new Events().getAll();
+        ArrayList<Events> list = new Events().search(keyword);
         Object rowData[] = new Object[8];
 
         tblMenu.setModel(new DefaultTableModel(new Object[][]{}, kolom));
