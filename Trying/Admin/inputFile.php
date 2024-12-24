@@ -130,14 +130,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
             <div class="file-upload">
                 <span class="sr-only">Proposal</span>
                 <label>
-                    <input type="file" class="file-input" name="proposal" accept=".jpg,.jpeg,.png"/>
+                    <input type="file" class="file-input" name="proposal" accept=".pdf"/>
                 </label>
             </div>
 
             <div class="file-upload">
                 <span class="sr-only">Surat Tugas</span>
                 <label>
-                    <input type="file" class="file-input" name="surat_tugas" accept=".jpg,.jpeg,.png" />
+                    <input type="file" class="file-input" name="surat_tugas" accept=".pdf" />
                 </label>
             </div>
 

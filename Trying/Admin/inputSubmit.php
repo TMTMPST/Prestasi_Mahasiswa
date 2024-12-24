@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <span class="Label">Proposal</span>
                 <div style="display: flex; width: auto;">
                     <div><span class="ViewImage"
-                            onclick="showPopupImg('<?php echo $_SESSION['proposal']; ?>')">View</span></div>
+                            onclick="showPopupPDF('<?php echo $_SESSION['proposal']; ?>')">View</span></div>
                     <div class="popuppdf" id="pdfPopup">
                         <div class="popup-content">
                             <span class="close-btn" onclick="hidePopupPDF()">&times;</span>

@@ -122,28 +122,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['sertifikat'])) {
             <div class="file-upload">
                 <span>Sertifikat</span>
                 <label>
-                    <input type="file" class="file-input" name="sertifikat" />
+                    <input type="file" class="file-input" name="sertifikat" accept=".jpg, .jpeg., .png"/>
                 </label>
             </div>
 
             <div class="file-upload">
                 <span class="sr-only">Proposal</span>
                 <label>
-                    <input type="file" class="file-input" name="proposal" />
+                    <input type="file" class="file-input" name="proposal" accept=".pdf" />
                 </label>
             </div>
 
             <div class="file-upload">
                 <span class="sr-only">Surat Tugas</span>
                 <label>
-                    <input type="file" class="file-input" name="surat_tugas" />
+                    <input type="file" class="file-input" name="surat_tugas" accept=".pdf" />
                 </label>
             </div>
 
             <div class="file-upload">
-                <span>Karya (bila ada)</span>
+                <span>Karya </span>
                 <label>
-                    <input type="file" class="file-input" name="karya" />
+                    <input type="file" class="file-input" name="karya" accept=".jpg, .jpeg., .png" />
                 </label>
             </div>
 

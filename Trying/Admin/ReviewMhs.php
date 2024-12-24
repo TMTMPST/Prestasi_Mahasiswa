@@ -208,7 +208,7 @@ JOIN
             <div class="FileItem">
                 <span class="Label">Proposal</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('<?= $_SESSION['proposal']?>')">View</span></div>
+                    <div><span class="ViewImage" onclick="showPopupPDF('<?= $_SESSION['proposal']?>')">View</span></div>
                     <div class="popuppdf" id="pdfPopup">
                         <div class="popup-content">
                             <span class="close-btn" onclick="hidePopupPDF()">&times;</span>
@@ -220,7 +220,7 @@ JOIN
             <div class="FileItem">
                 <span class="Label">Surat Tugas</span>
                 <div style="display: flex; width: auto;">
-                    <div><span class="ViewImage" onclick="showPopupImg('<?= $_SESSION['surat_tugas']?>')">View</span></div>
+                    <div><span class="ViewImage" onclick="showPopupPDF('<?= $_SESSION['surat_tugas']?>')">View</span></div>
                     <div class="popuppdf" id="pdfPopup">
                         <div class="popup-content">
                             <span class="close-btn" onclick="hidePopupPDF()">&times;</span>

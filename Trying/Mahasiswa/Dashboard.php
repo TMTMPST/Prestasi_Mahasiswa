@@ -101,11 +101,11 @@ $jnilai = $stmt2->fetch(PDO::FETCH_ASSOC);
                                 <td><?= htmlspecialchars($row['PERINGKAT']); ?></td>
                                 <td><?= htmlspecialchars($row['jumlah_poin']); ?></td>
                                 <td><?php
-                                    if ($row['NAMA_ADMIN']) {
+                                    // if ($row['NAMA_ADMIN']) {
                                         echo htmlspecialchars($row['NAMA_ADMIN']);
-                                    } else {
-                                        echo "";
-                                    }
+                                    // } else {
+                                        // echo "";
+                                    // }
                                     ?></td>
                                 <td><?= htmlspecialchars(date('d-m-Y', strtotime($row['tgl_kegiatan']))); ?></td>
                             </tr>
