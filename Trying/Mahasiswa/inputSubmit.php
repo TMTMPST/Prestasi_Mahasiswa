@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <span class="Label">Sertifikat</span>
                 <div style="display: flex; width: auto;">
                     <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['sertifikat']; ?>')">View
-                            </span></div>
+                        </span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
@@ -184,9 +184,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <span class="Label">Proposal</span>
                 <div style="display: flex; width: auto;">
                     <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['proposal']; ?>')">View
-                            </span></div>
-                    <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
-                        <img id="popupImage" src="" alt="Popup Image" />
+                        </span></div>
+                    <div class="popuppdf" id="pdfPopup">
+                        <div class="popup-content">
+                            <span class="close-btn" onclick="hidePopupPDF()">&times;</span>
+                            <iframe id="pdfViewer" src="" width="100%" height="100%"></iframe>
+                        </div>
                     </div>
                     <div class="UploadSuccess">Upload Success</div>
                 </div>
@@ -195,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <span class="Label">Surat Tugas</span>
                 <div style="display: flex; width: auto;">
                     <div><span class="ViewImage" onclick="showPopupPDF('<?php echo $_SESSION['surat_tugas']; ?>')">View
-                            </span></div>
+                        </span></div>
                     <div class="popuppdf" id="pdfPopup">
                         <div class="popup-content">
                             <span class="close-btn" onclick="hidePopupPDF()">&times;</span>
@@ -210,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <span class="Label">Karya</span>
                 <div style="display: flex; width: auto;">
                     <div><span class="ViewImage" onclick="showPopupImg('<?php echo $_SESSION['karya']; ?>')">View
-                            </span></div>
+                        </span></div>
                     <div class="popupimg" id="imagePopup" onclick="hidePopupImg()">
                         <img id="popupImage" src="" alt="Popup Image" />
                     </div>
