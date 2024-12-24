@@ -494,7 +494,7 @@ public class InputFile extends javax.swing.JFrame {
         }
 
         // Tentukan folder tujuan
-        Path targetDir = Paths.get("../img/uploads").toAbsolutePath();
+        Path targetDir = Paths.get("src/img/uploads");
         System.out.println("Folder target absolut: " + targetDir);
 
         // Cek apakah folder tujuan ada
